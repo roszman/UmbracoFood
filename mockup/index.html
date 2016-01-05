@@ -24,7 +24,6 @@
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,20 +32,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Umbraco food</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="index.html">Aktualne zamowienia</a></li>
+            <li><a href="EdycjaZamowienia.html">Zamow jedzenie</a></li>
+            <li><a href="DodajRestauracje.html">Dodaj restauracje</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </nav>
 
     <div class="container">
-  <p>Zam√wienia</p>            
+  <div class="starter-template">
+  <h2>Zamowienia
+  <a href="EdycjaZamowienia.html" type="button" class="btn btn-success ">
+  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+  </h2>            
   <table class="table table-striped">
     <thead>
       <tr>
@@ -65,7 +67,7 @@
         <td>8 os√≥b</td>
         <td>Jacek</td>
         <td>W trakcie zamawiania</td>
-        <td>url</td>
+        <td><a type="button" class="btn btn-primary" href="Zamowienie.html">Dolacz do zamowienia</a></td>
       </tr>
       <tr>
         <td>Surf</td>
@@ -73,7 +75,7 @@
         <td>4 osoby</td>
         <td>Julian</td>
         <td>W drodze</td>
-        <td>url</td>
+        <td></td>
       </tr>
       <tr>
         <td>Panorama</td>
@@ -81,11 +83,15 @@
         <td>3 osoby</td>
         <td>Weronika</td>
         <td>W kuchni</td>
-        <td>url</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h2>Restauracje</h2>            
+  </div>
+  <h2>Restauracje
+  <a href="DodajRestauracje.html" type="button" class="btn btn-success ">
+  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+  </h2>            
   <table class="table table-striped">
     <thead>
       <tr>
@@ -100,19 +106,37 @@
         <td>Alizze</td>
         <td>menu url</td>
         <td>1234567898</td>
-        <td>url</td>
+        <td>
+	<div class="btn-group" role="group" aria-label="...">
+	  <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
+	  <a type="button" class="btn btn-default">Usun</a>
+	  <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
+	</div>
+	</td>
       </tr>
       <tr>
-        <td>Alizze</td>
+        <td>Surf</td>
         <td>menu url</td>
         <td>1234567898</td>
-        <td>url</td>
+        <td>
+	<div class="btn-group" role="group" aria-label="...">
+	  <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
+	  <a type="button" class="btn btn-default">Usun</a>
+	  <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
+	</div>
+	</td>
       </tr>
       <tr>
-        <td>Alizze</td>
+        <td>Panorama</td>
         <td>menu url</td>
         <td>1234567898</td>
-        <td>url</td>
+        <td>
+	<div class="btn-group" role="group" aria-label="...">
+	  <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
+	  <a type="button" class="btn btn-default">Usun</a>
+	  <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
+	</div>
+	</td>
       </tr>
     </tbody>
   </table>
