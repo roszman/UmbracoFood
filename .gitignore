@@ -257,3 +257,6 @@ _Pvt_Extensions
 
 # ImageProcessor DiskCache 
 **/App_Data/cache/
+
+#vim files
+*.orig
