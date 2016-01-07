@@ -3,7 +3,7 @@
     public enum OrderStatus
     {
         InProgress,
-        InDeliveryj,
+        InDelivery,
         InKitchen
     }
 }
