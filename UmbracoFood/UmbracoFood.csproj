@@ -96,6 +96,18 @@
       <HintPath>..\packages\UmbracoCms.Core.7.3.4\lib\interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Jumoo.uSync.BackOffice, Version=3.0.5828.22137, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uSync.3.0.3\lib\net45\Jumoo.uSync.BackOffice.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Jumoo.uSync.BackOffice.UI, Version=3.0.5750.30839, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uSync.3.0.3\lib\net45\Jumoo.uSync.BackOffice.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Jumoo.uSync.Core, Version=5.1.5828.22136, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\uSync.Core.5.1.0\lib\net45\Jumoo.uSync.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.7.3.4\lib\log4net.dll</HintPath>
       <Private>True</Private>
@@ -316,6 +328,8 @@
     <Content Include="Config\BaseRestExtensions.config" />
     <Content Include="Config\applications.config" />
     <Content Include="Config\404handlers.config" />
+    <Content Include="Config\uSyncCore.config" />
+    <Content Include="Config\uSyncBackOffice.Config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -324,6 +338,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_plugins\uSync\BackOffice\uSyncBackOfficeDashboard.ascx" />
     <Content Include="Config\grid.editors.config.js" />
     <Content Include="Config\Lang\cs-CZ.user.xml" />
     <Content Include="Config\Lang\da-DK.user.xml" />
