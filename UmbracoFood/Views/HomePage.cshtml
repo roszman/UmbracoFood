@@ -1,8 +1,8 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    Layout = null;
+    Layout = "Master.cshtml";
 }
 
 
-Piotrze, czy Ty to widzisz? 
-	Widze Michale
+@Html.Partial("Orders")
+@Html.Partial("Restaurants")
