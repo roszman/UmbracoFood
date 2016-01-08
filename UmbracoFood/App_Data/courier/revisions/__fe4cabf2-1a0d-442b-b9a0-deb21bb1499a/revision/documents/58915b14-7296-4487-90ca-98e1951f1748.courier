@@ -1,0 +1,54 @@
+﻿<Document xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>true</IsChild>
+            <ItemId>
+                <Id>58915b14-7296-4487-90ca-98e1951f1748</Id>
+                <ProviderId>e0472594-e73b-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Document Property data</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>HomePage</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Template: HomePage</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>HomePage</Id>
+                <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Document type: HomePage</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>58915b14-7296-4487-90ca-98e1951f1748</Id>
+        <ProviderId>d8e6ad83-e73a-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>test curiera</Name>
+    <ItemType>Item</ItemType>
+    <Resources />
+    <DocumentTypeAlias>HomePage</DocumentTypeAlias>
+    <ParentUniqueId>00000000-0000-0000-0000-000000000000</ParentUniqueId>
+    <UniqueId>58915b14-7296-4487-90ca-98e1951f1748</UniqueId>
+    <SortOrder>1</SortOrder>
+    <Level>1</Level>
+    <Template>HomePage</Template>
+    <Published>true</Published>
+    <Draft>false</Draft>
+    <CreateDate>2016-01-08T15:30:41</CreateDate>
+    <ExpireDate>0001-01-01T00:00:00</ExpireDate>
+    <ReleaseDate>0001-01-01T00:00:00</ReleaseDate>
+    <UpdateDate>2016-01-08T15:30:41</UpdateDate>
+    <PublishDate>2016-01-08T15:30:41</PublishDate>
+    <User>admin@umbracofood.com</User>
+    <Relations />
+    <Domains />
+</Document>
