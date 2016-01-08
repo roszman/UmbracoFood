@@ -260,3 +260,10 @@ _Pvt_Extensions
 
 #vim files
 *.orig
+
+
+
+
+
+# CUSTOM
+**/Config/courier.config
