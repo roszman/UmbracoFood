@@ -10,8 +10,8 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
     [Umbraco.Web.Trees.Tree("Restaurants", "RestaurantsTree", "Restauracje")]
     public class RestaurantsApplicationTreeController : TreeController
     {
-        private const string InactiveRestaurants = "inactiverRestaurants";
-        private const string ActiveRestaurants = "nactiverRestaurants";
+        private const string InactiveRestaurants = "inactiveRestaurants";
+        private const string ActiveRestaurants = "activeRestaurants";
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
             if (id.Equals("-1"))
@@ -27,7 +27,7 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
             if (id.Equals(ActiveRestaurants))
             {
                 TreeNodeCollection restaurants = new TreeNodeCollection();
-                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants, id, queryStrings, "My item", "icon-wine-glass", false);
+                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants + "1", id, queryStrings, "My item", "icon-wine-glass", false);
                 restaurants.Add(activeRestaurantsNode);
                 return restaurants;
 
@@ -35,7 +35,7 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
             if (id.Equals(InactiveRestaurants))
             {
                 TreeNodeCollection restaurants = new TreeNodeCollection();
-                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants, id, queryStrings, "My item", "icon-wine-glass", false);
+                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants + "2", id, queryStrings, "My item", "icon-wine-glass", false);
                 restaurants.Add(activeRestaurantsNode);
                 return restaurants;
             }
