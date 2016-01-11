@@ -1,4 +1,6 @@
-﻿namespace UmbracoFood.Core.Models
+﻿using Umbraco.Core.Persistence;
+
+namespace UmbracoFood.Core.Models
 {
     public class Restaurant
     {
