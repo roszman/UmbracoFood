@@ -1,0 +1,25 @@
+﻿<ContentPropertyData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>04192bba-11d2-4300-9147-09dd64eaf83f</Id>
+                <ProviderId>d8e6ad83-e73a-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Node: 04192bba-11d2-4300-9147-09dd64eaf83f</Name>
+            <ForceHashCheck>false</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>04192bba-11d2-4300-9147-09dd64eaf83f</Id>
+        <ProviderId>e0472594-e73b-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Document test couriera 222 Property Data</Name>
+    <ItemType>Item</ItemType>
+    <Resources />
+    <ContentUniqueId>04192bba-11d2-4300-9147-09dd64eaf83f</ContentUniqueId>
+    <Data />
+    <NodeObjectType>c66ba18e-eaf3-4cff-8a22-41b16d66a972</NodeObjectType>
+    <ContentTypeAlias>HomePage</ContentTypeAlias>
+    <Published>true</Published>
+</ContentPropertyData>
