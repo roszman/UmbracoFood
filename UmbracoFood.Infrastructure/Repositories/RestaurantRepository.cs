@@ -4,7 +4,7 @@ using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Infrastructure.Repositories
 {
-    public class RestaurantRepository :IRestaurantsRepository
+    public class RestaurantRepository :IRestaurantRepository
     {
         public void AddRestaurant(Restaurant restaurant)
         {
