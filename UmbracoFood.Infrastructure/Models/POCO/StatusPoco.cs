@@ -1,6 +1,6 @@
 ﻿using Umbraco.Core.Persistence;
 
-namespace UmbracoFood.Core.Models.POCO
+namespace UmbracoFood.Infrastructure.Models.POCO
 {
     [TableName("Statuses")]
     [PrimaryKey("Id", autoIncrement = true)]

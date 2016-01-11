@@ -1,7 +1,7 @@
 ﻿using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
 
-namespace UmbracoFood.Core.Models.POCO
+namespace UmbracoFood.Infrastructure.Models.POCO
 {
 
     [TableName("OrderedMeals")]
