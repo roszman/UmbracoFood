@@ -2,8 +2,7 @@
 
     function EditRestaurantController($scope, $routeParams, navigationService) {
         $scope.content = { tabs: [{ id: 1, label: "Tab 1" }, { id: 2, label: "Tab 2" }] };
-        $scope.id = $routeParams.id;
-        $scope.EditMode = function () {
+        $scope.EditMode = function() {
             return $routeParams.create == 'true';
         };
         var restaurant = new Object();
