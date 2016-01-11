@@ -1,7 +1,7 @@
 ﻿using umbraco.businesslogic;
 using umbraco.interfaces;
 
-namespace UmbracoFood.Custom.Sections
+namespace UmbracoFood.App_plugins.Restaurants.Section
 {
     [Application("Restaurants", "Restaurants", "icon-food", 99)]
     public class RestaurantsApplication : IApplication
