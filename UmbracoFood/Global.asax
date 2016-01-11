@@ -1,2 +1,2 @@
-﻿<%@ Application Inherits="Umbraco.Web.UmbracoApplication" Language="C#" %>
+﻿<%@ Application CodeBehind="Global.cs" Inherits="UmbracoFood.Global" Language="C#" %>
           

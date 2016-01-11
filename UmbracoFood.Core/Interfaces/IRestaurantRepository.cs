@@ -3,7 +3,7 @@ using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Core.Interfaces
 {
-    public interface IRestaurantsRepository
+    public interface IRestaurantRepository
     {
         void AddRestaurant(Restaurant restaurant);
 
