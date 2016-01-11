@@ -1,6 +1,4 @@
-﻿using Umbraco.Core.Persistence;
-
-namespace UmbracoFood.Core.Models
+﻿namespace UmbracoFood.Core.Models
 {
     public class Restaurant
     {

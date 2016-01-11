@@ -42,6 +42,19 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">
+      <Project>{29c705af-885a-49f6-9971-585454edd53f}</Project>
+      <Name>UmbracoFood.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UmbracoFood.Infrastructure\UmbracoFood.Infrastructure.csproj">
+      <Project>{41450b1c-6514-4df0-afa7-70131e763524}</Project>
+      <Name>UmbracoFood.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
