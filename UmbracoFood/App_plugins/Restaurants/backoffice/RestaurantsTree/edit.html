@@ -1,11 +1,22 @@
 ﻿<script>
 
-    function EditRestaurantController($scope, $routeParams) {
+    function EditRestaurantController($scope, $routeParams, navigationService) {
         $scope.content = { tabs: [{ id: 1, label: "Tab 1" }, { id: 2, label: "Tab 2" }] };
         $scope.id = $routeParams.id;
-        $scope.EditMode = function() {
+        $scope.EditMode = function () {
             return $routeParams.create == 'true';
         };
+        var restaurant = new Object();
+        restaurant.name = "nazwa restauracji " + $scope.id;
+        restaurant.url = "http://jakasrestauracja.pl";
+        restaurant.menuUrl = "http://jakasrestauracja.pl/menu";
+        restaurant.phone = "1234456767";
+
+        $scope.restaurant = restaurant;
+
+        $scope.Save = function () {
+            navigationService.hideTree();
+        }
     }
 </script>
 
@@ -21,12 +32,83 @@
             <umb-tab id="tab1" rel="svensson">
 
                 <div class="umb-pane">
-                    This is tab content for tab 1<br/>
                     <p ng-show="EditMode()">
                         <span class="label label-warning">In create mode, this label is only showed when the controller sees the create-querystring item.</span>
                     </p>
+
+                    <div class="umb-property">
+                        <ng-form name="restaurantForm">
+                            <div class="control-group umb-control-group">
+
+                                <val-property-msg property="property"></val-property-msg>
+
+                                <div class="umb-el-wrap">
+                                    <label class="control-label" ng-hide="" for="" ng-attr-title="">
+                                        Name
+                                        <small ng-bind-html="">tralala</small>
+                                    </label>
+
+                                    <div class="controls controls-row">
+                                        <input type="text" ng-model="restaurant.name" placeholder="Restaurant name"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group umb-control-group">
+
+                                <val-property-msg property="property"></val-property-msg>
+
+                                <div class="umb-el-wrap">
+                                    <label class="control-label" ng-hide="" for="" ng-attr-title="">
+                                        Url
+                                        <small ng-bind-html="">tralala</small>
+                                    </label>
+
+                                    <div class="controls controls-row">
+                                        <input type="text" ng-model="restaurant.url" placeholder="Restaurant url" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group umb-control-group">
+
+                                <val-property-msg property="property"></val-property-msg>
+
+                                <div class="umb-el-wrap">
+                                    <label class="control-label" ng-hide="" for="" ng-attr-title="">
+                                        Menu Url
+                                        <small ng-bind-html="">tralala</small>
+                                    </label>
+
+                                    <div class="controls controls-row">
+                                        <input type="text" ng-model="restaurant.menuUrl" placeholder="Restaurant menu url" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group umb-control-group">
+
+                                <val-property-msg property="property"></val-property-msg>
+
+                                <div class="umb-el-wrap">
+                                    <label class="control-label" ng-hide="" for="" ng-attr-title="">
+                                        Phone
+                                        <small ng-bind-html="">tralala</small>
+                                    </label>
+
+                                    <div class="controls controls-row">
+                                        <input type="text" ng-model="restaurant.phone" placeholder="Restaurant phone number" />
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-form>
+                    </div>
+                    <div style="left: 440px;" class="umb-tab-buttons umb-bottom-bar" detect-fold="">
+                        <div class="btn-group dropup">
+                            <a class="btn btn-success" href="" ng-click="navigationService.hideTree()">
+                                Save and publish
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <umb-property>idudu</umb-property>
+
             </umb-tab>
 
             <umb-tab id="tab2" rel="kalle">
