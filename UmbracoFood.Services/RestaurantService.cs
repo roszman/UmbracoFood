@@ -17,9 +17,34 @@ namespace UmbracoFood.Services
             this.restaurantRepository = restaurantRepository;
         }
 
+        public void AddRestaurant(Restaurant restaurant)
+        {
+            restaurantRepository.AddRestaurant(restaurant);
+        }
+
+        public void EditRestaurant(Restaurant restaurant)
+        {
+            restaurantRepository.EditRestaurant(restaurant);
+        }
+
+        public void RemoveRestaurant(int id)
+        {
+            restaurantRepository.RemoveRestaurant(id);
+        }
+
+        public Restaurant GetRestaurant(int id)
+        {
+            return restaurantRepository.GetRestaurant(id);
+        }
+
         public IEnumerable<Restaurant> GetActiveRestaurants()
         {
             return restaurantRepository.GetActiveRestaurants();
+        }
+
+        public IEnumerable<Restaurant> GetInactiveRestaurants()
+        {
+            return restaurantRepository.GetInactiveRestaurants();
         }
     }
 }

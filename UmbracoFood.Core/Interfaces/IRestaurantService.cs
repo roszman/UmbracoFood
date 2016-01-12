@@ -5,6 +5,17 @@ namespace UmbracoFood.Core.Interfaces
 {
     public interface IRestaurantService
     {
+        void AddRestaurant(Restaurant restaurant);
+
+        void EditRestaurant(Restaurant restaurant);
+
+        void RemoveRestaurant(int id);
+
+        Restaurant GetRestaurant(int id);
+
         IEnumerable<Restaurant> GetActiveRestaurants();
+
+        IEnumerable<Restaurant> GetInactiveRestaurants();
+
     }
 }
