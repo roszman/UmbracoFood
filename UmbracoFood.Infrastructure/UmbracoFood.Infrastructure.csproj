@@ -270,6 +270,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\RestaurantRepositoryMappingProfile.cs" />
     <Compile Include="Models\POCO\OrderedMealPOCO.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -283,6 +284,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />
   </ItemGroup>
   <ItemGroup>

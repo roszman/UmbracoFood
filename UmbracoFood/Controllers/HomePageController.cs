@@ -16,7 +16,7 @@ namespace UmbracoFood.Controllers
 
         public ActionResult HomePage(RenderModel model)
         {
-            var test = restaurantService.GetAllRestaurants();
+            var test = restaurantService.GetActiveRestaurants();
 
             return base.Index(model);
         }
