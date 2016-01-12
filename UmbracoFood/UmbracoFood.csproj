@@ -1936,7 +1936,14 @@
     <Content Include="umbraco\Xslt\Web.config" />
     <Content Include="Views\AddRestaurationPage.cshtml" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
+<<<<<<< HEAD
 >>>>>>> 535aa26... init
+=======
+    <Content Include="Views\Partials\Restaurants.cshtml" />
+    <Content Include="Views\Partials\Orders.cshtml" />
+    <Content Include="Views\Order.cshtml" />
+    <Content Include="Views\OrderPage.cshtml" />
+>>>>>>> bb0e424... Created mocked views, navigation. docTypes, contents
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

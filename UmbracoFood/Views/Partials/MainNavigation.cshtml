@@ -1,28 +1,27 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     var home = CurrentPage.Site();
-    var test = home.IsEqual(1052);
-    var test2 = test;
+    var indexSiteTitle = Umbraco.Field("siteTitle", recursive: true).ToHtmlString();
+
 }
-
-
-
-
+<div class="navbar-header">
+    <ul class="nav navbar-nav">
+        <li style="@(home.IsEqual(CurrentPage) ? "font-weight: bold" : null)">
+            <a href="@home.Url">@Umbraco.RenderMacro("SiteTitle", new { dictionaryItem = home.SiteTitle })</a>
+        </li>
+    </ul>
+</div>
 @if (home.Children.Any())
 {
     <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li style="@(home.IsEqual(CurrentPage) ? "font-size: large" : null)">
-                <a href="@home.Url">@home.Name</a>
-            </li>
-            @*@foreach (var childPage in home.Children.Where("DocumentTypeAlias != \"AddRestaurationPage\""))*@
             @foreach (var childPage in home.Children.Where("visibleInMainNavigation == true"))
             {
-                <li style="@(childPage.IsAncestorOrSelf(CurrentPage) ? "font-size: large" : null)">
-                    <a href="@childPage.Url">@childPage.Name</a>
+                <li style="@(childPage.IsAncestorOrSelf(CurrentPage) ? "font-weight: bold" : null)">
+                    <a href="@childPage.Url">@Umbraco.RenderMacro("SiteTitle", new { dictionaryItem = String.IsNullOrWhiteSpace(childPage.SiteTitle) ? indexSiteTitle : childPage.SiteTitle })</a>
                 </li>
             }
-
         </ul>
     </div>
 }
+

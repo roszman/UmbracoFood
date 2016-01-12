@@ -1,8 +1,9 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 	
   <h2>Zamowienia
-  <a href="EdycjaZamowienia.html" type="button" class="btn btn-success ">
-  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+      <a href="@Umbraco.NiceUrl(1058)" type="button" class="btn btn-success ">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+      </a>
   </h2>            
   <table class="table table-striped">
     <thead>
@@ -22,7 +23,7 @@
         <td>8 osób</td>
         <td>Jacek</td>
         <td>W trakcie zamawiania</td>
-        <td><a type="button" class="btn btn-primary" href="Zamowienie.html">Dolacz do zamowienia</a></td>
+        <td><a type="button" class="btn btn-primary" href="@Umbraco.NiceUrl(1067)">Dolacz do zamowienia</a></td>
       </tr>
       <tr>
         <td>Surf</td>
