@@ -19,18 +19,20 @@ namespace UmbracoFood
 
             builder.RegisterControllers(typeof (Global).Assembly);
             builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
-            
+            builder.RegisterApiControllers(typeof(Global).Assembly);
+
+
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
-        
+
         private static void RegisterServices(ContainerBuilder builder)
         {
             var businessLogic = Assembly.Load("UmbracoFood.Services");
 
             builder.RegisterAssemblyTypes(businessLogic)
                 .Where(t => t.Name.EndsWith("Service"))
-                .AsImplementedInterfaces();            
+                .AsImplementedInterfaces();
         }
 
         private static void RegisterRepositories(ContainerBuilder builder)
