@@ -28,7 +28,7 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public IEnumerable<Restaurant> GetActiveRestaurants()
         {
-            throw new System.NotImplementedException();
+            return new List<Restaurant>();
         }
 
         public IEnumerable<Restaurant> GetInactiveRestaurants()

@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using Umbraco.Web;
 
 namespace UmbracoFood
 {
@@ -16,6 +18,7 @@ namespace UmbracoFood
 
 
             builder.RegisterControllers(typeof (Global).Assembly);
+            builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
             
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
