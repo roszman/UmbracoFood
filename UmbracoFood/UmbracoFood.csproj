@@ -394,6 +394,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_plugins\Restaurants\Tree\RestaurantsApplicationTreeController.cs" />
+    <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
