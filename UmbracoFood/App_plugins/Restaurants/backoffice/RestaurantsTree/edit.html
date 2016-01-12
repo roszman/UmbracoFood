@@ -7,15 +7,32 @@
             return $routeParams.create == 'true';
         };
         var restaurant = new Object();
-        restaurant.name = "nazwa restauracji " + $scope.id;
-        restaurant.url = "http://jakasrestauracja.pl";
-        restaurant.menuUrl = "http://jakasrestauracja.pl/menu";
-        restaurant.phone = "1234456767";
+        if(!$scope.EditMode())
+        {
+            restaurant.name = "nazwa restauracji " + $scope.id;
+            restaurant.url = "http://jakasrestauracja.pl";
+            restaurant.menuUrl = "http://jakasrestauracja.pl/menu";
+            restaurant.phone = "1234456767";
+            restaurant.id = 1;
+        }
 
         $scope.restaurant = restaurant;
 
         $scope.Save = function () {
-            navigationService.hideTree();
+            $http.post('',
+                {
+                    'Id': restaurant.id,
+                    'Name': restaurant.name,
+                    'Url': restaurant.url,
+                    'MenuUrl': restaurant.menuUrl,
+                    'Phone': restaurant.phone,
+                })
+                .success(function (data, status, headers, config) {
+
+                })
+                .error(function (data, status, headers, config) {
+
+            });
         }
     }
 </script>
@@ -38,6 +55,7 @@
 
                     <div class="umb-property">
                         <ng-form name="restaurantForm">
+                            <input type="hidden" ng-model="restaurant.id" />
                             <div class="control-group umb-control-group">
 
                                 <val-property-msg property="property"></val-property-msg>
@@ -102,7 +120,7 @@
                     </div>
                     <div style="left: 440px;" class="umb-tab-buttons umb-bottom-bar" detect-fold="">
                         <div class="btn-group dropup">
-                            <a class="btn btn-success" href="" ng-click="navigationService.hideTree()">
+                            <a class="btn btn-success" href="" ng-click="Save()">
                                 Save and publish
                             </a>
                         </div>

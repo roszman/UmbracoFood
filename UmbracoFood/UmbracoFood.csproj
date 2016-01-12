@@ -15,7 +15,7 @@
     <RootNamespace>UmbracoFood</RootNamespace>
     <AssemblyName>UmbracoFood</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -404,6 +404,10 @@
       <Project>{29c705af-885a-49f6-9971-585454edd53f}</Project>
       <Name>UmbracoFood.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UmbracoFood.Infrastructure\UmbracoFood.Infrastructure.csproj">
+      <Project>{41450b1c-6514-4df0-afa7-70131e763524}</Project>
+      <Name>UmbracoFood.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UmbracoFood.Services\UmbracoFood.Services.csproj">
       <Project>{864a85e9-0b54-4766-8ca7-19371e69fb31}</Project>
       <Name>UmbracoFood.Services</Name>
@@ -424,7 +428,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49356</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/UmbracoFood</IISUrl>
+          <IISUrl>http://localhost:49356/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
