@@ -27,7 +27,7 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
             if (id.Equals(ActiveRestaurants))
             {
                 TreeNodeCollection restaurants = new TreeNodeCollection();
-                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants + "1", id, queryStrings, "My item", "icon-wine-glass", false);
+                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants + "1", id, queryStrings, "active fake restaurant", "icon-wine-glass", false);
                 restaurants.Add(activeRestaurantsNode);
                 return restaurants;
 
@@ -35,7 +35,7 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
             if (id.Equals(InactiveRestaurants))
             {
                 TreeNodeCollection restaurants = new TreeNodeCollection();
-                TreeNode activeRestaurantsNode = this.CreateTreeNode(InactiveRestaurants + "2", id, queryStrings, "My item", "icon-wine-glass", false);
+                TreeNode activeRestaurantsNode = this.CreateTreeNode(InactiveRestaurants + "2", id, queryStrings, "inactive fake restaurnat ", "icon-wine-glass", false);
                 restaurants.Add(activeRestaurantsNode);
                 return restaurants;
             }
