@@ -16,6 +16,7 @@ namespace UmbracoFood
             base.OnApplicationStarted(sender, e);
 
             AutofacConfig.Configure();
+            AutomapperConfig.Configure();
         }
     }
 }
