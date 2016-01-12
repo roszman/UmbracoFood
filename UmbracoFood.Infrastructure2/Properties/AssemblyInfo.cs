@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UmbracoFood.Infrastructure")]
+[assembly: AssemblyTitle("UmbracoFood.Infrastructure2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UmbracoFood.Infrastructure")]
+[assembly: AssemblyProduct("UmbracoFood.Infrastructure2")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("41450b1c-6514-4df0-afa7-70131e763524")]
+[assembly: Guid("d1d2ea19-a5aa-4b89-9fa8-f4ea39e644d4")]
 
 // Version information for an assembly consists of the following four values:
 //

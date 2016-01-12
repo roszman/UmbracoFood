@@ -2,7 +2,7 @@
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
 
-namespace UmbracoFood.Infrastructure.Models.POCO
+namespace UmbracoFood.Infrastructure2.Models.POCO
 {
     [TableName("Orders")]
     [PrimaryKey("Id", autoIncrement = true)]
@@ -26,6 +26,6 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         public DateTime Deadline { get; set; }
 
         [Column("EstimatedDeliveryTime")]
-        public DateTime? EstimatedDeliveryTime { get; set; } 
+        public DateTime? EstimatedDeliveryTime { get; set; }
     }
 }

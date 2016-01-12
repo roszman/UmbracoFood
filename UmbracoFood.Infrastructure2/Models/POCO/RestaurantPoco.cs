@@ -1,6 +1,6 @@
 ﻿using Umbraco.Core.Persistence;
 
-namespace UmbracoFood.Infrastructure.Models.POCO
+namespace UmbracoFood.Infrastructure2.Models.POCO
 {
 
     [TableName("Restaurants")]

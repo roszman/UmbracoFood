@@ -41,15 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestaurantService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">
       <Project>{29c705af-885a-49f6-9971-585454edd53f}</Project>
       <Name>UmbracoFood.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UmbracoFood.Infrastructure\UmbracoFood.Infrastructure.csproj">
-      <Project>{41450b1c-6514-4df0-afa7-70131e763524}</Project>
-      <Name>UmbracoFood.Infrastructure</Name>
+    <ProjectReference Include="..\UmbracoFood.Infrastructure2\UmbracoFood.Infrastructure2.csproj">
+      <Project>{138197df-335b-4ef6-9465-3ec33156eb4b}</Project>
+      <Name>UmbracoFood.Infrastructure2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

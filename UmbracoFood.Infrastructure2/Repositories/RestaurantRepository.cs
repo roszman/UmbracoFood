@@ -2,9 +2,9 @@
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 
-namespace UmbracoFood.Infrastructure.Repositories
+namespace UmbracoFood.Infrastructure2.Repositories
 {
-    public class RestaurantRepository :IRestaurantRepository
+    public class RestaurantRepository : IRestaurantRepository
     {
         public void AddRestaurant(Restaurant restaurant)
         {

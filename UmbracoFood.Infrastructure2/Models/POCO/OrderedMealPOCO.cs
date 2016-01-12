@@ -1,5 +1,6 @@
 ﻿using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
+using UmbracoFood.Infrastructure2.Models.POCO;
 
 namespace UmbracoFood.Infrastructure.Models.POCO
 {
@@ -10,7 +11,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
     {
         [Column("Id")]
         public long Id { get; set; }
-        
+
         [Column("Price")]
         public double Price { get; set; }
 
