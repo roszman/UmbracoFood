@@ -8,10 +8,10 @@ namespace UmbracoFood.Infrastructure.Models.POCO
     public class RestaurantPoco
     {
         [Column("Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Column("Name")]
-        public double Name { get; set; }
+        public string Name { get; set; }
 
         [Column("Phone")]
         public string Phone { get; set; }

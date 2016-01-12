@@ -9,7 +9,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
     public class OrderPoco
     {
         [Column("Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Column("Owner")]
         public string Owner { get; set; }
