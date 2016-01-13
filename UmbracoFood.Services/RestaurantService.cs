@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Services
 {
-    class RestaurantService : IRestaurantService
+    public class RestaurantService : IRestaurantService
     {
         private readonly IRestaurantRepository restaurantRepository;
 

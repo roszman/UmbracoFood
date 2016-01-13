@@ -10,7 +10,7 @@
 	        $scope.loaded = true;
 	    }
 	    else {
-	        restaurantResource.getById(1/*$routeParams.id*/).then(function (response) {
+	        restaurantResource.getById($routeParams.id).then(function (response) {
 	            $scope.restaurant = response.data;
 
 	            $scope.loaded = true;
