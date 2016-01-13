@@ -21,20 +21,20 @@ namespace UmbracoFood.Tests.Mappings
         public void RestaurantPocoShouldBeMappedToRestaurant()
         {
             //Arrange
-            var restaurantPoco = new Mock<RestaurantPoco>();
-            restaurantPoco.Object.Id = 1;
-            restaurantPoco.Object.Active = true;
-            restaurantPoco.Object.MenuUrl = "http://menumock.url";
-            restaurantPoco.Object.Url = "http://mock.url";
-            restaurantPoco.Object.Name = "MockName";
-            restaurantPoco.Object.Phone = "123456789";
+            var restaurantPoco = new RestaurantPoco();
+            restaurantPoco.Id = 1;
+            restaurantPoco.Active = true;
+            restaurantPoco.MenuUrl = "http://menumock.url";
+            restaurantPoco.Url = "http://mock.url";
+            restaurantPoco.Name = "MockName";
+            restaurantPoco.Phone = "123456789";
 
 
             //Act
-            var restaurant = Mapper.Map<RestaurantPoco, Restaurant>(restaurantPoco.Object);
+            var restaurant = Mapper.Map<RestaurantPoco, Restaurant>(restaurantPoco);
 
             //Assert
-            Assert.Equal(restaurant.ID, restaurantPoco.Object.Id);
+            Assert.Equal(restaurant.ID, restaurantPoco.Id);
             Assert.IsType<Restaurant>(restaurant);
         } 
     }
