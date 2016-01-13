@@ -1,0 +1,35 @@
+﻿<Template xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>Master</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Master template: Master</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>CreateOrder</Id>
+        <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Create Order</Name>
+    <ItemType>Item</ItemType>
+    <Resources>
+        <Resource>
+            <ExtractToPath>~/views/CreateOrder.cshtml</ExtractToPath>
+            <Hash>3cdba19e56719a795f82d298ff433ac9</Hash>
+            <Name>~/views/CreateOrder.cshtml</Name>
+            <PackageFromPath>~/views/CreateOrder.cshtml</PackageFromPath>
+            <TemporaryStoragePath>/views/CreateOrder.cshtml</TemporaryStoragePath>
+            <VirtualResource>false</VirtualResource>
+            <NotFound>false</NotFound>
+        </Resource>
+    </Resources>
+    <Alias>CreateOrder</Alias>
+    <MasterPagePath>~/masterpages/CreateOrder.master</MasterPagePath>
+    <ParentTemplateAlias>Master</ParentTemplateAlias>
+    <ParentTemplateId>0</ParentTemplateId>
+    <Id>1059</Id>
+</Template>

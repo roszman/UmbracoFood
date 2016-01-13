@@ -1,0 +1,51 @@
+﻿<DocumentType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>BasePage</Id>
+                <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Document type: BasePage</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>HomePage</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Template: HomePage</Name>
+            <ForceHashCheck>false</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>HomePage</Id>
+        <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Home Page</Name>
+    <ItemType>Item</ItemType>
+    <Resources />
+    <Alias>HomePage</Alias>
+    <AllowedChildDocumentTypes>
+        <string>AddRestaurationPage</string>
+        <string>CreateOrder</string>
+        <string>EditOrder</string>
+        <string>OrderPage</string>
+    </AllowedChildDocumentTypes>
+    <AllowedTemplates>
+        <string>HomePage</string>
+    </AllowedTemplates>
+    <DefaultTemplate>HomePage</DefaultTemplate>
+    <Description />
+    <Icon>.sprTreeFolder</Icon>
+    <Properties />
+    <Tabs />
+    <Thumbnail>folder.png</Thumbnail>
+    <UniqueId>8cc0360f-f7a0-43ef-b784-f4a5e327cb81</UniqueId>
+    <MasterDocumentTypes>
+        <string>BasePage</string>
+    </MasterDocumentTypes>
+    <AllowAtRoot>false</AllowAtRoot>
+    <IsContainer>false</IsContainer>
+</DocumentType>

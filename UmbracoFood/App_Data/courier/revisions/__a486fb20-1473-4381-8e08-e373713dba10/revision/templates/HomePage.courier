@@ -1,0 +1,35 @@
+﻿<Template xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>Master</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Master template: Master</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>HomePage</Id>
+        <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Home Page</Name>
+    <ItemType>Item</ItemType>
+    <Resources>
+        <Resource>
+            <ExtractToPath>~/views/HomePage.cshtml</ExtractToPath>
+            <Hash>bab418c6bf47c57a7e328ba66faa3b85</Hash>
+            <Name>~/views/HomePage.cshtml</Name>
+            <PackageFromPath>~/views/HomePage.cshtml</PackageFromPath>
+            <TemporaryStoragePath>/views/HomePage.cshtml</TemporaryStoragePath>
+            <VirtualResource>false</VirtualResource>
+            <NotFound>false</NotFound>
+        </Resource>
+    </Resources>
+    <Alias>HomePage</Alias>
+    <MasterPagePath>~/masterpages/HomePage.master</MasterPagePath>
+    <ParentTemplateAlias>Master</ParentTemplateAlias>
+    <ParentTemplateId>0</ParentTemplateId>
+    <Id>1050</Id>
+</Template>

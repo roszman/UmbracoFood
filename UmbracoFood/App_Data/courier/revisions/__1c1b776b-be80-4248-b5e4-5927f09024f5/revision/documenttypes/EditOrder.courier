@@ -1,0 +1,46 @@
+﻿<DocumentType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>BasePage</Id>
+                <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Document type: BasePage</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>EditOrder</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Template: EditOrder</Name>
+            <ForceHashCheck>false</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>EditOrder</Id>
+        <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Edit Order</Name>
+    <ItemType>Item</ItemType>
+    <Resources />
+    <Alias>EditOrder</Alias>
+    <AllowedChildDocumentTypes />
+    <AllowedTemplates>
+        <string>EditOrder</string>
+    </AllowedTemplates>
+    <DefaultTemplate>EditOrder</DefaultTemplate>
+    <Description />
+    <Icon>.sprTreeFolder</Icon>
+    <Properties />
+    <Tabs />
+    <Thumbnail>folder.png</Thumbnail>
+    <UniqueId>cd863ec6-a73d-44ea-a54e-33a52b70f8e2</UniqueId>
+    <MasterDocumentTypes>
+        <string>BasePage</string>
+    </MasterDocumentTypes>
+    <AllowAtRoot>false</AllowAtRoot>
+    <IsContainer>false</IsContainer>
+</DocumentType>

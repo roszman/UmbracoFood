@@ -1,0 +1,35 @@
+﻿<Template xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>Master</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Master template: Master</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>AddRestaurationPage</Id>
+        <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Add Restauration Page</Name>
+    <ItemType>Item</ItemType>
+    <Resources>
+        <Resource>
+            <ExtractToPath>~/views/AddRestaurationPage.cshtml</ExtractToPath>
+            <Hash>9bb8cc9c5fda897b52f502dae4e08447</Hash>
+            <Name>~/views/AddRestaurationPage.cshtml</Name>
+            <PackageFromPath>~/views/AddRestaurationPage.cshtml</PackageFromPath>
+            <TemporaryStoragePath>/views/AddRestaurationPage.cshtml</TemporaryStoragePath>
+            <VirtualResource>false</VirtualResource>
+            <NotFound>false</NotFound>
+        </Resource>
+    </Resources>
+    <Alias>AddRestaurationPage</Alias>
+    <MasterPagePath>~/masterpages/AddRestaurationPage.master</MasterPagePath>
+    <ParentTemplateAlias>Master</ParentTemplateAlias>
+    <ParentTemplateId>0</ParentTemplateId>
+    <Id>1056</Id>
+</Template>

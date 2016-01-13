@@ -1,0 +1,46 @@
+﻿<DocumentType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>BasePage</Id>
+                <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Document type: BasePage</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>OrderPage</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Template: OrderPage</Name>
+            <ForceHashCheck>false</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>OrderPage</Id>
+        <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Order Page</Name>
+    <ItemType>Item</ItemType>
+    <Resources />
+    <Alias>OrderPage</Alias>
+    <AllowedChildDocumentTypes />
+    <AllowedTemplates>
+        <string>OrderPage</string>
+    </AllowedTemplates>
+    <DefaultTemplate>OrderPage</DefaultTemplate>
+    <Description />
+    <Icon>.sprTreeFolder</Icon>
+    <Properties />
+    <Tabs />
+    <Thumbnail>folder.png</Thumbnail>
+    <UniqueId>0aae60f2-c9e5-4ff6-bd07-30145bd9b44a</UniqueId>
+    <MasterDocumentTypes>
+        <string>BasePage</string>
+    </MasterDocumentTypes>
+    <AllowAtRoot>false</AllowAtRoot>
+    <IsContainer>false</IsContainer>
+</DocumentType>

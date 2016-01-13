@@ -1,0 +1,154 @@
+﻿<ItemIdentifierCollection>
+    <item>
+        <key>
+            <string>Master_25867200-e67e-11df-9492-0800200c9a66</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>Master</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>false</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>Master</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>HomePage_25867200-e67e-11df-9492-0800200c9a66</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>HomePage</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>false</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>Home Page</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>AddRestaurationPage_25867200-e67e-11df-9492-0800200c9a66</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>AddRestaurationPage</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>false</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>Add Restauration Page</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>CreateOrder_25867200-e67e-11df-9492-0800200c9a66</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>CreateOrder</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>false</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>Create Order</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>OrderPage_25867200-e67e-11df-9492-0800200c9a66</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>OrderPage</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>false</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>Order Page</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>EditOrder_25867200-e67e-11df-9492-0800200c9a66</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>EditOrder</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>false</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>Edit Order</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>UmbracoVersion_177e3cf9-2d0b-42b8-9d7d-a9ccb2439a4d</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>UmbracoVersion</Id>
+                <ProviderId>177e3cf9-2d0b-42b8-9d7d-a9ccb2439a4d</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>true</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>UmbracoVersion</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>CourierVersion_177e3cf9-2d0b-42b8-9d7d-a9ccb2439a4d</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>CourierVersion</Id>
+                <ProviderId>177e3cf9-2d0b-42b8-9d7d-a9ccb2439a4d</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>true</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+                <Name>CourierVersion</Name>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+    <item>
+        <key>
+            <string>InvalidDataCount_d929b517-f6e5-4a7c-94d3-97da3a560602</string>
+        </key>
+        <value>
+            <QueuedItemIdentifier xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <Id>InvalidDataCount</Id>
+                <ProviderId>d929b517-f6e5-4a7c-94d3-97da3a560602</ProviderId>
+                <Processed>true</Processed>
+                <Skipped>true</Skipped>
+                <ItemType>Item</ItemType>
+                <Level>0</Level>
+                <MaxDependencyLevel>2147483647</MaxDependencyLevel>
+            </QueuedItemIdentifier>
+        </value>
+    </item>
+</ItemIdentifierCollection>

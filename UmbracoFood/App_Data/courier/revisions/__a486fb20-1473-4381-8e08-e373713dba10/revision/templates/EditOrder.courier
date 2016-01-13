@@ -1,0 +1,35 @@
+﻿<Template xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>Master</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Master template: Master</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>EditOrder</Id>
+        <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Edit Order</Name>
+    <ItemType>Item</ItemType>
+    <Resources>
+        <Resource>
+            <ExtractToPath>~/views/EditOrder.cshtml</ExtractToPath>
+            <Hash>3cdba19e56719a795f82d298ff433ac9</Hash>
+            <Name>~/views/EditOrder.cshtml</Name>
+            <PackageFromPath>~/views/EditOrder.cshtml</PackageFromPath>
+            <TemporaryStoragePath>/views/EditOrder.cshtml</TemporaryStoragePath>
+            <VirtualResource>false</VirtualResource>
+            <NotFound>false</NotFound>
+        </Resource>
+    </Resources>
+    <Alias>EditOrder</Alias>
+    <MasterPagePath>~/masterpages/EditOrder.master</MasterPagePath>
+    <ParentTemplateAlias>Master</ParentTemplateAlias>
+    <ParentTemplateId>0</ParentTemplateId>
+    <Id>1068</Id>
+</Template>
