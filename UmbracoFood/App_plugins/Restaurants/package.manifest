@@ -1,0 +1,6 @@
+﻿﻿{
+	javascript: [
+	    '~/App_Plugins/Restaurants/backoffice/RestaurantsTree/edit.controller.js',
+        '~/App_Plugins/Restaurants/restaurant.resource.js'
+	]
+}
