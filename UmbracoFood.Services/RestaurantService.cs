@@ -17,7 +17,7 @@ namespace UmbracoFood.Services
             this.restaurantRepository = restaurantRepository;
         }
 
-        public IEnumerable<Restaurant> GetAllRestaurants()
+        public IEnumerable<Restaurant> GetActiveRestaurants()
         {
             return restaurantRepository.GetActiveRestaurants();
         }
