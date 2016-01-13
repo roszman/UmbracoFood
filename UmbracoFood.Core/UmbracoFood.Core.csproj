@@ -47,6 +47,7 @@
     <Compile Include="Models\OrderedMeal.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Models\RestaurantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

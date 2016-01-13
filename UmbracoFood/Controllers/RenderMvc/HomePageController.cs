@@ -3,7 +3,7 @@ using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 using UmbracoFood.Core.Interfaces;
 
-namespace UmbracoFood.Controllers
+namespace UmbracoFood.Controllers.RenderMvc
 {
     public class HomePageController : RenderMvcController
     {
