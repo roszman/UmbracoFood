@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
+using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.App_plugins.Restaurants.Controllers
@@ -9,67 +10,43 @@ namespace UmbracoFood.App_plugins.Restaurants.Controllers
     [PluginController("Restaurants")]
     public class RestaurantsApiController : UmbracoAuthorizedApiController
     {
-        public IEnumerable<Restaurant> GetAll()
+        private readonly IRestaurantService _restaurantService;
+
+        public RestaurantsApiController(IRestaurantService restaurantService)
         {
-            return new List<Restaurant>
-            {
-                new Restaurant
-                {
-                    ID = 1,
-                    MenuUrl = "menu url",
-                    Name = "nameJ",
-                    WebsiteUrl = "website url",
-                    Phone = "123455667"
-                },
-                new Restaurant
-                {
-                    ID = 2,
-                    MenuUrl = "menu url",
-                    Name = "nameJ",
-                    WebsiteUrl = "website url",
-                    Phone = "123455667"
-                },
-                new Restaurant
-                {
-                    ID = 3,
-                    MenuUrl = "menu url",
-                    Name = "nameJ",
-                    WebsiteUrl = "website url",
-                    Phone = "123455667"
-                },
-            };
+            _restaurantService = restaurantService;
+        }
+
+        public IEnumerable<Restaurant> GetActiveRestaurants()
+        {
+            IEnumerable<Restaurant> activeRestaurants = _restaurantService.GetActiveRestaurants();
+            return activeRestaurants;
+        }
+        public IEnumerable<Restaurant> GetinactiveRestaurants()
+        {
+            IEnumerable<Restaurant> inactiveRestaurants = _restaurantService.GetInactiveRestaurants();
+            return inactiveRestaurants;
         }
 
         public Restaurant GetById(int id)
         {
-            return new Restaurant
-            {
-                ID = 1,
-                MenuUrl = "menu url",
-                Name = "nameJ",
-                WebsiteUrl = "website url",
-                Phone = "123455667"
-            };
+            Restaurant restaurant = _restaurantService.GetRestaurant(id);
+            return restaurant;
         }
 
-        public Restaurant PostSave([FromBody]Restaurant restaurant)
+        public void PostUpdate([FromBody]Restaurant restaurant)
         {
-            return new Restaurant
-            {
-                ID = 1,
-                MenuUrl = "menu url",
-                Name = "nameJ",
-                WebsiteUrl = "website url",
-                Phone = "123455667"
-            };
+            _restaurantService.AddRestaurant(restaurant);
         }
 
-        public void Put(int id, [FromBody]string value)
+        public void PutCreate([FromBody]Restaurant restaurant)
         {
+
         }
 
         public void Delete(int id)
         {
+            _restaurantService.RemoveRestaurant(id);
         }
     }
 }
