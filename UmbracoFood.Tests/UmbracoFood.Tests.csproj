@@ -74,6 +74,7 @@
     <Compile Include="Mappings\RestaurantRepositoryProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\RestaurantRepositoryTests.cs" />
+    <Compile Include="Services\RestaurantServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\UmbracoFood.Infrastructure\UmbracoFood.Infrastructure.csproj">
       <Project>{41450b1c-6514-4df0-afa7-70131e763524}</Project>
       <Name>UmbracoFood.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UmbracoFood.Services\UmbracoFood.Services.csproj">
+      <Project>{864a85e9-0b54-4766-8ca7-19371e69fb31}</Project>
+      <Name>UmbracoFood.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
