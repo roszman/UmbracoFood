@@ -29,12 +29,17 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public void RemoveRestaurant(int id)
         {
+            var restaurant = GetRestaurant(id);
             db.Execute("DELETE FROM Restaurants WHERE Id = @0", id);
         }
 
         public Restaurant GetRestaurant(int id)
         {
             var restaurant = db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", id);
+            if (restaurant == null)
+            {
+                throw new KeyNotFoundException("Restaurant has not been found.");
+            }
             return Mapper.Map<Restaurant>(restaurant);
         }
 
