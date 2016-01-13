@@ -1,0 +1,35 @@
+﻿<Template xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>Master</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Master template: Master</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>OrderPage</Id>
+        <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Order Page</Name>
+    <ItemType>Item</ItemType>
+    <Resources>
+        <Resource>
+            <ExtractToPath>~/views/OrderPage.cshtml</ExtractToPath>
+            <Hash>8f9f5c9454cfebb534f24dd061756ed5</Hash>
+            <Name>~/views/OrderPage.cshtml</Name>
+            <PackageFromPath>~/views/OrderPage.cshtml</PackageFromPath>
+            <TemporaryStoragePath>/views/OrderPage.cshtml</TemporaryStoragePath>
+            <VirtualResource>false</VirtualResource>
+            <NotFound>false</NotFound>
+        </Resource>
+    </Resources>
+    <Alias>OrderPage</Alias>
+    <MasterPagePath>~/masterpages/OrderPage.master</MasterPagePath>
+    <ParentTemplateAlias>Master</ParentTemplateAlias>
+    <ParentTemplateId>0</ParentTemplateId>
+    <Id>1065</Id>
+</Template>

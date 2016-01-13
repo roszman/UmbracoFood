@@ -1,0 +1,46 @@
+﻿<DocumentType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Dependencies>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>BasePage</Id>
+                <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Document type: BasePage</Name>
+            <ForceHashCheck>true</ForceHashCheck>
+        </Dependency>
+        <Dependency>
+            <IsChild>false</IsChild>
+            <ItemId>
+                <Id>CreateOrder</Id>
+                <ProviderId>25867200-e67e-11df-9492-0800200c9a66</ProviderId>
+            </ItemId>
+            <Name>Template: CreateOrder</Name>
+            <ForceHashCheck>false</ForceHashCheck>
+        </Dependency>
+    </Dependencies>
+    <ItemId>
+        <Id>CreateOrder</Id>
+        <ProviderId>d8e6ad84-e73a-11df-9492-0800200c9a66</ProviderId>
+    </ItemId>
+    <Name>Create Order</Name>
+    <ItemType>Item</ItemType>
+    <Resources />
+    <Alias>CreateOrder</Alias>
+    <AllowedChildDocumentTypes />
+    <AllowedTemplates>
+        <string>CreateOrder</string>
+    </AllowedTemplates>
+    <DefaultTemplate>CreateOrder</DefaultTemplate>
+    <Description />
+    <Icon>.sprTreeFolder</Icon>
+    <Properties />
+    <Tabs />
+    <Thumbnail>folder.png</Thumbnail>
+    <UniqueId>3c1fa74c-d3fb-487b-9e5a-7b9dd86c855b</UniqueId>
+    <MasterDocumentTypes>
+        <string>BasePage</string>
+    </MasterDocumentTypes>
+    <AllowAtRoot>false</AllowAtRoot>
+    <IsContainer>false</IsContainer>
+</DocumentType>
