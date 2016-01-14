@@ -1,5 +1,5 @@
 ﻿angular.module("umbraco").controller("Restaurants.RestaurantEditController",
-	function ($scope, $routeParams, restaurantResource, notificationsService, navigationService) {
+	function ($scope, $routeParams, restaurantResource, notificationsService, navigationService, treeService) {
 
 	    $scope.loaded = false;
 
@@ -20,12 +20,12 @@
 
 
 	    $scope.save = function (restaurant) {
-	        restaurantResource.save(restaurant).then(function (response) {
-	            $scope.restaurant = response.data;
-	            $scope.restaurantForm.$dirty = false;
-	            navigationService.syncTree({ tree: 'RestaurantsTree', path: [-1, -1], forceReload: true });
-	            notificationsService.success("Success", restaurant.Name + " has been saved");
-	        });
+	        restaurantResource.save(restaurant)
+                .then(function () {
+                    $scope.restaurantForm.$dirty = false;
+                    navigationService.syncTree({ tree: 'RestaurantsTree', path: [-1, -1], forceReload: true });
+                    notificationsService.success("Success", restaurant.Name + " has been saved");
+                });
 	    };
 
 

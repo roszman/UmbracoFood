@@ -23,6 +23,6 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         public string MenuUrl { get; set; }
 
         [Column("Active")]
-        public bool Active { get; set; }
+        public bool IsActive { get; set; }
     }
 }

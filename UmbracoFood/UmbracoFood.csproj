@@ -322,7 +322,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_plugins\Restaurants\backoffice\restaurantsDashboard.html" />
+    <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\create.controller.js" />
+    <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\inactiveRestaurants.html" />
+    <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\activeRestaurants.html" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\create.html" />
+    <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\delete.controller.js" />
+    <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\delete.html" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.controller.js" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.html" />
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />

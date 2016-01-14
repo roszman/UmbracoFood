@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using AutoMapper;
@@ -11,9 +12,10 @@ namespace UmbracoFood.Infrastructure.Repositories
 {
     public class RestaurantRepository : BaseRepository, IRestaurantRepository
     {
-        public void AddRestaurant(Restaurant restaurant)
+        public int AddRestaurant(Restaurant restaurant)
         {
-            db.Insert("Restaurants", "Id", Mapper.Map<Restaurant, RestaurantPoco>(restaurant));
+            var id = db.Insert("Restaurants", "Id", Mapper.Map<Restaurant, RestaurantPoco>(restaurant));
+            return decimal.ToInt32((decimal)id);
         }
 
         public void EditRestaurant(Restaurant restaurant)

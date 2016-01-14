@@ -13,9 +13,9 @@ namespace UmbracoFood.Services
             this.restaurantRepository = restaurantRepository;
         }
 
-        public void AddRestaurant(Restaurant restaurant)
+        public int AddRestaurant(Restaurant restaurant)
         {
-            restaurantRepository.AddRestaurant(restaurant);
+            return restaurantRepository.AddRestaurant(restaurant);
         }
 
         public void EditRestaurant(Restaurant restaurant)

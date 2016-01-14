@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http.Formatting;
+using umbraco;
 using umbraco.BusinessLogic.Actions;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
@@ -28,10 +28,10 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
             if (id.Equals("-1"))
             {
                 TreeNodeCollection restaurants = new TreeNodeCollection();
-                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants, id, queryStrings, "Active Restaurants", "icon-food", true);
+                TreeNode activeRestaurantsNode = this.CreateTreeNode(ActiveRestaurants, id, queryStrings, "Active Restaurants", "icon-food", true, "/Restaurants/RestaurantsTree/activeRestaurants/1");
                 restaurants.Add(activeRestaurantsNode);
 
-                TreeNode inactiveRestaurantsNode = this.CreateTreeNode(InactiveRestaurants, id, queryStrings, "Inactive Restaurants", "icon-food", true);
+                TreeNode inactiveRestaurantsNode = this.CreateTreeNode(InactiveRestaurants, id, queryStrings, "Inactive Restaurants", "icon-food", true, "/Restaurants/RestaurantsTree/inactiveRestaurants/1");
                 restaurants.Add(inactiveRestaurantsNode);
                 return restaurants;
             }
@@ -66,8 +66,22 @@ namespace UmbracoFood.App_plugins.Restaurants.Tree
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
             var menu = new MenuItemCollection();
-            menu.DefaultMenuAlias = ActionNew.Instance.Alias;
-            menu.Items.Add<ActionNew>("Create");
+
+            if (id == ActiveRestaurants || id == InactiveRestaurants)
+            {
+                // root actions
+                //menu.Items.Add<CreateChildEntity, ActionNew>(ui.Text("actions", ActionNew.Instance.Alias));
+
+                menu.Items.Add<ActionNew>("Create");
+                menu.Items.Add<RefreshNode, ActionRefresh>(ui.Text("actions", ActionRefresh.Instance.Alias), true);
+                return menu;
+            }
+            else if(id != "-1")
+            {
+                //menu.DefaultMenuAlias = ActionDelete.Instance.Alias;
+                menu.Items.Add<ActionDelete>(ui.Text("actions", ActionDelete.Instance.Alias));
+
+            }
             return menu;
         }
     }

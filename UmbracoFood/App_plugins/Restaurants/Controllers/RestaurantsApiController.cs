@@ -34,17 +34,17 @@ namespace UmbracoFood.App_plugins.Restaurants.Controllers
             return restaurant;
         }
 
-        public void PostUpdate([FromBody]Restaurant restaurant)
+        public void PostSave(Restaurant restaurant)
         {
-            _restaurantService.AddRestaurant(restaurant);
+            _restaurantService.EditRestaurant(restaurant);
         }
 
-        public void PutCreate([FromBody]Restaurant restaurant)
+        public int PostCreate(Restaurant restaurant)
         {
-
+            return _restaurantService.AddRestaurant(restaurant);
         }
 
-        public void Delete(int id)
+        public void DeleteById(int id)
         {
             _restaurantService.RemoveRestaurant(id);
         }
