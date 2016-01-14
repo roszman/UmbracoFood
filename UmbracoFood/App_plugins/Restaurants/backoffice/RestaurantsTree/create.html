@@ -1,5 +1,5 @@
 ﻿<div class="umb-dialog-body with-footer">
-    <div class="umb-pane">
+    <!--<div class="umb-pane">
         <h5><localize key="create_createUnder">Create something under </localize> {{currentNode.name}}</h5>
 
         <ul class="umb-actions umb-actions-child">
@@ -13,10 +13,43 @@
                 </a>
             </li>
         </ul>
+    </div>-->
+    <div class="umb-pane">
+        <form name="restaurantForm"
+              ng-controller="Restaurants.RestaurantCreateController"
+              ng-submit="create(restaurant)"
+              val-form-manager>
+            <umb-control-group label="Restaurant name" description="Restaurant name">
+                <input type="text" class="umb-editor umb-textstring" ng-model="restaurant.Name" required />
+            </umb-control-group>
+
+            <umb-control-group label="Restaurant url" description="Restaurant url">
+                <input type="text" class="umb-editor umb-textstring" ng-model="restaurant.WebsiteUrl" required />
+            </umb-control-group>
+
+            <umb-control-group label="Restaurant menu url" description="Restaurant menu url">
+                <input type="text" class="umb-editor umb-textstring" ng-model="restaurant.MenuUrl" required />
+            </umb-control-group>
+
+            <umb-control-group label="Restaurant phone" description="Restaurant phone">
+                <input type="text" class="umb-editor umb-textstring" ng-model="restaurant.Phone" required />
+            </umb-control-group>
+
+            <umb-control-group label="Is restaurant active?" description="Is restaurant active?">
+                <input type="checkbox" class="umb-editor" ng-model="restaurant.IsActive" />
+            </umb-control-group>
+
+            <div class="btn-group">
+                <button type="submit" data-hotkey="ctrl+s" class="btn btn-success">
+                    <localize key="buttons_save">Create</localize>
+                </button>
+            </div>
+        </form>
     </div>
 </div>
+
 <div class="umb-dialog-footer btn-toolbar umb-btn-toolbar">
-    <button class="btn" ng-click="nav.hideDialog()">
+    <button class="btn" ng-click="nav.hideDialog(true)">
         <localize key="buttons_somethingElse">Do something else</localize>
     </button>
 </div>

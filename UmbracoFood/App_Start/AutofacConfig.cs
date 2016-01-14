@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -23,6 +24,10 @@ namespace UmbracoFood
 
 
             var container = builder.Build();
+            //bez tych dwóch linii ioc nie działa :/
+            var resolver = new AutofacWebApiDependencyResolver(container);
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 

@@ -13,7 +13,8 @@ namespace UmbracoFood.Infrastructure.Mapping
                 .ForMember(d => d.MenuUrl, s => s.MapFrom(o => o.MenuUrl))
                 .ForMember(d => d.Name, s => s.MapFrom(o => o.Name))
                 .ForMember(d => d.Phone, s => s.MapFrom(o => o.Phone))
-                .ForMember(d => d.WebsiteUrl, s => s.MapFrom(o => o.Url));
+                .ForMember(d => d.WebsiteUrl, s => s.MapFrom(o => o.Url))
+                .ForMember(d => d.IsActive, s => s.MapFrom(o => o.IsActive));
 
             CreateMap<Restaurant, RestaurantPoco>()
                 .ForMember(d => d.Id, s => s.MapFrom(o => o.ID))
