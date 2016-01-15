@@ -8,7 +8,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
     public class RestaurantPoco
     {
         [Column("Id")]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         [Column("Name")]
         public string Name { get; set; }
@@ -17,7 +17,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         public string Phone { get; set; }
 
         [Column("Url")]
-        public string Url { get; set; }
+        public string WebsiteUrl { get; set; }
 
         [Column("MenuUrl")]
         public string MenuUrl { get; set; }
