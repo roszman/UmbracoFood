@@ -1,44 +1,10 @@
-﻿@using UmbracoFood.Controllers.Surface
+﻿@using System.Web.Optimization
+@using UmbracoFood.Controllers.Surface
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Master.cshtml";
 }
 
 <h2>Dodaj restauracje</h2>
-@using (Html.BeginUmbracoForm<RestaurantSurfaceController>("AddRestaurant", null, new { @class = "form-horizontal" }))
-{
-    <div class="form-group">
-        <label for="Name" class="col-sm-2 control-label">Nazwa</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Name" placeholder="Nazwa">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="Phone" class="col-sm-2 control-label">Telefon</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Phone" placeholder="Telefon">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="WebsiteUrl" class="col-sm-2 control-label">Strona internetowa</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="WebsiteUrl" placeholder="Url">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="MenuUrl" class="col-sm-2 control-label">Adres menu</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="MenuUrl" placeholder="Url">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Zapisz restauracje</button>
-        </div>
-    </div>
-}
 
-@section Scripts
-{
-    
-}
+@Html.Action("AddRestaurant", "RestaurantSurface", new { area = "UmbracoFoodPlugins" })
