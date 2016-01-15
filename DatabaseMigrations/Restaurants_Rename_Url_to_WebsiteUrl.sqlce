@@ -1,0 +1,6 @@
+ALTER TABLE [Restaurants] ADD [WebsiteUrl] ntext NULL ;
+GO
+update Restaurants set WebsiteUrl = Url;
+GO
+alter Table [Restaurants] drop column [Url];
+GO
