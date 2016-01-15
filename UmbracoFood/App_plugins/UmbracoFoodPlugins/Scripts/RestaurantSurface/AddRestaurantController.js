@@ -1,6 +1,6 @@
 ﻿var umbracoFood = angular.module("umbracoFoodApp");
 
-umbracoFood.controller('AddRestaurantController', ['$scope', 'addRestaurantService', 'growl', function ($scope, addRestaurantService, growl)
+umbracoFood.controller('AddRestaurantController', ['$scope', 'addRestaurantService', 'utilService', function ($scope, addRestaurantService, utilService)
 {
     $scope.restaurant = {
         Name: "",
@@ -10,11 +10,20 @@ umbracoFood.controller('AddRestaurantController', ['$scope', 'addRestaurantServi
     }
 
     $scope.addRestaurant = function (restaurant) {
+
         return addRestaurantService.addRestaurant(restaurant)
+            .then(clearForm)
             .then(onAddRestaurant);
     }
 
     var onAddRestaurant = function(response) {
-        console.log(response);
+        utilService.growlSuccess("Restauracja została dodana");
+    }
+
+    var clearForm = function () {
+        $scope.restaurant.Name = "";
+        $scope.restaurant.Phone = "";
+        $scope.restaurant.Url = "";
+        $scope.restaurant.MenuUrl = "";
     }
 }]);

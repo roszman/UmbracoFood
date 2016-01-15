@@ -22,9 +22,10 @@ namespace UmbracoFood.Infrastructure.Filters
 
             if (actionExecutedContext.Exception != null)
             {
-                actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                actionExecutedContext.Response = new HttpResponseMessage()
                 {
-                    ReasonPhrase = "There was an Exception. Contact the administrator."
+                    ReasonPhrase = "There was an Exception. Contact the administrator.",
+                    StatusCode = HttpStatusCode.InternalServerError
                 };
             }
 
