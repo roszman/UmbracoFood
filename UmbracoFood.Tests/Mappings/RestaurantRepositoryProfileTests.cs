@@ -23,7 +23,7 @@ namespace UmbracoFood.Tests.Mappings
             //Arrange
             var restaurantPoco = new RestaurantPoco();
             restaurantPoco.Id = 1;
-            restaurantPoco.Active = true;
+            restaurantPoco.IsActive = true;
             restaurantPoco.MenuUrl = "http://menumock.url";
             restaurantPoco.Url = "http://mock.url";
             restaurantPoco.Name = "MockName";

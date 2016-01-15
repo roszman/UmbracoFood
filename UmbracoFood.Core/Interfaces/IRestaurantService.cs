@@ -5,7 +5,7 @@ namespace UmbracoFood.Core.Interfaces
 {
     public interface IRestaurantService
     {
-        void AddRestaurant(Restaurant restaurant);
+        int AddRestaurant(Restaurant restaurant);
 
         void EditRestaurant(Restaurant restaurant);
 

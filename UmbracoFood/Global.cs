@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Http;
 using Umbraco.Web;
 using UmbracoFood;
 
@@ -17,6 +18,8 @@ namespace UmbracoFood
 
             AutofacConfig.Configure();
             AutomapperConfig.Configure();
+            // to return json instead of xml in RestaurantsApiController
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
         }
     }
 }
