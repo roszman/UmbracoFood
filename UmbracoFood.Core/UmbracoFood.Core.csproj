@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Interfaces\IRestaurantService.cs" />
     <Compile Include="Models\Order.cs" />
