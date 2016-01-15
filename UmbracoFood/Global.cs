@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Optimization;
 using Umbraco.Web;
 using UmbracoFood;
 
@@ -17,6 +18,7 @@ namespace UmbracoFood
 
             AutofacConfig.Configure();
             AutomapperConfig.Configure();
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

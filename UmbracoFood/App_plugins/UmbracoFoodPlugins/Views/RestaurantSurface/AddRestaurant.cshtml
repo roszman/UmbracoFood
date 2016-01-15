@@ -1,44 +1,47 @@
-﻿@using UmbracoFood.Controllers.Surface
+﻿@using System.Web.Optimization
+@using Umbraco.Web
+@using UmbracoFood.Controllers.Surface
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-    Layout = "Master.cshtml";
+    Layout = null;
 }
 
-<h2>Dodaj restauracje</h2>
-@using (Html.BeginUmbracoForm<RestaurantSurfaceController>("AddRestaurant", null, new { @class = "form-horizontal" }))
-{
+@Url.GetUmbracoApiService("PostRestaurant", "RestaurantApi", "UmbracoFoodApi")
+
+<form ng-controller="AddRestaurantController" 
+      ng-submit="addRestaurant(restaurant)" 
+      class="form-horizontal">
     <div class="form-group">
         <label for="Name" class="col-sm-2 control-label">Nazwa</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="Name" placeholder="Nazwa">
+            <input type="text" class="form-control" id="Name" placeholder="Nazwa" ng-model="restaurant.Name">
         </div>
     </div>
     <div class="form-group">
         <label for="Phone" class="col-sm-2 control-label">Telefon</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="Phone" placeholder="Telefon">
+            <input type="text" class="form-control" id="Phone" placeholder="Telefon" ng-model="restaurant.Phone">
         </div>
     </div>
     <div class="form-group">
         <label for="WebsiteUrl" class="col-sm-2 control-label">Strona internetowa</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="WebsiteUrl" placeholder="Url">
+            <input type="text" class="form-control" id="WebsiteUrl" placeholder="Url" ng-model="restaurant.WebsiteUrl">
         </div>
     </div>
     <div class="form-group">
         <label for="MenuUrl" class="col-sm-2 control-label">Adres menu</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="MenuUrl" placeholder="Url">
+            <input type="text" class="form-control" id="MenuUrl" placeholder="Url" ng-model="restaurant.MenuUrl">
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
+            @*<input type="button" ng-click="addRestaurant(restaurant)" class="btn btn-default" value="Zapisz restauracje" />*@
             <button type="submit" class="btn btn-default">Zapisz restauracje</button>
         </div>
     </div>
-}
+</form>
 
-@section Scripts
-{
-    
-}
+
+@Scripts.Render("~/Scripts/AddRestaurant")
