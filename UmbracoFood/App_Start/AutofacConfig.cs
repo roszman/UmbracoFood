@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 ﻿using System.Reflection;
 using System.Web.Http;
-=======
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Http;
@@ -9,7 +7,6 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
->>>>>>> 2a43cd0... Added bootstrap
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -41,20 +38,14 @@ namespace UmbracoFood
                 .InstancePerRequest();
 
             var container = builder.Build();
-<<<<<<< HEAD
-            //bez tych dwóch linii ioc nie działa :/
-            var resolver = new AutofacWebApiDependencyResolver(container);
-            GlobalConfiguration.Configuration.DependencyResolver = resolver;
-
-=======
 
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
+
 
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),
     new AutofacControllerActivator(container));
 
->>>>>>> 2a43cd0... Added bootstrap
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 

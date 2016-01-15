@@ -348,12 +348,9 @@
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\delete.html" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.controller.js" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.html" />
-<<<<<<< HEAD
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />
-=======
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantService.js" />
->>>>>>> 2a43cd0... Added bootstrap
     <Content Include="connectionString.xml" />
     <Content Include="Content\angular-growl.css" />
     <Content Include="Content\angular-growl.min.css" />
@@ -1854,9 +1851,7 @@
     <Content Include="Views\HomePage.cshtml" />
     <Content Include="Views\Master.cshtml" />
     <Content Include="Config\courier.config" />
-<<<<<<< HEAD
     <Content Include="App_plugins\Restaurants\package.manifest" />
-=======
     <Content Include="umbraco\assets\fonts\helveticons\helveticons.eot" />
     <Content Include="umbraco\assets\fonts\helveticons\helveticons.ttf" />
     <Content Include="umbraco\assets\fonts\helveticons\helveticons.woff" />
@@ -1985,27 +1980,17 @@
     <Content Include="umbraco\Webservices\UltimatePickerAutoCompleteHandler.ashx" />
     <Content Include="umbraco\Xslt\Web.config" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
-<<<<<<< HEAD
->>>>>>> 535aa26... init
-=======
     <Content Include="Views\Partials\Restaurants.cshtml" />
     <Content Include="Views\Partials\Orders.cshtml" />
     <Content Include="Views\Order.cshtml" />
     <Content Include="Views\OrderPage.cshtml" />
-<<<<<<< HEAD
->>>>>>> bb0e424... Created mocked views, navigation. docTypes, contents
-=======
     <Content Include="Views\AddRestaurantPage.cshtml" />
     <Content Include="Views\CreateOrder.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\EditOrder.cshtml" />
-<<<<<<< HEAD
->>>>>>> 52a0260... SurfaceController, plugins, AddREstaurant form
-=======
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
->>>>>>> 2a43cd0... Added bootstrap
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2041,11 +2026,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="App_plugins\Restaurants\Controllers\RestaurantsApiController.cs" />
-=======
     <Compile Include="App_Start\BundleConfig.cs" />
->>>>>>> 2a43cd0... Added bootstrap
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_plugins\Restaurants\Tree\RestaurantsApplicationTreeController.cs" />
     <Compile Include="App_Start\AutomapperConfig.cs" />
