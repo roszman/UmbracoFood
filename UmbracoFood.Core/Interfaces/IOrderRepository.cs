@@ -13,6 +13,6 @@ namespace UmbracoFood.Core.Interfaces
 
         Order GetOrder(int id);
 
-        IEnumerable<Order> GetActiveOrders();
+        IEnumerable<Order> GetOrders();
     }
 }
