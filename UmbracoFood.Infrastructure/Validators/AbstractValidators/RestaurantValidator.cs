@@ -8,7 +8,10 @@ namespace UmbracoFood.Infrastructure.Validators.AbstractValidators
     {
         public RestaurantValidator()
         {
-            RuleSet("Edit", () => RuleFor(r => r.ID).GreaterThan(0));
+            RuleSet("Edit", () =>
+            {
+                RuleFor(r => r.ID).GreaterThan(0);
+            });
             
             RuleFor(r => r.MenuUrl).SetValidator(new UrlValidator());
             RuleFor(r => r.WebsiteUrl).SetValidator(new UrlValidator());
