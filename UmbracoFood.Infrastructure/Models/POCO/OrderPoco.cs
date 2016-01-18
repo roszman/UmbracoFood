@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
+using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Infrastructure.Models.POCO
 {
@@ -16,16 +18,19 @@ namespace UmbracoFood.Infrastructure.Models.POCO
 
         [ForeignKey(typeof(StatusPoco))]
         [Column("StatusId")]
-        public int StatusId { get; set; }
+        public OrderStatus Status { get; set; }
 
         [ForeignKey(typeof(RestaurantPoco))]
         [Column("RestaurantId")]
-        public int RestaurantId { get; set; }
+        public Restaurant Restaurant { get; set; }
 
         [Column("Deadline")]
         public DateTime Deadline { get; set; }
 
         [Column("EstimatedDeliveryTime")]
-        public DateTime? EstimatedDeliveryTime { get; set; } 
+        public DateTime? EstimatedDeliveryTime { get; set; }
+
+        [Column("OrderedMeals")]
+        public IEnumerable<OrderedMeal> OrderedMeals { get; set; }
     }
 }

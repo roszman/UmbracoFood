@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UmbracoFood.Core.Models
 {
     public class Order
     {
         public long Id { get; set; }
-        public IEnumerable<OrderedMeal> OrderedMeals { get; set; }
         public string Owner { get; set; }
         public OrderStatus Status { get; set; }
+        public Restaurant Restaurant { get; set; }
+        public DateTime Deadline { get; set; }
+        public DateTime? EstitmatedDeliveryTime { get; set; }
+        public IList<OrderedMeal> OrderedMeals { get; set; }
     }
 }
