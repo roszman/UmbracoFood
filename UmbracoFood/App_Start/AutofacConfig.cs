@@ -14,9 +14,9 @@ using Autofac.Integration.WebApi;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Infrastructure.Filters;
-﻿using UmbracoFood.Infrastructure.Validators;
 using FluentValidation;
 using FluentValidation.WebApi;
+using UmbracoFood.Validators;
 
 namespace UmbracoFood
 {

@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Infrastructure.Validators.PropertyValidators;
+using UmbracoFood.Validators.PropertyValidators;
 
-namespace UmbracoFood.Infrastructure.Validators.AbstractValidators
+namespace UmbracoFood.Validators.AbstractValidators
 {
     public class RestaurantValidator : AbstractValidator<Restaurant>
     {

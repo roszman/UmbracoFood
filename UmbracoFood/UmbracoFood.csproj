@@ -2045,8 +2045,12 @@
     <Compile Include="Controllers\RenderMvc\HomePageController.cs" />
     <Compile Include="Controllers\Surface\RestaurantSurfaceController.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Models\RestaurantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_plugins\Restaurants\Section\RestaurantsApplication.cs" />
+    <Compile Include="Validators\AbstractValidators\RestaurantValidator.cs" />
+    <Compile Include="Validators\AutofacValidatorFactory.cs" />
+    <Compile Include="Validators\PropertyValidators\UrlValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">

@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Umbraco.Web.Mvc;
 using UmbracoFood.Core.Models;
+using UmbracoFood.Models;
 
 namespace UmbracoFood.Controllers.Surface
 {

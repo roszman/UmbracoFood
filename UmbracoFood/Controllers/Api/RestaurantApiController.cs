@@ -4,7 +4,7 @@ using FluentValidation.Internal;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Infrastructure.Validators.AbstractValidators;
+using UmbracoFood.Validators.AbstractValidators;
 
 namespace UmbracoFood.Controllers.Api
 {

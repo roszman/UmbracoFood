@@ -1,8 +1,7 @@
 ﻿using System;
 using FluentValidation.Validators;
-using Umbraco.Web.Models.ContentEditing;
 
-namespace UmbracoFood.Infrastructure.Validators.PropertyValidators
+namespace UmbracoFood.Validators.PropertyValidators
 {
     public class UrlValidator : PropertyValidator
     {

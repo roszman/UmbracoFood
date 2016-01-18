@@ -2,7 +2,7 @@
 using Autofac;
 using FluentValidation;
 
-namespace UmbracoFood.Infrastructure.Validators
+namespace UmbracoFood.Validators
 {
     public class AutofacValidatorFactory : ValidatorFactoryBase
     {

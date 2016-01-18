@@ -3,7 +3,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Infrastructure.Validators.AbstractValidators;
+using UmbracoFood.Validators.AbstractValidators;
 using Xunit;
 
 namespace UmbracoFood.Tests.Validators
