@@ -41,7 +41,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             return Mapper.Map<Order>(oreder);
         }
 
-        public IEnumerable<Order> GetActiveOrders()
+        public IEnumerable<Order> GetOrders()
         {
             var order = db.Query<OrderPoco>("SELECT * FROM Orders WHERE Active = 1");
             return order.Select(Mapper.Map<Order>);
