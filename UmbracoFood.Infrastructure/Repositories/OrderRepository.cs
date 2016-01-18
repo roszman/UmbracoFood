@@ -43,8 +43,12 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public IEnumerable<Order> GetOrders()
         {
-            var order = db.Query<OrderPoco>("SELECT * FROM Orders WHERE Active = 1");
-            return order.Select(Mapper.Map<Order>);
+            //var order = db.Query<OrderPoco>("SELECT * FROM Orders WHERE Active = 1");
+            var orders = db.Fetch<Order, OrderedMeal, Order>(
+                new OrderMealRelator().MapIt,
+                "SELECT * FROM Orders LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Order.Id ORDER BY OrderedMeals.Id"
+                );
+            return orders.Select(Mapper.Map<Order>);
         }
     }
 }
