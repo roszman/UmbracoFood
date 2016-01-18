@@ -14,6 +14,9 @@ using Autofac.Integration.WebApi;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Infrastructure.Filters;
+﻿using UmbracoFood.Infrastructure.Validators;
+using FluentValidation;
+using FluentValidation.WebApi;
 
 namespace UmbracoFood
 {
@@ -25,7 +28,7 @@ namespace UmbracoFood
 
             RegisterServices(builder);
             RegisterRepositories(builder);
-
+            RegisterValidators(builder);
 
             builder.RegisterControllers(typeof(Global).Assembly);
             builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
@@ -42,10 +45,8 @@ namespace UmbracoFood
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
 
-
-            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator),
-    new AutofacControllerActivator(container));
-
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new AutofacControllerActivator(container));
+            
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
@@ -65,6 +66,19 @@ namespace UmbracoFood
             builder.RegisterAssemblyTypes(businessLogic)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces();
+        }
+
+        private static void RegisterValidators(ContainerBuilder builder)
+        {
+            var businessLogic = Assembly.Load("UmbracoFood.Infrastructure");
+
+            builder.RegisterAssemblyTypes(businessLogic)
+                .Where(t => t.Name.EndsWith("Validator"))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<FluentValidationModelValidatorProvider>().As<System.Web.Http.Validation.ModelValidatorProvider>();
+            builder.RegisterType<AutofacValidatorFactory>().As<IValidatorFactory>().SingleInstance();
         }
 
         private sealed class AutofacControllerActivator : IHttpControllerActivator
