@@ -3,6 +3,7 @@ using AutoMapper;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
+using System.Linq;
 using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Controllers.Api
@@ -26,6 +27,17 @@ namespace UmbracoFood.Controllers.Api
             
             var restaurant = Mapper.Map<AddRestaurantViewModel, Restaurant>(model);
             restaurantService.AddRestaurant(restaurant);
+        }
+
+      
+        public GetRestaurantsResult GetRestaurant()
+        {
+            var restaurants = restaurantService.GetActiveRestaurants();
+
+            return new GetRestaurantsResult()
+            {
+                Restaurants = restaurants.Select(Mapper.Map<Core.Models.Restaurant, RestaurantViewModel>)
+            };
         }
 
         public void PutRestaurant(EditRestaurantViewModel model)

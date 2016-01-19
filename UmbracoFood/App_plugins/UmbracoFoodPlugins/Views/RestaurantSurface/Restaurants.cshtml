@@ -1,0 +1,55 @@
+﻿@using System.Web.Optimization
+@using Umbraco.Web
+@using UmbracoFood.Controllers.Surface
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+}
+
+xxxxxxxxxxxxxxx
+
+<div ng-controller="RestaurantsController">
+    <h2>
+        Restauracje
+        <a href="@Umbraco.NiceUrl(1058)" type="button" class="btn btn-success ">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+    </h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Menu url</th>
+                <th>Telefon</th>
+                <th>Tools</th>
+            </tr>
+        </thead>
+        <tbody ng-model="restaurants">
+            <tr>
+                <td>Alizze</td>
+                <td>menu url</td>
+                <td>1234567898</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
+                        <a type="button" class="btn btn-default">Usun</a>
+                        <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
+                    </div>
+                </td>
+            </tr>
+            <tr ng-repeat="restaurant in restaurants">
+                <td>{{restaurant.Name}}</td>
+                <td>menu url</td>
+                <td>1234567898</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
+                        <a type="button" class="btn btn-default">Usun</a>
+                        <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@Scripts.Render("~/Scripts/Restaurants")

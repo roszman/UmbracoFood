@@ -46,7 +46,10 @@ namespace UmbracoFood
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/AddRestaurantService.js"
                 ));
 
-
+            bundles.Add(new ScriptBundle("~/Scripts/Restaurants").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantsController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantsService.js"
+                ));
 
 
 

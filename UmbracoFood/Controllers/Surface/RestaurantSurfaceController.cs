@@ -15,19 +15,10 @@ namespace UmbracoFood.Controllers.Surface
             return PartialView();
         }
 
-        [HttpPost]
-        public ActionResult AddRestaurant(AddRestaurantViewModel model)
+        [HttpGet]
+        public ActionResult Restaurants()
         {
-            if (!ModelState.IsValid)
-            {
-                return CurrentUmbracoPage();
-            }
-
-            //ADD RESTAURANT HERE
-
-
-            var homePage = UmbracoContext.ContentCache.GetById(1052);
-            return Redirect(homePage.Url);
+            return PartialView();
         }
     }
 }

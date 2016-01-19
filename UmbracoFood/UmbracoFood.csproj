@@ -363,6 +363,8 @@
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantService.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\RestaurantsController.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\RestaurantsService.js" />
     <Content Include="connectionString.xml" />
     <Content Include="Content\angular-growl.css" />
     <Content Include="Content\angular-growl.min.css" />
@@ -386,6 +388,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\angular\angular.min.js.map" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\Restaurants.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1992,7 +1995,6 @@
     <Content Include="umbraco\Webservices\UltimatePickerAutoCompleteHandler.ashx" />
     <Content Include="umbraco\Xslt\Web.config" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
-    <Content Include="Views\Partials\Restaurants.cshtml" />
     <Content Include="Views\Partials\Orders.cshtml" />
     <Content Include="Views\Order.cshtml" />
     <Content Include="Views\OrderPage.cshtml" />
@@ -2059,6 +2061,8 @@
     <Compile Include="Validators\AbstractValidators\AddRestaurantValidator.cs" />
     <Compile Include="Validators\AutofacValidatorFactory.cs" />
     <Compile Include="Validators\PropertyValidators\UrlValidator.cs" />
+    <Compile Include="ViewModels\GetRestaurantsResult.cs" />
+    <Compile Include="ViewModels\RestaurantViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">
