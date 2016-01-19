@@ -3,19 +3,19 @@ using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Models;
 using UmbracoFood.Validators.AbstractValidators;
+using UmbracoFood.ViewModels;
 using Xunit;
 
 namespace UmbracoFood.Tests.Validators
 {
-    public class RestaurantValidatorTests
+    public class AddRestaurantValidatorTests
     {
-        private RestaurantValidator validator;
+        private AddRestaurantValidator validator;
 
-        public RestaurantValidatorTests()
+        public AddRestaurantValidatorTests()
         {
-            validator = new RestaurantValidator();
+            validator = new AddRestaurantValidator();
         }
         
         [Fact]
@@ -46,7 +46,7 @@ namespace UmbracoFood.Tests.Validators
         public void Should_not_have_error_when_values_are_specified()
         {
             //Arrange
-            var restaurant = new RestaurantViewModel()
+            var restaurant = new AddRestaurantViewModel()
             {
                 MenuUrl = "http://menu.url",
                 WebsiteUrl = "http://website.url",
@@ -59,47 +59,6 @@ namespace UmbracoFood.Tests.Validators
 
             //Assert
             Assert.True(validationResult.IsValid);
-        }
-
-
-        [Fact]
-        public void Should_not_have_error_when_editing_and_Id_is_specified()
-        {
-            //Arrange
-            var restaurant = new RestaurantViewModel()
-            {
-                ID = 999,
-                MenuUrl = "http://menu.url",
-                WebsiteUrl = "http://website.url",
-                Name = "Name",
-                Phone = "12232213321"
-            };
-
-            //Act
-            ValidationResult validationResult = validator.Validate(restaurant, ruleSet: "default, Edit");
-
-            //Assert
-            Assert.True(validationResult.IsValid);
-        }
-
-        [Fact]
-        public void Should_not_have_error_when_editing_and_Id_is_not_valid()
-        {
-            //Arrange
-            var restaurant = new RestaurantViewModel()
-            {
-                ID = 0,
-                MenuUrl = "http://menu.url",
-                WebsiteUrl = "http://website.url",
-                Name = "Name",
-                Phone = "12232213321"
-            };
-
-            //Act
-            ValidationResult validationResult = validator.Validate(restaurant, ruleSet: "default,Edit");
-
-            //Assert
-            Assert.False(validationResult.IsValid);
         }
     }
 }

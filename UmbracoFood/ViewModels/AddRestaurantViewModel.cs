@@ -1,8 +1,7 @@
-﻿namespace UmbracoFood.Models
+﻿namespace UmbracoFood.ViewModels
 {
-    public class RestaurantViewModel 
+    public class AddRestaurantViewModel 
     {
-       public int ID { get; set; }
        public string Name { get; set; }
        public string Phone { get; set; }
        public string WebsiteUrl { get; set; }

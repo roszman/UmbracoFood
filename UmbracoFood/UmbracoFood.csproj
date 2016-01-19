@@ -2050,10 +2050,12 @@
     <Compile Include="Controllers\Surface\RestaurantSurfaceController.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
-    <Compile Include="Models\RestaurantViewModel.cs" />
+    <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
+    <Compile Include="ViewModels\EditRestaurantViewModel.cs" />
+    <Compile Include="ViewModels\AddRestaurantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_plugins\Restaurants\Section\RestaurantsApplication.cs" />
-    <Compile Include="Validators\AbstractValidators\RestaurantValidator.cs" />
+    <Compile Include="Validators\AbstractValidators\AddRestaurantValidator.cs" />
     <Compile Include="Validators\AutofacValidatorFactory.cs" />
     <Compile Include="Validators\PropertyValidators\UrlValidator.cs" />
   </ItemGroup>

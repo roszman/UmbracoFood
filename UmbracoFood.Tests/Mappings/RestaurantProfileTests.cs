@@ -4,7 +4,7 @@ using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Mapping;
 using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Mapping;
-using UmbracoFood.Models;
+using UmbracoFood.ViewModels;
 using Xunit;
 
 namespace UmbracoFood.Tests.Mappings
@@ -20,6 +20,8 @@ namespace UmbracoFood.Tests.Mappings
             {
                 if (!_configured)
                 {
+                    Mapper.Reset();
+
                     Mapper.Initialize(config => config.AddProfile(new RestaurantMappingProfile()));
 
                     _configured = true;
@@ -29,11 +31,10 @@ namespace UmbracoFood.Tests.Mappings
         }
 
         [Fact]
-        public void RestaurantViewModelShouldBeMappedToRestaurant()
+        public void AddRestaurantViewModelShouldBeMappedToRestaurant()
         {
             //Arrange
-            var restaurantViewModel = new RestaurantViewModel();
-            restaurantViewModel.ID = 1;
+            var restaurantViewModel = new AddRestaurantViewModel();
             restaurantViewModel.MenuUrl = "http://menumock.url";
             restaurantViewModel.WebsiteUrl = "http://mock.url";
             restaurantViewModel.Name = "MockName";
@@ -41,10 +42,30 @@ namespace UmbracoFood.Tests.Mappings
 
 
             //Act
-            var restaurant = Mapper.DynamicMap<RestaurantViewModel, Restaurant>(restaurantViewModel);
+            var restaurant = Mapper.DynamicMap<AddRestaurantViewModel, Restaurant>(restaurantViewModel);
 
             //Assert
-            Assert.Equal(restaurant.ID, restaurantViewModel.ID);
+            Assert.Equal(restaurant.Name, restaurantViewModel.Name);
+            Assert.IsType<Restaurant>(restaurant);
+        }
+
+        [Fact]
+        public void EditRestaurantViewModelShouldBeMappedToRestaurant()
+        {
+            //Arrange
+            var restaurantViewModel = new EditRestaurantViewModel();
+            restaurantViewModel.ID = 999;
+            restaurantViewModel.MenuUrl = "http://menumock.url";
+            restaurantViewModel.WebsiteUrl = "http://mock.url";
+            restaurantViewModel.Name = "MockName";
+            restaurantViewModel.Phone = "123456789";
+            restaurantViewModel.IsActive = true;
+
+            //Act
+            var restaurant = Mapper.DynamicMap<EditRestaurantViewModel, Restaurant>(restaurantViewModel);
+
+            //Assert
+            Assert.Equal(restaurant.Name, restaurantViewModel.Name);
             Assert.IsType<Restaurant>(restaurant);
         }
     }

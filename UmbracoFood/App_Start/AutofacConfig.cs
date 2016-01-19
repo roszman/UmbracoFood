@@ -18,7 +18,6 @@ using Umbraco.Web.WebApi;
 using UmbracoFood.Infrastructure.Filters;
 using FluentValidation;
 using FluentValidation.WebApi;
-using UmbracoFood.Models;
 using UmbracoFood.Validators;
 
 namespace UmbracoFood

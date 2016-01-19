@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Umbraco.Web.Mvc;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Models;
+using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Controllers.Surface
 {
@@ -16,7 +16,7 @@ namespace UmbracoFood.Controllers.Surface
         }
 
         [HttpPost]
-        public ActionResult AddRestaurant(RestaurantViewModel model)
+        public ActionResult AddRestaurant(AddRestaurantViewModel model)
         {
             if (!ModelState.IsValid)
             {

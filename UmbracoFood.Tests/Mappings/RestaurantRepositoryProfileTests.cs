@@ -18,12 +18,11 @@ namespace UmbracoFood.Tests.Mappings
             {
                 if (!_configured)
                 {
+                    Mapper.Reset();
                     Mapper.Initialize(config => config.AddProfile(new RestaurantRepositoryMappingProfile()));
                     _configured = true;
                     Mapper.AssertConfigurationIsValid();
-             
                 }
-
             }
         }
 

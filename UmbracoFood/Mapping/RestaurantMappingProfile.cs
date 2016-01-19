@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Models.POCO;
-using UmbracoFood.Models;
+using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Mapping
 {
@@ -9,8 +9,11 @@ namespace UmbracoFood.Mapping
     {
         protected override void Configure()
         {
-            CreateMap<RestaurantViewModel, Restaurant>()
-                .ForMember(d => d.IsActive, s => s.UseValue(true));
+            CreateMap<AddRestaurantViewModel, Restaurant>()
+                .ForMember(d => d.IsActive, s => s.UseValue(true))
+                .ForMember(d => d.ID, s => s.Ignore());
+
+            CreateMap<EditRestaurantViewModel, Restaurant>();
         }
     }
 }
