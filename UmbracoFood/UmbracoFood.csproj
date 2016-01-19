@@ -2048,6 +2048,7 @@
     </Compile>
     <Compile Include="Controllers\RenderMvc\HomePageController.cs" />
     <Compile Include="Controllers\Surface\RestaurantSurfaceController.cs" />
+    <Compile Include="Filters\WebApiExceptionFilter.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />

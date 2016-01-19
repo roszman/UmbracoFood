@@ -6,7 +6,7 @@ using Autofac.Integration.WebApi;
 using Umbraco.Core.Logging;
 using Umbraco.Web.WebApi;
 
-namespace UmbracoFood.Infrastructure.Filters
+namespace UmbracoFood.Filters
 {
     public class WebApiExceptionFilter : ExceptionFilterAttribute, IAutofacExceptionFilter
     {
