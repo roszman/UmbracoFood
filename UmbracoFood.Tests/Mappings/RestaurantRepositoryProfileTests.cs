@@ -44,6 +44,11 @@ namespace UmbracoFood.Tests.Mappings
 
             //Assert
             Assert.Equal(restaurant.ID, restaurantPoco.Id);
+            Assert.Equal(restaurant.IsActive, restaurantPoco.IsActive);
+            Assert.Equal(restaurant.MenuUrl, restaurantPoco.MenuUrl);
+            Assert.Equal(restaurant.WebsiteUrl, restaurantPoco.Url);
+            Assert.Equal(restaurant.Name, restaurantPoco.Name);
+            Assert.Equal(restaurant.Phone, restaurantPoco.Phone);
             Assert.IsType<Restaurant>(restaurant);
         } 
     }

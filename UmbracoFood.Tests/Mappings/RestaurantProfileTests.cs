@@ -45,7 +45,10 @@ namespace UmbracoFood.Tests.Mappings
             var restaurant = Mapper.DynamicMap<AddRestaurantViewModel, Restaurant>(restaurantViewModel);
 
             //Assert
+            Assert.Equal(restaurant.MenuUrl, restaurantViewModel.MenuUrl);
+            Assert.Equal(restaurant.WebsiteUrl, restaurantViewModel.WebsiteUrl);
             Assert.Equal(restaurant.Name, restaurantViewModel.Name);
+            Assert.Equal(restaurant.Phone, restaurantViewModel.Phone);
             Assert.IsType<Restaurant>(restaurant);
         }
 
@@ -65,7 +68,13 @@ namespace UmbracoFood.Tests.Mappings
             var restaurant = Mapper.DynamicMap<EditRestaurantViewModel, Restaurant>(restaurantViewModel);
 
             //Assert
+            Assert.Equal(restaurant.ID, restaurantViewModel.ID);
+            Assert.Equal(restaurant.MenuUrl, restaurantViewModel.MenuUrl);
+            Assert.Equal(restaurant.WebsiteUrl, restaurantViewModel.WebsiteUrl);
             Assert.Equal(restaurant.Name, restaurantViewModel.Name);
+            Assert.Equal(restaurant.Phone, restaurantViewModel.Phone);
+            Assert.Equal(restaurant.IsActive, restaurantViewModel.IsActive);
+
             Assert.IsType<Restaurant>(restaurant);
         }
     }
