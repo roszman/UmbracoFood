@@ -9,6 +9,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using Autofac;
+using Autofac.Core.Lifetime;
+using Autofac.Core.Registration;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Umbraco.Web;
@@ -16,6 +18,7 @@ using Umbraco.Web.WebApi;
 using UmbracoFood.Infrastructure.Filters;
 using FluentValidation;
 using FluentValidation.WebApi;
+using UmbracoFood.Models;
 using UmbracoFood.Validators;
 
 namespace UmbracoFood
@@ -70,12 +73,12 @@ namespace UmbracoFood
 
         private static void RegisterValidators(ContainerBuilder builder)
         {
-            var businessLogic = Assembly.Load("UmbracoFood.Infrastructure");
+            var businessLogic = Assembly.Load("UmbracoFood");
 
             builder.RegisterAssemblyTypes(businessLogic)
-                .Where(t => t.Name.EndsWith("Validator"))
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
+               .Where(t => t.Name.EndsWith("Validator"))
+               .AsImplementedInterfaces()
+               .InstancePerLifetimeScope();
 
             builder.RegisterType<FluentValidationModelValidatorProvider>().As<System.Web.Http.Validation.ModelValidatorProvider>();
             builder.RegisterType<AutofacValidatorFactory>().As<IValidatorFactory>().SingleInstance();

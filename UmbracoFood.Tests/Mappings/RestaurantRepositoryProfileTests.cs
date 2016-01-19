@@ -9,12 +9,22 @@ namespace UmbracoFood.Tests.Mappings
 {
     public class RestaurantRepositoryProfileTests
     {
-
+        private static readonly object Sync = new object();
+        private static bool _configured;
 
         public RestaurantRepositoryProfileTests()
         {
-           Mapper.Initialize(config => config.AddProfile(new RestaurantRepositoryMappingProfile()));
-           Mapper.AssertConfigurationIsValid();
+            lock (Sync)
+            {
+                if (!_configured)
+                {
+                    Mapper.Initialize(config => config.AddProfile(new RestaurantRepositoryMappingProfile()));
+                    _configured = true;
+                    Mapper.AssertConfigurationIsValid();
+             
+                }
+
+            }
         }
 
         [Fact]
@@ -31,7 +41,7 @@ namespace UmbracoFood.Tests.Mappings
 
 
             //Act
-            var restaurant = Mapper.Map<RestaurantPoco, Restaurant>(restaurantPoco);
+            var restaurant = Mapper.DynamicMap<RestaurantPoco, Restaurant>(restaurantPoco);
 
             //Assert
             Assert.Equal(restaurant.ID, restaurantPoco.Id);

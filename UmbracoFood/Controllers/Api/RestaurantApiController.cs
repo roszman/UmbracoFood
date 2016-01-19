@@ -1,10 +1,9 @@
 ﻿using System;
-using FluentValidation;
-using FluentValidation.Internal;
+using AutoMapper;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Validators.AbstractValidators;
+using UmbracoFood.Models;
 
 namespace UmbracoFood.Controllers.Api
 {
@@ -18,28 +17,29 @@ namespace UmbracoFood.Controllers.Api
             this.restaurantService = restaurantService;
         }
 
-        public void PostRestaurant(Restaurant model)
+        public void PostRestaurant(RestaurantViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 throw new Exception("Couldn't add a restaurant");
             }
             
-            restaurantService.AddRestaurant(model);
+            var restaurant = Mapper.Map<RestaurantViewModel, Restaurant>(model);
+            restaurantService.AddRestaurant(restaurant);
         }
 
-        public void PutRestaurant(Restaurant model)
+        public void PutRestaurant(RestaurantViewModel model)
         {
-            var validator = new RestaurantValidator();
-
-            var result = validator.Validate(model, ruleSet: "default,Edit");
-            if (!result.IsValid)
+            if (!ModelState.IsValid)
             {
                 throw new Exception("Couldn't edit a restaurant");
             }
 
-            restaurantService.EditRestaurant(model);
+            var restaurant = Mapper.Map<RestaurantViewModel, Restaurant>(model);
+            restaurantService.EditRestaurant(restaurant);
         }
+
+
 
 
 

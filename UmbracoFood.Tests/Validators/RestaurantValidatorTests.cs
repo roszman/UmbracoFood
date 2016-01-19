@@ -3,6 +3,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using FluentValidation.TestHelper;
 using UmbracoFood.Core.Models;
+using UmbracoFood.Models;
 using UmbracoFood.Validators.AbstractValidators;
 using Xunit;
 
@@ -45,9 +46,8 @@ namespace UmbracoFood.Tests.Validators
         public void Should_not_have_error_when_values_are_specified()
         {
             //Arrange
-            var restaurant = new Restaurant()
+            var restaurant = new RestaurantViewModel()
             {
-                IsActive = true,
                 MenuUrl = "http://menu.url",
                 WebsiteUrl = "http://website.url",
                 Name = "Name",
@@ -66,10 +66,9 @@ namespace UmbracoFood.Tests.Validators
         public void Should_not_have_error_when_editing_and_Id_is_specified()
         {
             //Arrange
-            var restaurant = new Restaurant()
+            var restaurant = new RestaurantViewModel()
             {
                 ID = 999,
-                IsActive = true,
                 MenuUrl = "http://menu.url",
                 WebsiteUrl = "http://website.url",
                 Name = "Name",
@@ -87,10 +86,9 @@ namespace UmbracoFood.Tests.Validators
         public void Should_not_have_error_when_editing_and_Id_is_not_valid()
         {
             //Arrange
-            var restaurant = new Restaurant()
+            var restaurant = new RestaurantViewModel()
             {
                 ID = 0,
-                IsActive = true,
                 MenuUrl = "http://menu.url",
                 WebsiteUrl = "http://website.url",
                 Name = "Name",
