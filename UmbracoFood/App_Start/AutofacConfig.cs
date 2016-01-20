@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using System.Web.Http;
 ﻿using System;
 using System.Diagnostics;
@@ -18,6 +19,8 @@ using Umbraco.Web.WebApi;
 using FluentValidation;
 using FluentValidation.WebApi;
 using UmbracoFood.Filters;
+using UmbracoFood.Infrastructure.Mapping;
+using UmbracoFood.Infrastructure.Repositories;
 using UmbracoFood.Validators;
 
 namespace UmbracoFood
@@ -31,6 +34,7 @@ namespace UmbracoFood
             RegisterServices(builder);
             RegisterRepositories(builder);
             RegisterValidators(builder);
+            RegisterModelMappers(builder);
 
             builder.RegisterControllers(typeof(Global).Assembly);
             builder.RegisterApiControllers(typeof(UmbracoApplication).Assembly);
@@ -42,6 +46,9 @@ namespace UmbracoFood
                 .AsWebApiExceptionFilterFor<UmbracoApiController>()
                 .InstancePerRequest();
 
+            builder.RegisterType<DatabaseProvider>()
+                .As<IDatabaseProvider>();
+
             var container = builder.Build();
 
             var resolver = new AutofacWebApiDependencyResolver(container);
@@ -50,6 +57,14 @@ namespace UmbracoFood
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new AutofacControllerActivator(container));
             
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        }
+
+        private static void RegisterModelMappers(ContainerBuilder builder)
+        {
+            var businessLogic = Assembly.Load("UmbracoFood.Infrastructure");
+
+            builder.RegisterAssemblyTypes(businessLogic)
+                .AsClosedTypesOf(typeof(IModelMapper<,>)).AsImplementedInterfaces();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
