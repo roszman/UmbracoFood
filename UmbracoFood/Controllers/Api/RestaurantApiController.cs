@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Http;
 using AutoMapper;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
@@ -18,6 +19,7 @@ namespace UmbracoFood.Controllers.Api
             this.restaurantService = restaurantService;
         }
 
+        [HttpPost]
         public void PostRestaurant(AddRestaurantViewModel model)
         {
             if (!ModelState.IsValid)
@@ -28,33 +30,45 @@ namespace UmbracoFood.Controllers.Api
             var restaurant = Mapper.Map<AddRestaurantViewModel, Restaurant>(model);
             restaurantService.AddRestaurant(restaurant);
         }
-
       
-        public GetRestaurantsResult GetRestaurant()
+        public GetRestaurantsResult GetRestaurants()
         {
             var restaurants = restaurantService.GetActiveRestaurants();
 
-            return new GetRestaurantsResult()
+            var getRestaurantsResult = new GetRestaurantsResult()
             {
                 Restaurants = restaurants.Select(Mapper.Map<Core.Models.Restaurant, RestaurantViewModel>)
             };
+
+            return getRestaurantsResult;
         }
 
+        public EditRestaurantViewModel GetRestaurant(int id)
+        {
+            if (id < 1)
+            {
+                throw new Exception("ID nie może być niższe niż 1");
+            }
+
+            var restaurant = restaurantService.GetRestaurant(id);
+            if (restaurant == null)
+            {
+                throw new Exception("Restaurant doesn't Exists.");
+            }
+
+            return Mapper.Map<Core.Models.Restaurant, EditRestaurantViewModel>(restaurant);
+        }
+
+        [HttpPut]
         public void PutRestaurant(EditRestaurantViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                throw new Exception("Couldn't edit a restaurant");
+                throw new Exception("Nie udało się zedytować restauracji");
             }
 
             var restaurant = Mapper.Map<EditRestaurantViewModel, Restaurant>(model);
             restaurantService.EditRestaurant(restaurant);
         }
-
-
-
-
-
-
     }
-} ;
+}

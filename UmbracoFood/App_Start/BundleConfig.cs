@@ -35,26 +35,24 @@ namespace UmbracoFood
                     "~/Scripts/angular/utilService.js"
                 ));
 
-
             bundles.Add(new StyleBundle("~/CSS/angular-growl").Include(
                     "~/Content/angular-growl.min.css"
                 ));
 
-
             bundles.Add(new ScriptBundle("~/Scripts/AddRestaurant").Include(
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/AddRestaurantController.js",
-                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/AddRestaurantService.js"
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/EditRestaurant").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/EditRestaurantController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/Restaurants").Include(
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantsController.js",
-                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantsService.js"
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
                 ));
-
-
-
-
-            //BundleTable.EnableOptimizations = true;
         }
     }
 }

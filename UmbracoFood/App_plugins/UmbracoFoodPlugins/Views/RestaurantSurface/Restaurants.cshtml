@@ -1,12 +1,11 @@
-﻿@using System.Web.Optimization
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
 @using Umbraco.Web
 @using UmbracoFood.Controllers.Surface
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = null;
 }
-
-xxxxxxxxxxxxxxx
 
 <div ng-controller="RestaurantsController">
     <h2>
@@ -25,25 +24,15 @@ xxxxxxxxxxxxxxx
             </tr>
         </thead>
         <tbody ng-model="restaurants">
-            <tr>
-                <td>Alizze</td>
-                <td>menu url</td>
-                <td>1234567898</td>
-                <td>
-                    <div class="btn-group" role="group" aria-label="...">
-                        <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
-                        <a type="button" class="btn btn-default">Usun</a>
-                        <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
-                    </div>
-                </td>
-            </tr>
+
             <tr ng-repeat="restaurant in restaurants">
                 <td>{{restaurant.Name}}</td>
-                <td>menu url</td>
-                <td>1234567898</td>
+                <td><a ng-href="{{restaurant.MenuUrl}}" target="_blank">Menu</a></td>
+                <td>{{restaurant.Phone}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <a href="DodajRestauracje.html" type="button" class="btn btn-default">Edytuj</a>
+                        @*<a data-ng-href="@Html.Action("EditRestaurants", "RestaurantSurface", new { area = "UmbracoFoodPlugins" })">Edytuj</a>*@
+
                         <a type="button" class="btn btn-default">Usun</a>
                         <a href="EdycjaZamowienia.html" type="button" class="btn btn-default">Zamow</a>
                     </div>

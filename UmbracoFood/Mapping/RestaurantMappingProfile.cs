@@ -13,7 +13,14 @@ namespace UmbracoFood.Mapping
                 .ForMember(d => d.IsActive, s => s.UseValue(true))
                 .ForMember(d => d.ID, s => s.Ignore());
 
-            CreateMap<EditRestaurantViewModel, Restaurant>();
+            CreateMap<EditRestaurantViewModel, Restaurant>()
+                .ForMember(d => d.IsActive, o => o.Ignore())
+                ;
+
+
+            CreateMap<Restaurant, EditRestaurantViewModel>();
+
+            CreateMap<Restaurant, RestaurantViewModel>();
         }
     }
 }

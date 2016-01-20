@@ -361,10 +361,10 @@
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.controller.js" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.html" />
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\EditRestaurantController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantController.js" />
-    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantService.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\RestaurantsController.js" />
-    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\RestaurantsService.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\RestaurantService.js" />
     <Content Include="connectionString.xml" />
     <Content Include="Content\angular-growl.css" />
     <Content Include="Content\angular-growl.min.css" />
@@ -389,6 +389,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Scripts\angular\angular.min.js.map" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\Restaurants.cshtml" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\EditRestaurant.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2005,6 +2006,7 @@
     <Content Include="Views\EditOrder.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\EditRestaurantPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2041,6 +2043,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_plugins\Restaurants\Controllers\RestaurantsApiController.cs" />
+    <Compile Include="App_plugins\UmbracoFoodPlugins\Models\EditRestaurantPageModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_plugins\Restaurants\Tree\RestaurantsApplicationTreeController.cs" />
@@ -2048,6 +2051,7 @@
     <Compile Include="Controllers\Api\RestaurantApiController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\RenderMvc\EditRestaurantPageController.cs" />
     <Compile Include="Controllers\RenderMvc\HomePageController.cs" />
     <Compile Include="Controllers\Surface\RestaurantSurfaceController.cs" />
     <Compile Include="Filters\WebApiExceptionFilter.cs" />

@@ -20,5 +20,11 @@ namespace UmbracoFood.Controllers.Surface
         {
             return PartialView();
         }
+
+        [HttpGet]
+        public ActionResult EditRestaurant(int id)
+        {
+            return PartialView(id);
+        }
     }
 }

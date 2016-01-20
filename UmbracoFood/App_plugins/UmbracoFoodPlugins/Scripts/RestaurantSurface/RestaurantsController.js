@@ -1,15 +1,15 @@
 ﻿var umbracoFood = angular.module("umbracoFoodApp");
 
-umbracoFood.controller('RestaurantsController', ['$scope', 'restaurantsService', function ($scope, restaurantsService) {
+umbracoFood.controller('RestaurantsController', ['$scope', 'restaurantService', function ($scope, restaurantService) {
     $scope.restaurants = [];
 
     var loadData = function() {
-        return restaurantsService.getRestaurants()
+        return restaurantService.getRestaurants()
             .then(onRestaurantsFetched);
     }
 
     var onRestaurantsFetched = function(response) {
-        $scope.restaurants = response.data;
+        $scope.restaurants = response.data.Restaurants;
     }
 
     loadData();
