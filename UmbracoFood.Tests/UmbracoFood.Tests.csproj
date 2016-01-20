@@ -80,13 +80,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mappings\RestaurantProfileTests.cs">
+    <Compile Include="Mappings\RestaurantViewModelMappingTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Mappings\RestaurantRepositoryProfileTests.cs">
+    <Compile Include="Mappings\RestaurantDomainPocoMapperTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DatabaseFixtures\OrdersDatabaseFixture.cs" />
     <Compile Include="Repositories\DatabaseFixtures\RestaurantsDatabaseFixture.cs" />
     <Compile Include="Repositories\OrderRepositoryTests.cs" />
     <Compile Include="Repositories\RestaurantRepositoryTests.cs" />

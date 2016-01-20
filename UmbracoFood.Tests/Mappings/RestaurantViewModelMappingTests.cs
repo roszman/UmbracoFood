@@ -1,20 +1,17 @@
 ﻿using AutoMapper;
-using Moq;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Infrastructure.Mapping;
-using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Mapping;
 using UmbracoFood.ViewModels;
 using Xunit;
 
 namespace UmbracoFood.Tests.Mappings
 {
-    public class RestaurantProfileTests
+    public class RestaurantViewModelMappingTests
     {
         private static readonly object Sync = new object();
         private static bool _configured;
 
-        public RestaurantProfileTests()
+        public RestaurantViewModelMappingTests()
         {
             lock (Sync)
             {
@@ -25,7 +22,7 @@ namespace UmbracoFood.Tests.Mappings
                     Mapper.Initialize(config => config.AddProfile(new RestaurantMappingProfile()));
 
                     _configured = true;
-                    Mapper.AssertConfigurationIsValid();                   
+                    Mapper.AssertConfigurationIsValid();
                 }
             }
         }

@@ -23,7 +23,6 @@ namespace UmbracoFood.Controllers.Api
             {
                 throw new Exception("Couldn't add a restaurant");
             }
-            
             var restaurant = Mapper.Map<AddRestaurantViewModel, Restaurant>(model);
             restaurantService.AddRestaurant(restaurant);
         }

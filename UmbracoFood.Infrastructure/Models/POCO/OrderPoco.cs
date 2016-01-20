@@ -22,7 +22,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
 
         [ForeignKey(typeof(RestaurantPoco))]
         [Column("RestaurantId")]
-        public Restaurant Restaurant { get; set; }
+        public RestaurantPoco Restaurant { get; set; }
 
         [Column("Deadline")]
         public DateTime Deadline { get; set; }
@@ -31,6 +31,6 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         public DateTime? EstimatedDeliveryTime { get; set; }
 
         [Column("OrderedMeals")]
-        public IEnumerable<OrderedMeal> OrderedMeals { get; set; }
+        public IList<OrderedMealPoco> OrderedMeals { get; set; }
     }
 }
