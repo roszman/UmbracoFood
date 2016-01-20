@@ -1,59 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using Umbraco.Core;
+using Umbraco.Core.Persistence;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
+using UmbracoFood.Infrastructure.Mapping;
 using UmbracoFood.Infrastructure.Models.POCO;
 
 namespace UmbracoFood.Infrastructure.Repositories
 {
-    public class RestaurantRepository : BaseRepository, IRestaurantRepository
+    public class RestaurantRepository : IRestaurantRepository
     {
+        private readonly IDatabaseProvider _databaseProvider;
+        private readonly IModelMapper<Restaurant, RestaurantPoco> _mapper;
+        private UmbracoDatabase _db;
+
+        public RestaurantRepository(IDatabaseProvider databaseProvider, IModelMapper<Restaurant, RestaurantPoco> mapper)
+        {
+            _databaseProvider = databaseProvider;
+            _mapper = mapper;
+            _db = databaseProvider.Db;
+        }
+
         public int AddRestaurant(Restaurant restaurant)
         {
-            var id = db.Insert("Restaurants", "Id", Mapper.Map<Restaurant, RestaurantPoco>(restaurant));
+            var poco = _mapper.MapToPoco(restaurant);
+
+            var id = _db.Insert("Restaurants", "Id", poco);
             return decimal.ToInt32((decimal)id);
         }
 
         public void EditRestaurant(Restaurant restaurant)
         {
-            var updatedRestaurant = db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", restaurant.ID);
-            if (updatedRestaurant == null)
-            {
-                throw new KeyNotFoundException("Restaurant has not been found.");
-            }
-
-            db.Update("Restaurants", "Id", Mapper.Map<Restaurant, RestaurantPoco>(restaurant, updatedRestaurant));
+            _db.Update("Restaurants", "Id", _mapper.MapToPoco(restaurant));
         }
 
         public void RemoveRestaurant(int id)
         {
-            var restaurant = GetRestaurant(id);
-            db.Execute("DELETE FROM Restaurants WHERE Id = @0", id);
+            var restaurant = GetRestaurantPoco(id);
+            restaurant.IsActive = false;
+            _db.Update("Restaurants", "Id", restaurant);
         }
 
         public Restaurant GetRestaurant(int id)
         {
-            var restaurant = db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", id);
+            var restaurant = GetRestaurantPoco(id);
+            return _mapper.MapToDomain(restaurant);
+        }
+
+        private RestaurantPoco GetRestaurantPoco(int id)
+        {
+            var restaurant = _db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", id);
             if (restaurant == null)
             {
                 throw new KeyNotFoundException("Restaurant has not been found.");
             }
-            return Mapper.Map<Restaurant>(restaurant);
+            return restaurant;
         }
 
         public IEnumerable<Restaurant> GetActiveRestaurants()
         {
-            var restaurants = db.Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 1");
-            return restaurants.Select(Mapper.Map<Restaurant>);
+            var restaurants = _db.Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 1");
+            return restaurants.Select(r => _mapper.MapToDomain(r));
         }
 
         public IEnumerable<Restaurant> GetInactiveRestaurants()
         {
-            var restaurants = db.Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 0");
-            return restaurants.Select(Mapper.Map<Restaurant>);
+            var restaurants = _db.Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 0");
+            return restaurants.Select(r => _mapper.MapToDomain(r));
         }
     }
 }
