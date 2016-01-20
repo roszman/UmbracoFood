@@ -87,8 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DatabaseFixture.cs" />
+    <Compile Include="Repositories\DatabaseFixtures\RestaurantsDatabaseFixture.cs" />
+    <Compile Include="Repositories\OrderRepositoryTests.cs" />
     <Compile Include="Repositories\RestaurantRepositoryTests.cs" />
+    <Compile Include="Repositories\DatabaseFixtures\TableDataHelper.cs" />
     <Compile Include="Services\RestaurantServiceTests.cs" />
     <Compile Include="Validators\AddRestaurantValidatorTests.cs" />
   </ItemGroup>
@@ -117,9 +119,7 @@
       <Name>UmbracoFood</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\DatabaseFixtures\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
