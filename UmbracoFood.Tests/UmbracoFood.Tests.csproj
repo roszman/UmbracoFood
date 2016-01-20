@@ -190,7 +190,6 @@
       <Project>{c61253e1-61ad-4168-8df4-0abf8aa87c47}</Project>
       <Name>UmbracoFood</Name>
     </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
