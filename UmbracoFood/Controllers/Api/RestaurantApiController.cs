@@ -33,7 +33,7 @@ namespace UmbracoFood.Controllers.Api
         }
 
         [HttpGet]
-        public EditRestaurantViewModel GetRestaurant(int id)
+        public RestaurantViewModel GetRestaurant(int id)
         {
             if (id < 1)
             {
@@ -46,7 +46,7 @@ namespace UmbracoFood.Controllers.Api
                 throw new Exception("Restaurant doesn't exist.");
             }
 
-            return Mapper.Map<Core.Models.Restaurant, EditRestaurantViewModel>(restaurant);
+            return Mapper.Map<Core.Models.Restaurant, RestaurantViewModel>(restaurant);
         }
 
         [HttpPost]
@@ -82,7 +82,12 @@ namespace UmbracoFood.Controllers.Api
         [HttpDelete]
         public void DeleteRestaurant(int id)
         {
-           var restaurant = restaurantService.GetRestaurant(id);
+            if (id < 1)
+            {
+                throw new Exception("ID nie może być niższe niż 1");
+            }
+            
+            var restaurant = restaurantService.GetRestaurant(id);
             if (restaurant == null)
             {
                 throw new Exception("Restauracja nie istnieje");
