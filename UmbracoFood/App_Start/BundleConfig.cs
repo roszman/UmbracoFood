@@ -28,11 +28,17 @@ namespace UmbracoFood
             bundles.Add(new ScriptBundle("~/Scripts/angular").Include(
                     "~/Scripts/angular/angular.js"
                 ));
-            
+
+            bundles.Add(new ScriptBundle("~/Scripts/angular-ui").Include(
+                    "~/Scripts/angular-ui/ui-bootstrap.js",
+                    "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/Scripts/angular/app").Include(
                     "~/Scripts/angular/angular-growl.min.js",
                     "~/Scripts/angular/umbracoFoodApp.js",
-                    "~/Scripts/angular/utilService.js"
+                    "~/Scripts/angular/utilService.js",
+                    "~/Scripts/angular/angular-directives.js"
                 ));
 
             bundles.Add(new StyleBundle("~/CSS/angular-growl").Include(

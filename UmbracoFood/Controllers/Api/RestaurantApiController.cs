@@ -19,18 +19,7 @@ namespace UmbracoFood.Controllers.Api
             this.restaurantService = restaurantService;
         }
 
-        [HttpPost]
-        public void PostRestaurant(AddRestaurantViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new Exception("Couldn't add a restaurant");
-            }
-
-            var restaurant = Mapper.Map<AddRestaurantViewModel, Restaurant>(model);
-            restaurantService.AddRestaurant(restaurant);
-        }
-
+        [HttpGet]
         public GetRestaurantsResult GetRestaurants()
         {
             var restaurants = restaurantService.GetActiveRestaurants();
@@ -43,6 +32,7 @@ namespace UmbracoFood.Controllers.Api
             return getRestaurantsResult;
         }
 
+        [HttpGet]
         public EditRestaurantViewModel GetRestaurant(int id)
         {
             if (id < 1)
@@ -57,6 +47,18 @@ namespace UmbracoFood.Controllers.Api
             }
 
             return Mapper.Map<Core.Models.Restaurant, EditRestaurantViewModel>(restaurant);
+        }
+
+        [HttpPost]
+        public void PostRestaurant(AddRestaurantViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Couldn't add a restaurant");
+            }
+
+            var restaurant = Mapper.Map<AddRestaurantViewModel, Restaurant>(model);
+            restaurantService.AddRestaurant(restaurant);
         }
 
         [HttpPut]
@@ -75,6 +77,18 @@ namespace UmbracoFood.Controllers.Api
 
             var updatedRestaurant = Mapper.Map<EditRestaurantViewModel, Restaurant>(model, restaurant);
             restaurantService.EditRestaurant(updatedRestaurant);
+        }
+
+        [HttpDelete]
+        public void DeleteRestaurant(int id)
+        {
+           var restaurant = restaurantService.GetRestaurant(id);
+            if (restaurant == null)
+            {
+                throw new Exception("Restauracja nie istnieje");
+            }
+
+            restaurantService.RemoveRestaurant(id);
         }
     }
 }

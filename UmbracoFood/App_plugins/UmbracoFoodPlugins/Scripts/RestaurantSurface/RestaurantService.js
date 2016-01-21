@@ -26,6 +26,12 @@ umbracoFood.factory('restaurantService', [
                     .then(function (result) {
                         return result;
                     });
+            },
+            deleteRestaurant: function(id) {
+                return $http.delete('/UmbracoFood/umbraco/UmbracoFoodApi/RestaurantApi/DeleteRestaurant/' + id)
+                    .then(function(result) {
+                        return result;
+                    });
             }
         }
     }
