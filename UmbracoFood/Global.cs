@@ -2,7 +2,6 @@
 using System.Web.Http;
 using System.Web.Optimization;
 using Umbraco.Web;
-using UmbracoFood;
 
 namespace UmbracoFood
 {

@@ -2,8 +2,6 @@
 
 
 umbracoFood.factory('utilService', ['growl', function (growl) {
-
-
         return{
             growl: function (response) {
                 if (response.status == 200 || response.status == 204) {
@@ -11,7 +9,6 @@ umbracoFood.factory('utilService', ['growl', function (growl) {
                 } else {
                     growlFailure(response.message);
                 }
-                //growl.success(message);
             },
             growlSuccess: function(message) {
                 growl.success(message);

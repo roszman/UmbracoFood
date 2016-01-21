@@ -28,30 +28,37 @@ namespace UmbracoFood
             bundles.Add(new ScriptBundle("~/Scripts/angular").Include(
                     "~/Scripts/angular/angular.js"
                 ));
-            
+
+            bundles.Add(new ScriptBundle("~/Scripts/angular-ui").Include(
+                    "~/Scripts/angular-ui/ui-bootstrap.js",
+                    "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/Scripts/angular/app").Include(
                     "~/Scripts/angular/angular-growl.min.js",
                     "~/Scripts/angular/umbracoFoodApp.js",
-                    "~/Scripts/angular/utilService.js"
+                    "~/Scripts/angular/utilService.js",
+                    "~/Scripts/angular/angular-directives.js"
                 ));
-
 
             bundles.Add(new StyleBundle("~/CSS/angular-growl").Include(
                     "~/Content/angular-growl.min.css"
                 ));
 
-
             bundles.Add(new ScriptBundle("~/Scripts/AddRestaurant").Include(
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/AddRestaurantController.js",
-                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/AddRestaurantService.js"
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/Scripts/EditRestaurant").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/EditRestaurantController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
+                ));
 
-
-
-
-
-            //BundleTable.EnableOptimizations = true;
+            bundles.Add(new ScriptBundle("~/Scripts/Restaurants").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantsController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
+                ));
         }
     }
 }

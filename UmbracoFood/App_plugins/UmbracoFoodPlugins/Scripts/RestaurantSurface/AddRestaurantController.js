@@ -1,6 +1,6 @@
 ﻿var umbracoFood = angular.module("umbracoFoodApp");
 
-umbracoFood.controller('AddRestaurantController', ['$scope', 'addRestaurantService', 'utilService', function ($scope, addRestaurantService, utilService)
+umbracoFood.controller('AddRestaurantController', ['$scope', 'restaurantService', 'utilService', function ($scope, restaurantService, utilService)
 {
     $scope.restaurant = {
         Name: "",
@@ -11,7 +11,7 @@ umbracoFood.controller('AddRestaurantController', ['$scope', 'addRestaurantServi
 
     $scope.addRestaurant = function (restaurant) {
 
-        return addRestaurantService.addRestaurant(restaurant)
+        return restaurantService.addRestaurant(restaurant)
             .then(clearForm)
             .then(onAddRestaurant);
     }

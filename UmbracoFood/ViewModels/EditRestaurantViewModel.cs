@@ -7,6 +7,5 @@
        public string Phone { get; set; }
        public string WebsiteUrl { get; set; }
        public string MenuUrl { get; set; }
-       public bool IsActive { get; set; }
     }
 }
