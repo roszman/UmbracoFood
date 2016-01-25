@@ -62,7 +62,7 @@
     <Compile Include="Repositories\DatabaseProvider.cs" />
     <Compile Include="Repositories\IDatabaseProvider.cs" />
     <Compile Include="Mapping\IModelMapper.cs" />
-    <Compile Include="Repositories\OrderMealRelator.cs" />
+    <Compile Include="Repositories\OrderRelator.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Mapping\RestaurantMapper.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />

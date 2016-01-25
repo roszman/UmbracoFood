@@ -6,6 +6,9 @@ using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Infrastructure.Repositories;
 using UmbracoFood.Tests.Repositories.DatabaseFixtures;
 using Xunit;
+using Umbraco.Core.Persistence;
+using System;
+using System.Collections.Generic;
 
 namespace UmbracoFood.Tests.Repositories
 {
@@ -26,25 +29,111 @@ namespace UmbracoFood.Tests.Repositories
         }
 
         [Fact]
-        public void GetOrderShouldReturnOrder()
+        public void RemoveOrderShouldremoveOrderAndOrderedMeals()
         {
             //arrange
-            var orderPoco =
-                _databaseFixture.Db
-                .Query<OrderPoco>("SELECT * FROM Orders").First();
-            var order = new Order()
-            {
-                Id = orderPoco.Id
-            };
 
-            _mapper.Setup(m => m.MapToDomain(It.IsAny<OrderPoco>())).Returns(order);
 
             //act
-            var orderFromRepo = _repo.GetOrder(orderPoco.Id);
+            //_repo.RemoveOrder(1);
 
             //assert
-            Assert.NotNull(orderFromRepo);
-            Assert.Equal(orderPoco.Id, orderFromRepo.Id);
+        }
+        [Fact]
+        public void AddOrderShouldAddOrderToDb()
+        {
+            IList<OrderedMealPoco> orderedMeals = new List<OrderedMealPoco>()
+            {
+                new OrderedMealPoco
+                {
+                    MealName = "meal name",
+                    Price = 14.2,
+                    PurchaserName = "purchaser name"
+                }
+            };
+            RestaurantPoco restaurant = new RestaurantPoco()
+            {
+                ID = 1,
+                IsActive = true,
+                MenuUrl = "menu url",
+                Name = "name",
+                Phone = "123445670",
+                WebsiteUrl = "website url"
+            };
+            //arrange
+            var orderPocoBeforeDbInsert = new OrderPoco
+            {
+                Deadline = new DateTime(2016, 01, 28, 12, 00, 00),
+                EstimatedDeliveryTime = new DateTime(2016, 01, 28, 13, 00, 00),
+                OrderedMeals = orderedMeals,
+                Owner = "owner",
+                RestaurantId = restaurant.ID,
+                StatusId = (int)OrderStatus.InProgress
+            };
+
+            _mapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforeDbInsert);
+            //act
+            var newOrderId =_repo.AddOrder(new Order());
+
+            //assert
+            var orderFromDb = GetOrderPocoFromDbById(newOrderId);
+            Assert.NotNull(orderFromDb);
+            Assert.Equal(orderPocoBeforeDbInsert.Deadline, orderFromDb.Deadline);
+            Assert.Equal(orderPocoBeforeDbInsert.EstimatedDeliveryTime, orderFromDb.EstimatedDeliveryTime);
+            Assert.Equal(orderPocoBeforeDbInsert.OrderedMeals.Count, orderFromDb.OrderedMeals.Count);
+            Assert.Equal(orderPocoBeforeDbInsert.Owner, orderFromDb.Owner);
+            Assert.Equal(orderPocoBeforeDbInsert.StatusId, orderFromDb.Status.Id);
+            Assert.Equal(orderPocoBeforeDbInsert.RestaurantId, orderFromDb.Restaurant.ID);
+        }
+
+        [Fact]
+        public void GetOrderShouldExecuteMapperWithCorrectData()
+        {
+            //arrange
+            OrderPoco orderPocoFromDb = GetOrderPocoFromDbById(1);
+
+            OrderPoco mapperArgument = new OrderPoco();
+            _mapper.Setup(c => c.MapToDomain(It.IsAny<OrderPoco>()))
+                    .Callback<OrderPoco>(o => mapperArgument = o)
+                    .Returns(new Order());
+
+            //act
+            var orderFromRepo = _repo.GetOrder(orderPocoFromDb.Id);
+
+            //assert
+            _mapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Once);
+            Assert.Equal(orderPocoFromDb.Id, mapperArgument.Id);
+            Assert.Equal(orderPocoFromDb.OrderedMeals.Count(), mapperArgument.OrderedMeals.Count());
+            Assert.Equal(orderPocoFromDb.Owner, mapperArgument.Owner);
+            Assert.Equal(orderPocoFromDb.EstimatedDeliveryTime, mapperArgument.EstimatedDeliveryTime);
+            Assert.Equal(orderPocoFromDb.Deadline, mapperArgument.Deadline);
+
+
+            Assert.Equal(orderPocoFromDb.Status.Id, mapperArgument.Status.Id);
+            Assert.Equal(orderPocoFromDb.Status.Name, mapperArgument.Status.Name);
+
+            Assert.Equal(orderPocoFromDb.RestaurantId, mapperArgument.RestaurantId);
+            Assert.Equal(orderPocoFromDb.Restaurant.ID, mapperArgument.Restaurant.ID);
+            Assert.Equal(orderPocoFromDb.Restaurant.IsActive, mapperArgument.Restaurant.IsActive);
+            Assert.Equal(orderPocoFromDb.Restaurant.MenuUrl, mapperArgument.Restaurant.MenuUrl);
+            Assert.Equal(orderPocoFromDb.Restaurant.Phone, mapperArgument.Restaurant.Phone);
+            Assert.Equal(orderPocoFromDb.Restaurant.Name, mapperArgument.Restaurant.Name);
+            Assert.Equal(orderPocoFromDb.Restaurant.WebsiteUrl, mapperArgument.Restaurant.WebsiteUrl);
+
+        }
+
+        private OrderPoco GetOrderPocoFromDbById(int id)
+        {
+            return _databaseFixture.Db
+                            .Fetch<OrderPoco, OrderedMealPoco, StatusPoco, RestaurantPoco, OrderPoco>(
+                            new OrderRelator().MapIt,
+                            "SELECT * FROM Orders"
+                            + " LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Orders.Id"
+                            + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
+                            + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
+                            + " WHERE Orders.Id = @0"
+                            , id
+                            ).First();
         }
     }
 }

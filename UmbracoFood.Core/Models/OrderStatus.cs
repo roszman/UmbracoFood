@@ -2,8 +2,8 @@
 {
     public enum OrderStatus
     {
-        InProgress,
-        InDelivery,
-        InKitchen
+        InProgress = 1,
+        InDelivery = 2,
+        InKitchen = 3
     }
 }

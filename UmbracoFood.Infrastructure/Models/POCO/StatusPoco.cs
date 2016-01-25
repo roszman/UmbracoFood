@@ -11,5 +11,6 @@ namespace UmbracoFood.Infrastructure.Models.POCO
 
         [Column("Name")]
         public string Name { get; set; }
+
     }
 }

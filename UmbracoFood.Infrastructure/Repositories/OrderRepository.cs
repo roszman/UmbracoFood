@@ -6,6 +6,7 @@ using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Mapping;
 using UmbracoFood.Infrastructure.Models.POCO;
+using System;
 
 namespace UmbracoFood.Infrastructure.Repositories
 {
@@ -24,8 +25,28 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public int AddOrder(Order order)
         {
-            var id = _db.Insert("Orders", "Id", _mapper.MapToPoco(order));
-            return decimal.ToInt32((decimal)id);
+            try
+            {
+                _db.BeginTransaction();
+                // Do transacted updates here
+                var poco = _mapper.MapToPoco(order);
+                var insertResult = _db.Insert("Orders", "Id", poco);
+                var id = Convert.ToInt32(insertResult);
+                foreach(var orderedMeal in poco.OrderedMeals)
+                {
+                    orderedMeal.OrderId = id;
+                    _db.Insert("OrderedMeals", "Id", orderedMeal);
+                }
+
+                // Commit
+                _db.CompleteTransaction();
+                return id;
+            }
+            catch(Exception)
+            {
+                _db.AbortTransaction();
+                throw;
+            }
         }
 
         public void EditOrder(Order order)
@@ -46,7 +67,15 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public Order GetOrder(int id)
         {
-            var order = _db.SingleOrDefault<OrderPoco>("SELECT * FROM Orders WHERE Id = @0", id);
+            var order = _db.Fetch<OrderPoco, OrderedMealPoco, StatusPoco, RestaurantPoco, OrderPoco>(
+                new OrderRelator().MapIt,
+                "SELECT * FROM Orders"
+                + " LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Orders.Id"
+                + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
+                + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
+                + " WHERE Orders.Id = @0"
+                , id
+                ).FirstOrDefault();
             if (order == null)
             {
                 throw new KeyNotFoundException("Order has not been found.");
@@ -57,9 +86,12 @@ namespace UmbracoFood.Infrastructure.Repositories
         public IEnumerable<Order> GetOrders()
         {
             //var order = db.Query<OrderPoco>("SELECT * FROM Orders WHERE Active = 1");
-            var orders = _db.Fetch<OrderPoco, OrderedMealPoco, OrderPoco>(
-                new OrderMealRelator().MapIt,
-                "SELECT * FROM Orders LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Order.Id ORDER BY OrderedMeals.Id"
+            var orders = _db.Fetch<OrderPoco, OrderedMealPoco, StatusPoco, RestaurantPoco, OrderPoco>(
+                new OrderRelator().MapIt,
+                "SELECT * FROM Orders"
+                + " LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Orders.Id"
+                + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
+                + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
                 );
             return orders.Select(o => _mapper.MapToDomain(o));
         }
