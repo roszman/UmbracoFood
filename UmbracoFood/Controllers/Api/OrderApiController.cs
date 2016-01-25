@@ -15,17 +15,9 @@ namespace UmbracoFood.Controllers.Api
     [Umbraco.Web.Mvc.PluginController("UmbracoFoodApi")]
     public class OrderApiController : UmbracoApiController
     {
-        //private readonly IOrderService orderService;
-
-        //public OrderApiController(IOrderService orderService)
-        //{
-        //    this.orderService = orderService;
-        //}
-
         [HttpGet]
         public GetOrdersResult GetOrders()
         {
-            //var orders = orderService.GetActiveRestaurants();
             var orders = new List<Order>()
             {
                 new Order()
@@ -85,23 +77,6 @@ namespace UmbracoFood.Controllers.Api
             return getOrdersResult;
         }
 
-        //[HttpGet]
-        //public RestaurantViewModel GetRestaurant(int id)
-        //{
-        //    if (id < 1)
-        //    {
-        //        throw new Exception("ID nie może być niższe niż 1");
-        //    }
-
-        //    var restaurant = orderService.GetRestaurant(id);
-        //    if (restaurant == null)
-        //    {
-        //        throw new Exception("Restaurant doesn't exist.");
-        //    }
-
-        //    return Mapper.Map<Core.Models.Restaurant, RestaurantViewModel>(restaurant);
-        //}
-
         [HttpPost]
         public void PostOrder(CreateOrderViewModel model)
         {
@@ -111,43 +86,6 @@ namespace UmbracoFood.Controllers.Api
             }
 
             var restaurant = Mapper.Map<CreateOrderViewModel, Order>(model);
-
-           // orderService.AddRestaurant(restaurant);
         }
-
-        //[HttpPut]
-        //public void PutRestaurant(EditRestaurantViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        throw new Exception("Nie udało się zedytować restauracji");
-        //    }
-
-        //    var restaurant = orderService.GetRestaurant(model.ID);
-        //    if (restaurant == null)
-        //    {
-        //        throw new Exception("Restauracja nie istnieje");
-        //    }
-
-        //    var updatedRestaurant = Mapper.Map<EditRestaurantViewModel, Restaurant>(model, restaurant);
-        //    orderService.EditRestaurant(updatedRestaurant);
-        //}
-
-        //[HttpDelete]
-        //public void DeleteRestaurant(int id)
-        //{
-        //    if (id < 1)
-        //    {
-        //        throw new Exception("ID nie może być niższe niż 1");
-        //    }
-            
-        //    var restaurant = orderService.GetRestaurant(id);
-        //    if (restaurant == null)
-        //    {
-        //        throw new Exception("Restauracja nie istnieje");
-        //    }
-
-        //    orderService.RemoveRestaurant(id);
-        //}
     }
 }

@@ -2071,7 +2071,6 @@
     <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
-    <Compile Include="Validators\PropertyValidators\EnumValidator.cs" />
     <Compile Include="ViewModels\CreateOrderMeal.cs" />
     <Compile Include="ViewModels\CreateOrderViewModel.cs" />
     <Compile Include="ViewModels\EditRestaurantViewModel.cs" />
@@ -2086,6 +2085,7 @@
     <Compile Include="ViewModels\GetSelectRestaurantsItemsResult.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
+    <Compile Include="ViewModels\SelectRestaurantItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">

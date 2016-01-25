@@ -50,7 +50,6 @@
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\PaymentType.cs" />
     <Compile Include="Models\Restaurant.cs" />
-    <Compile Include="Models\SelectRestaurantItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

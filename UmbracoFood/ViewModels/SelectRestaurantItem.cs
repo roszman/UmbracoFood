@@ -1,4 +1,4 @@
-﻿namespace UmbracoFood.Core.Models
+﻿namespace UmbracoFood.ViewModels
 {
     public class SelectRestaurantItem
     {
