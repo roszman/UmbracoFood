@@ -37,7 +37,6 @@ namespace UmbracoFood.Mapping
                 .IgnoreAllUnmapped()
                .ConstructUsing(context =>
                 {
-                    var orderedMeal = context.DestinationValue as List<OrderedMeal>;
                     var order = context.SourceValue as CreateOrderViewModel;
 
                     var orderMeals = new List<OrderedMeal>();

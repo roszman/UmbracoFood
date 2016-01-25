@@ -5,7 +5,7 @@ namespace UmbracoFood.Core.Models
 {
     public class Order
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Owner { get; set; }
         public OrderStatus Status { get; set; }
         public string AccountNumber { get; set; }

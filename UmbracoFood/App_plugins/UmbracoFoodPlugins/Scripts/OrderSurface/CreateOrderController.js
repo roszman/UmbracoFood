@@ -3,10 +3,6 @@
 umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'restaurantService', 'utilService', function ($scope, orderService, restaurantService, utilService)
 {
     $scope.restaurants = [];
-    $scope.paymentOptions = [
-        {Type: "money", Text: "Płatność gotówką", checked: true},
-        {Type: "card", Text: "Płatność kartą", checked: false }
-    ];
     $scope.meal = {
         Name: "",
         Price: "",
@@ -17,7 +13,6 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
         Owner: "",
         SelectedRestaurantId: 0,
         Deadline: new Date(),
-        SelectedPaymentOptionType: "",
         AccountNumber: "",
         Meals: []
     }
@@ -64,17 +59,6 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
         $scope.restaurants = response.data.Restaurants;
     }
 
-    $scope.updatePaymentOption = function (position, option) {
-        angular.forEach($scope.paymentOptions, function (item, index) {
-            if (position != index) {
-                item.checked = false;
-            } else {
-                item.checked = true;
-                $scope.order.SelectedPaymentOptionType = option.Type;
-
-            }
-        });
-    }
     loadRestaurants();
 }]);
 
