@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\OrderProfileTests .cs" />
     <Compile Include="Mappings\RestaurantProfileTests.cs">
       <SubType>Code</SubType>
     </Compile>

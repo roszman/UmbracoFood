@@ -1,0 +1,89 @@
+﻿@using System.Web.Optimization
+@using Umbraco.Web
+@using UmbracoFood.Controllers.Surface
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+}
+<form name="orderForm" ng-controller="CreateOrderController"
+      ng-submit="createOrder(order)"
+      class="form-horizontal">
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Moj nick</label>
+        <div class="col-sm-10">
+            <input type="" class="form-control" id="inputEmail3" placeholder="Moj nick" ng-model="order.Owner" required>
+        </div>
+    </div>
+
+    <div class="form-group form-inline">
+        <label for="inputEmail3" class="col-sm-2 control-label">Wybierz restauracje</label>
+        <div class="col-sm-10">
+            <select class="form-control"
+                    ng-options="option.Id as option.Value for option in restaurants"
+                    ng-model="order.SelectedRestaurantId" required>
+                <option value="">--Wybierz restaurację--</option>
+            </select>
+            <a href="@Umbraco.NiceUrl(1058)" type="button" class="btn btn-default">Dodaj nowa</a>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">O której zamawiam</label>
+        <div class="col-sm-10">
+            <uib-timepicker ng-model="order.Deadline" show-meridian="false" required></uib-timepicker>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">Numer konta (opcjonalnie)</label>
+        <div class="col-sm-10">
+            <input type="" class="form-control" placeholder="Numer konta" ng-model="order.AccountNumber">
+        </div>
+    </div>
+    <div class="form-gorup">
+        <label class="col-sm-2 control-label">Dodaj danie</label>
+        <div class="col-sm-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nazwa dania</th>
+                        <th>Kwota</th>
+                        <th>Ilosc</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="meal in order.Meals">
+                        <td><span ng-bind="meal.Name"></span></td>
+                        <td><span>{{meal.Price | currency:"" : 2}}</span></td>
+                        <td><span ng-bind="meal.Count"></span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="mealName" ng-model="meal.Name"  /></td>
+                        <td><input type="number" name="mealPrice" ng-model="meal.Price"  /></td>
+                        <td><input type="text" name="mealCount" ng-model="meal.Count"  /></td>
+                        <td>
+                            <button type="button" class="btn" ng-click="addMeal()" ng-class="{'btn-danger': !isMealValid(), 'btn-success': isMealValid() }">
+                                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Podsumowanie</label>
+        <div class="col-sm-10">
+            <h3>{{summary() | currency:"": 2}} PLN</h3>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Publikuj</button>
+        </div>
+    </div>
+</form>
+
+
+@Scripts.Render("~/Scripts/CreateOrder")

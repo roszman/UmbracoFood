@@ -59,6 +59,22 @@ namespace UmbracoFood
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantsController.js",
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/Orders").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/OrdersController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/OrderService.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/CreateOrder").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/CreateOrderController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/OrderService.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/RestaurantSurface/RestaurantService.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/EditOrder").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/EditOrderController.js",
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/OrderService.js"
+                ));
         }
     }
 }

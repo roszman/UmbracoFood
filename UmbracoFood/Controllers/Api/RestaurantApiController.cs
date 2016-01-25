@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using AutoMapper;
+using Umbraco.Web.Models.ContentEditing;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
@@ -47,6 +48,19 @@ namespace UmbracoFood.Controllers.Api
             }
 
             return Mapper.Map<Core.Models.Restaurant, RestaurantViewModel>(restaurant);
+        }
+
+        [HttpGet]
+        public GetSelectRestaurantsItemsResult GetSelectRestaurantsItems()
+        {
+            var restaurants = restaurantService.GetActiveRestaurants();
+
+            var result = new GetSelectRestaurantsItemsResult()
+            {
+                Restaurants = restaurants.Select(Mapper.Map<Core.Models.Restaurant, SelectRestaurantItem>)
+            };
+
+            return result;
         }
 
         [HttpPost]

@@ -361,6 +361,9 @@
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.controller.js" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.html" />
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\CreateOrderController.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\OrdersController.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\OrderService.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\EditRestaurantController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\AddRestaurantController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\RestaurantSurface\RestaurantsController.js" />
@@ -395,6 +398,8 @@
     <Content Include="Scripts\angular\angular.min.js.map" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\Restaurants.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\EditRestaurant.cshtml" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\Orders.cshtml" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\CreateOrder.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular\angular-directives.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2002,17 +2007,15 @@
     <Content Include="umbraco\Webservices\UltimatePickerAutoCompleteHandler.ashx" />
     <Content Include="umbraco\Xslt\Web.config" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
-    <Content Include="Views\Partials\Orders.cshtml" />
-    <Content Include="Views\Order.cshtml" />
     <Content Include="Views\OrderPage.cshtml" />
     <Content Include="Views\AddRestaurantPage.cshtml" />
-    <Content Include="Views\CreateOrder.cshtml">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="Views\EditOrder.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\EditRestaurantPage.cshtml" />
+    <Content Include="Views\CreateOrderPage.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\EditOrderPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2054,16 +2057,22 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_plugins\Restaurants\Tree\RestaurantsApplicationTreeController.cs" />
     <Compile Include="App_Start\AutomapperConfig.cs" />
+    <Compile Include="Controllers\Api\OrderApiController.cs" />
     <Compile Include="Controllers\Api\RestaurantApiController.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\RenderMvc\EditRestaurantPageController.cs" />
     <Compile Include="Controllers\RenderMvc\HomePageController.cs" />
+    <Compile Include="Controllers\Surface\OrderSurfaceController.cs" />
     <Compile Include="Controllers\Surface\RestaurantSurfaceController.cs" />
+    <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Filters\WebApiExceptionFilter.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
+    <Compile Include="ViewModels\CreateOrderMeal.cs" />
+    <Compile Include="ViewModels\CreateOrderViewModel.cs" />
     <Compile Include="ViewModels\EditRestaurantViewModel.cs" />
     <Compile Include="ViewModels\AddRestaurantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2071,8 +2080,12 @@
     <Compile Include="Validators\AbstractValidators\AddRestaurantValidator.cs" />
     <Compile Include="Validators\AutofacValidatorFactory.cs" />
     <Compile Include="Validators\PropertyValidators\UrlValidator.cs" />
+    <Compile Include="ViewModels\GetOrdersResult.cs" />
     <Compile Include="ViewModels\GetRestaurantsResult.cs" />
+    <Compile Include="ViewModels\GetSelectRestaurantsItemsResult.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
+    <Compile Include="ViewModels\SelectRestaurantItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">

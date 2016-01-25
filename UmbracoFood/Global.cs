@@ -13,8 +13,13 @@ namespace UmbracoFood
 
             AutofacConfig.Configure();
             AutomapperConfig.Configure();
+
             // to return json instead of xml in RestaurantsApiController
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            json.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }

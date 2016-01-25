@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Interfaces\IRestaurantService.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderedMeal.cs" />
     <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Models\PaymentType.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
