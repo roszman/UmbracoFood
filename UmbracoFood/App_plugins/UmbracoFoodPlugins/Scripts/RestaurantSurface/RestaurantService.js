@@ -15,6 +15,12 @@ umbracoFood.factory('restaurantService', [
                         return result;
                     });
             },
+            getSelectRestaurantsItems: function (id) {
+                return $http.get('/UmbracoFood/umbraco/UmbracoFoodApi/RestaurantApi/GetSelectRestaurantsItems')
+                    .then(function (result) {
+                        return result;
+                    });
+            },
             addRestaurant: function (model) {
                 return $http.post('/UmbracoFood/umbraco/UmbracoFoodApi/RestaurantApi/PostRestaurant', model)
                     .then(function (result) {
