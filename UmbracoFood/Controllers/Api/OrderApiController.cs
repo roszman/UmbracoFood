@@ -15,6 +15,8 @@ namespace UmbracoFood.Controllers.Api
     [Umbraco.Web.Mvc.PluginController("UmbracoFoodApi")]
     public class OrderApiController : UmbracoApiController
     {
+        private readonly IOrderService orderService;
+
         [HttpGet]
         public GetOrdersResult GetOrders()
         {
@@ -85,7 +87,88 @@ namespace UmbracoFood.Controllers.Api
                 throw new Exception("Couldn't create an order");
             }
 
-            var restaurant = Mapper.Map<CreateOrderViewModel, Order>(model);
+            var order = Mapper.Map<CreateOrderViewModel, Order>(model);
+
+            orderService.CreateOrder(order);
         }
+
+        [HttpPut]
+        public void PutOrderMeal(AddMealViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Couldn't add meal to order");
+            }
+
+            var meal = Mapper.Map<AddMealViewModel, OrderedMeal>(model);
+
+            //todo orderService.AddMeal(meal);
+        }
+
+        [HttpGet]
+        public GetOrderResult GetOrder(int id)
+        {
+            return new GetOrderResult()
+            {
+                Deadline = new DateTime().AddHours(0.5),
+                Owner = "JA owner",
+                RestaurantId = 1,
+                RestaurantName = "Da restaurand",
+                StatusId = 1,
+                OrderId = 1,
+                EstitmatedDeliveryTime = null,
+                RestaurantMenuUrl = "http://alizze.pl/menu.php",
+                Meals = new List<MealViewModel>()
+                {
+                    new MealViewModel()
+                    {
+                        Count = 1,
+                        Price = 10,
+                        MealName = "Meal name 1",
+                        Person = "Person name 1"
+                    },
+                    new MealViewModel()
+                    {
+                        Count = 2,
+                        Price = 15,
+                        MealName = "Meal name 2",
+                        Person = "Person name 2"
+                    },
+                },
+                AvailableStatuses = new List<StatusItem>()
+                {
+                    new StatusItem()
+                    {
+                        Id = 1,
+                        Name = "W trakcie zamawiania"
+                    },
+                    new StatusItem()
+                    {
+                        Id = 2,
+                        Name = "W drodze"
+                    },
+                    new StatusItem()
+                    {
+                        Id = 3,
+                        Name = "W kuchni"
+                    },
+                },
+                AccountNumber = "11 1222 3333 4444 5555"
+            };
+        }
+
+
+        [HttpPut]
+        public void PutChangeOrderStatus(ChangeOrderStatusViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("Couldn't change order status");
+            }
+
+            var orderStatus = Mapper.Map<ChangeOrderStatusViewModel, Order>(model);
+
+       }
+
     }
 }

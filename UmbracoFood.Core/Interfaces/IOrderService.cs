@@ -9,5 +9,7 @@ namespace UmbracoFood.Core.Interfaces
         void AddMeal(OrderedMeal meal);
 
         void ChangeStatus(OrderStatus order);
+
+        Order GetOrder(int id);
     }
 }

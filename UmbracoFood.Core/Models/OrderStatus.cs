@@ -5,12 +5,12 @@ namespace UmbracoFood.Core.Models
     public enum OrderStatus
     {
         [Description("W trakcie zamawiania")]
-        InProgress,
+        InProgress = 1,
 
         [Description("W drodze")]
-        InDelivery,
+        InDelivery = 2,
 
         [Description("W kuchni")]
-        InKitchen
+        InKitchen = 3
     }
 }

@@ -60,5 +60,12 @@ namespace UmbracoFood.Infrastructure.Repositories
                 );
             return orders.Select(Mapper.Map<Order>);
         }
+
+        public IEnumerable<Status> GetStatuses()
+        {
+            var statuses = _db.Query<StatusPoco>("SELECT * FROM Statuses");
+
+            return statuses.Select(Mapper.Map<StatusPoco, Status>);
+        }
     }
 }

@@ -14,7 +14,8 @@ namespace UmbracoFood
         {
             bundles.Add(new StyleBundle("~/CSS/Common").Include(
                     "~/Content/bootstrap.css",
-                    "~/Content/bootstrap-theme.css"
+                    "~/Content/bootstrap-theme.css",
+                    "~/css/umbracoFood.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/jQuery").Include(

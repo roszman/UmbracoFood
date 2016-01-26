@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using UmbracoFood.Core.Extensions;
@@ -63,6 +64,23 @@ namespace UmbracoFood.Mapping
                 .ForMember(d => d.MealName, o => o.MapFrom(s => s.Name))
                 .ForMember(d => d.Price, o => o.MapFrom(s => s.Price));
 
+            CreateMap<AddMealViewModel, OrderedMeal>()
+                .IgnoreAllUnmapped()
+                .ForMember(d => d.MealName, o => o.MapFrom(s => s.MealName))
+                .ForMember(d => d.Count, o => o.MapFrom(s => s.Count))
+                .ForMember(d => d.Price, o => o.MapFrom(s => s.Price))
+                .ForMember(d => d.PurchaserName, o => o.MapFrom(s => s.Person));
+
+            CreateMap<ChangeOrderStatusViewModel, Order>()
+                .IgnoreAllUnmapped()
+                .ForMember(d => d.Status, o => o.MapFrom(s => (OrderStatus)s.StatusId))
+                .AfterMap((s, d) =>
+                {
+                    if ((OrderStatus) s.StatusId == OrderStatus.InDelivery)
+                    {
+                        d.EstitmatedDeliveryTime = DateTime.Now.AddMinutes(s.EstitmatedDeliveryTime ?? 0);
+                    }
+                });
         }
     }
 }

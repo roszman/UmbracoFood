@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mapping\RestaurantRepositoryMappingProfile.cs" />
+    <Compile Include="Mapping\StatusRepositoryMappingProfile.cs" />
     <Compile Include="Models\POCO\OrderedMealPOCO.cs">
       <SubType>Code</SubType>
     </Compile>

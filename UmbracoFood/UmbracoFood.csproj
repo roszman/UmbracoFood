@@ -361,6 +361,7 @@
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.controller.js" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.html" />
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\EditOrderController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\CreateOrderController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\OrdersController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\OrderService.js" />
@@ -376,6 +377,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="css\umbracoFood.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -400,6 +402,7 @@
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\EditRestaurant.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\Orders.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\CreateOrder.cshtml" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\EditOrder.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular\angular-directives.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2052,6 +2055,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_plugins\Restaurants\Controllers\RestaurantsApiController.cs" />
+    <Compile Include="App_plugins\UmbracoFoodPlugins\Models\EditOrderPageModel.cs" />
     <Compile Include="App_plugins\UmbracoFoodPlugins\Models\EditRestaurantPageModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
@@ -2061,6 +2065,7 @@
     <Compile Include="Controllers\Api\RestaurantApiController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\RenderMvc\EditOrderPageController.cs" />
     <Compile Include="Controllers\RenderMvc\EditRestaurantPageController.cs" />
     <Compile Include="Controllers\RenderMvc\HomePageController.cs" />
     <Compile Include="Controllers\Surface\OrderSurfaceController.cs" />
@@ -2070,7 +2075,12 @@
     <Compile Include="Global.cs" />
     <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
+    <Compile Include="Mapping\StatusMappingProfile.cs" />
+    <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
+    <Compile Include="Validators\AbstractValidators\ChangeOrderStatusValidator.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
+    <Compile Include="ViewModels\AddMealViewModel.cs" />
+    <Compile Include="ViewModels\ChangeOrderStatusViewModel.cs" />
     <Compile Include="ViewModels\CreateOrderMeal.cs" />
     <Compile Include="ViewModels\CreateOrderViewModel.cs" />
     <Compile Include="ViewModels\EditRestaurantViewModel.cs" />
@@ -2080,12 +2090,15 @@
     <Compile Include="Validators\AbstractValidators\AddRestaurantValidator.cs" />
     <Compile Include="Validators\AutofacValidatorFactory.cs" />
     <Compile Include="Validators\PropertyValidators\UrlValidator.cs" />
+    <Compile Include="ViewModels\GetOrderResult.cs" />
     <Compile Include="ViewModels\GetOrdersResult.cs" />
     <Compile Include="ViewModels\GetRestaurantsResult.cs" />
     <Compile Include="ViewModels\GetSelectRestaurantsItemsResult.cs" />
+    <Compile Include="ViewModels\MealViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
     <Compile Include="ViewModels\SelectRestaurantItem.cs" />
+    <Compile Include="ViewModels\StatusItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">
