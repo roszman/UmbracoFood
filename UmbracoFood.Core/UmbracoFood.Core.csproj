@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Interfaces\IOrderRepository.cs" />
+    <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Interfaces\IRestaurantRepository.cs" />
     <Compile Include="Interfaces\IRestaurantService.cs" />
     <Compile Include="Models\Order.cs" />

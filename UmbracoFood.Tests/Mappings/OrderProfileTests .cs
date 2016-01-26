@@ -9,6 +9,7 @@ using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Mapping;
 using UmbracoFood.ViewModels;
 using Xunit;
+using OrderMappingProfile = UmbracoFood.Mapping.OrderMappingProfile;
 
 namespace UmbracoFood.Tests.Mappings
 {
@@ -28,7 +29,7 @@ namespace UmbracoFood.Tests.Mappings
                     Mapper.Initialize(config => config.AddProfile(new OrderMappingProfile()));
 
                     _configured = true;
-                    Mapper.AssertConfigurationIsValid();                   
+                    Mapper.AssertConfigurationIsValid();
                 }
             }
         }
@@ -71,8 +72,8 @@ namespace UmbracoFood.Tests.Mappings
             Assert.Equal(order.Status, OrderStatus.InProgress);
 
             Assert.Equal(order.OrderedMeals.Count, createOrderViewModel.Meals.Count());
-            
-            
+
+
 
 
         }

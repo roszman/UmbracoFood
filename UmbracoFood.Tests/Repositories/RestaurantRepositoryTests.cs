@@ -4,19 +4,22 @@ using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Mapping;
 using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Infrastructure.Repositories;
+using UmbracoFood.Tests.Repositories.DatabaseFixtures;
 using Xunit;
 
 namespace UmbracoFood.Tests.Repositories
 {
-    public class RestaurantRepositoryTests : IClassFixture<DatabaseFixture>
+    [Collection("Database collection")]
+    public class RestaurantRepositoryTests
     {
-        private readonly DatabaseFixture _databaseFixture;
+        private readonly OrdersDatabaseFixture _databaseFixture;
         private RestaurantRepository _repo;
         private Mock<IModelMapper<Restaurant, RestaurantPoco>> _mapper;
 
-        public RestaurantRepositoryTests(DatabaseFixture databaseFixture)
+        public RestaurantRepositoryTests(OrdersDatabaseFixture databaseFixture)
         {
             _databaseFixture = databaseFixture;
+
             var dataBaseProvider = new Mock<IDatabaseProvider>();
             dataBaseProvider.Setup(dbp => dbp.Db).Returns(_databaseFixture.Db);
             _mapper = new Mock<IModelMapper<Restaurant, RestaurantPoco>>();
