@@ -10,7 +10,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
     {
         [Column("Id")]
         public int Id { get; set; }
-        
+
         [Column("Price")]
         public double Price { get; set; }
 
@@ -23,5 +23,8 @@ namespace UmbracoFood.Infrastructure.Models.POCO
 
         [Column("PurchaserName")]
         public string PurchaserName { get; set; }
+
+        [Column("Count")]
+        public int Count { get; set; }
     }
 }

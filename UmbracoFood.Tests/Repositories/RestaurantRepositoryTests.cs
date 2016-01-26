@@ -9,18 +9,19 @@ using Xunit;
 
 namespace UmbracoFood.Tests.Repositories
 {
-    public class RestaurantRepositoryTests : IClassFixture<RestaurantsDatabaseFixture>
+    [Collection("Database collection")]
+    public class RestaurantRepositoryTests
     {
-        private readonly RestaurantsDatabaseFixture _restaurantsDatabaseFixture;
+        private readonly OrdersDatabaseFixture _databaseFixture;
         private RestaurantRepository _repo;
         private Mock<IModelMapper<Restaurant, RestaurantPoco>> _mapper;
 
-        public RestaurantRepositoryTests(RestaurantsDatabaseFixture restaurantsDatabaseFixture)
+        public RestaurantRepositoryTests(OrdersDatabaseFixture databaseFixture)
         {
-            _restaurantsDatabaseFixture = restaurantsDatabaseFixture;
+            _databaseFixture = databaseFixture;
 
             var dataBaseProvider = new Mock<IDatabaseProvider>();
-            dataBaseProvider.Setup(dbp => dbp.Db).Returns(_restaurantsDatabaseFixture.Db);
+            dataBaseProvider.Setup(dbp => dbp.Db).Returns(_databaseFixture.Db);
             _mapper = new Mock<IModelMapper<Restaurant, RestaurantPoco>>();
 
             _repo = new RestaurantRepository(dataBaseProvider.Object, _mapper.Object);
@@ -45,7 +46,7 @@ namespace UmbracoFood.Tests.Repositories
             var id = _repo.AddRestaurant(new Restaurant());
 
             //assert
-            var addedRestaurant = _restaurantsDatabaseFixture.Db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", id);
+            var addedRestaurant = _databaseFixture.Db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", id);
             _mapper.Verify(m => m.MapToPoco(It.IsAny<Restaurant>()), Times.Once);
             Assert.NotNull(addedRestaurant);
             Assert.Equal(restaurantPoco.WebsiteUrl, addedRestaurant.WebsiteUrl);
@@ -59,7 +60,7 @@ namespace UmbracoFood.Tests.Repositories
         public void EditRestaurantShouldUpdateRestaurantInDb()
         {
             //arrange
-            var restaurantId = _restaurantsDatabaseFixture.Db.Query<RestaurantPoco>("SELECT * FROM Restaurants").First().ID;
+            var restaurantId = _databaseFixture.Db.Query<RestaurantPoco>("SELECT * FROM Restaurants").First().ID;
             var updatedRestaurantPoco = new RestaurantPoco
             {
                 ID = restaurantId,
@@ -75,7 +76,7 @@ namespace UmbracoFood.Tests.Repositories
 
             //assert
             var updatedRestaurant =
-                _restaurantsDatabaseFixture.Db
+                _databaseFixture.Db
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", restaurantId)
                 .FirstOrDefault();
 
@@ -92,7 +93,7 @@ namespace UmbracoFood.Tests.Repositories
         {
             //arrange
             var restaurantPoco =
-                _restaurantsDatabaseFixture.Db
+                _databaseFixture.Db
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 1").First();
 
             //act
@@ -100,7 +101,7 @@ namespace UmbracoFood.Tests.Repositories
 
             //assert
             var inactiveRestaurant =
-                _restaurantsDatabaseFixture.Db
+                _databaseFixture.Db
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", restaurantPoco.ID)
                 .FirstOrDefault();
 
@@ -113,7 +114,7 @@ namespace UmbracoFood.Tests.Repositories
         {
             //arrange
             var restaurantPoco =
-                _restaurantsDatabaseFixture.Db
+                _databaseFixture.Db
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 1").First();
             var restaurant = new Restaurant
             {
@@ -135,7 +136,7 @@ namespace UmbracoFood.Tests.Repositories
         {
             //arrange
             var restaurants =
-                _restaurantsDatabaseFixture.Db
+                _databaseFixture.Db
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 1");
 
             //act
@@ -150,7 +151,7 @@ namespace UmbracoFood.Tests.Repositories
         {
             //arrange
             var restaurants =
-                _restaurantsDatabaseFixture.Db
+                _databaseFixture.Db
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 0");
 
             //act

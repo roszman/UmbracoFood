@@ -83,6 +83,7 @@
     <Compile Include="Mappings\OrderProfileTests .cs" />
     <Compile Include="Mappings\RestaurantDomainPocoMapperTests.cs" />
     <Compile Include="Mappings\RestaurantViewModelMappingTests.cs" />
+    <Compile Include="Repositories\DatabaseFixtures\DatabaseFixtureCollection.cs" />
     <Compile Include="Repositories\DatabaseFixtures\OrdersDatabaseFixture.cs" />
     <Compile Include="Repositories\DatabaseFixtures\RestaurantsDatabaseFixture.cs" />
     <Compile Include="Repositories\DatabaseFixtures\TableDataHelper.cs" />

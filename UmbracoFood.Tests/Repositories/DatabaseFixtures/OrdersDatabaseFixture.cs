@@ -61,6 +61,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                             , [Price] numeric(18,0) NOT NULL
                             , [MealName] nvarchar(255) NOT NULL
                             , [OrderId] int NOT NULL
+                            , [Count] int NOT NULL
                             , [PurchaserName] nvarchar(100) NOT NULL
                             );");
                 db.Execute(@"INSERT INTO [Statuses] ([Name]) VALUES (N'InProgress');");
@@ -136,7 +137,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
         {
             foreach (var o in orders)
             {
-                db.Insert("OrderedMeals", "Id", new OrderedMeal { MealName = "nazwa posiłku", Price = 2.5, PurchaserName = "Piotrek", OrderId = o.Id });
+                db.Insert("OrderedMeals", "Id", new OrderedMeal { MealName = "nazwa posiłku", Price = 2.5, PurchaserName = "Piotrek", OrderId = o.Id, Count = 1});
             }
         }
 

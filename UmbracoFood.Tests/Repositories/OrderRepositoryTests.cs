@@ -12,7 +12,8 @@ using System.Collections.Generic;
 
 namespace UmbracoFood.Tests.Repositories
 {
-    public class OrderRepositoryTests : IClassFixture<OrdersDatabaseFixture>
+    [Collection("Database collection")]
+    public class OrderRepositoryTests
     {
         private readonly OrdersDatabaseFixture _databaseFixture;
         private readonly Mock<IModelMapper<Order, OrderPoco>> _mapper;
@@ -82,10 +83,10 @@ namespace UmbracoFood.Tests.Repositories
 
 
             //act
-            _repo.RemoveOrder(1);
+            _repo.RemoveOrder(5);
 
             //assert
-            var orderFromDb = GetOrderPocoFromDbById(1);
+            var orderFromDb = GetOrderPocoFromDbById(5);
             Assert.Null(orderFromDb);
         }
 
@@ -98,7 +99,7 @@ namespace UmbracoFood.Tests.Repositories
                 {
                     MealName = "meal name",
                     Price = 14.2,
-                    PurchaserName = "purchaser name"
+                    PurchaserName = "purchaser name",
                 }
             };
             RestaurantPoco restaurant = new RestaurantPoco()
