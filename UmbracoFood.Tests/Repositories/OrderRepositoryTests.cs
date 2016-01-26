@@ -29,7 +29,54 @@ namespace UmbracoFood.Tests.Repositories
         }
 
         [Fact]
-        public void RemoveOrderShouldremoveOrderAndOrderedMeals()
+        public void EditOrderShouldUpdateImDbOrderAndOrderedMeals()
+        {
+            //arrange
+            var orderId = 1;
+            IList<OrderedMealPoco> orderedMeals = new List<OrderedMealPoco>()
+            {
+                new OrderedMealPoco
+                {
+                    MealName = "meal name",
+                    Price = 16.2,
+                    PurchaserName = "purchaser name"
+                },
+                new OrderedMealPoco
+                {
+                    MealName = "added meal name",
+                    Price = 15.2,
+                    PurchaserName = "purchaser name"
+                }
+            };
+            var orderPocoBeforDbInsert = new OrderPoco
+            {
+                Id = orderId,
+                Deadline = new DateTime(2018, 01, 28, 12, 00, 00),
+                EstimatedDeliveryTime = new DateTime(2016, 03, 28, 13, 00, 00),
+                OrderedMeals = orderedMeals,
+                Owner = "changed owner",
+                RestaurantId = 2,
+                StatusId = (int)OrderStatus.InDelivery
+            };
+
+            _mapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforDbInsert);
+
+            //act
+            _repo.EditOrder(new Order());
+
+            //assert
+            var orderPocoFromDb = GetOrderPocoFromDbById(orderId);
+            Assert.Equal(orderPocoBeforDbInsert.RestaurantId, orderPocoFromDb.RestaurantId);
+            Assert.Equal(orderPocoBeforDbInsert.RestaurantId, orderPocoFromDb.Restaurant.ID);
+            Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.Count, orderPocoFromDb.OrderedMeals.Count);
+            Assert.Equal(orderPocoBeforDbInsert.Owner, orderPocoFromDb.Owner);
+            Assert.Equal(orderPocoBeforDbInsert.StatusId, orderPocoFromDb.StatusId);
+            Assert.Equal(orderPocoBeforDbInsert.StatusId, orderPocoFromDb.Status.Id);
+
+        }
+
+        [Fact]
+        public void RemoveOrderShouldRemoveFromDbOrderAndOrderedMeals()
         {
             //arrange
 
@@ -41,6 +88,7 @@ namespace UmbracoFood.Tests.Repositories
             var orderFromDb = GetOrderPocoFromDbById(1);
             Assert.Null(orderFromDb);
         }
+
         [Fact]
         public void AddOrderShouldAddOrderToDb()
         {
@@ -124,6 +172,22 @@ namespace UmbracoFood.Tests.Repositories
 
         }
 
+        [Fact]
+        public void GetOrdersShouldReturnRightAmountOfOrders()
+        {
+            //arrange
+            var ordersFromDb = GetOrderesPocoFromDb();
+
+            _mapper.Setup(m => m.MapToDomain(It.IsAny<OrderPoco>())).Returns(new Order());
+
+            //act
+            var orders = _repo.GetOrders();
+
+            //assert
+            _mapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Exactly(orders.Count()));
+            Assert.Equal(ordersFromDb.Count(), orders.Count());
+        }
+
         private OrderPoco GetOrderPocoFromDbById(int id)
         {
             return _databaseFixture.Db
@@ -136,6 +200,17 @@ namespace UmbracoFood.Tests.Repositories
                             + " WHERE Orders.Id = @0"
                             , id
                             ).FirstOrDefault();
+        }
+
+        private IEnumerable<OrderPoco> GetOrderesPocoFromDb()
+        {
+            return _databaseFixture.Db
+                .Fetch<OrderPoco, OrderedMealPoco, StatusPoco, RestaurantPoco, OrderPoco>(
+                    new OrderRelator().MapIt,
+                    "SELECT * FROM Orders"
+                    + " LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Orders.Id"
+                    + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
+                    + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId");
         }
     }
 }

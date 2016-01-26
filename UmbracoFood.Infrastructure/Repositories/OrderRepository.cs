@@ -51,13 +51,25 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public void EditOrder(Order order)
         {
-            //var updateOrder = _db.SingleOrDefault<OrderPoco>("SELECT * FROM Orders WHERE Id = @0", order.Id);
-            //if (updateOrder == null)
-            //{
-            //    throw new KeyNotFoundException("Order has not been found.");
-            //}
+            var orderPoco = _mapper.MapToPoco(order);
+            try
+            {
+                _db.BeginTransaction();
 
-            _db.Update("Order", "Id", _mapper.MapToPoco(order));
+                _db.Execute("DELETE FROM OrderedMeals Where OrderId = @0", orderPoco.Id);
+                foreach (var orderedMealPoco in orderPoco.OrderedMeals)
+                {
+                    orderedMealPoco.OrderId = orderPoco.Id;
+                    _db.Insert("OrderedMeals", "Id", orderedMealPoco);
+                }
+                _db.Update("Orders", "Id", orderPoco);
+                _db.CompleteTransaction();
+            }
+            catch (Exception)
+            {
+                _db.AbortTransaction();
+                throw;
+            }
         }
 
         public void RemoveOrder(int id)
