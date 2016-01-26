@@ -2015,7 +2015,7 @@
     <Content Include="Views\Order.cshtml" />
     <Content Include="Views\OrderPage.cshtml" />
     <Content Include="Views\AddRestaurantPage.cshtml" />
-    <Content Include="Views\CreateOrder.cshtml">
+    <Content Include="Views\CreateOrder.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\EditRestaurantPage.cshtml" />
@@ -2085,9 +2085,8 @@
     <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
     <Compile Include="Mapping\StatusMappingProfile.cs" />
-    <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
-    <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\ChangeOrderStatusValidator.cs" />
+    <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
     <Compile Include="ViewModels\AddMealViewModel.cs" />
     <Compile Include="ViewModels\ChangeOrderStatusViewModel.cs" />
