@@ -16,13 +16,19 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         [Column("Owner")]
         public string Owner { get; set; }
 
-        [ForeignKey(typeof(StatusPoco))]
+        [ForeignKey(typeof(StatusPoco),Column ="StatusId")]
         [Column("StatusId")]
-        public OrderStatus Status { get; set; }
+        public int StatusId { get; set; }
+
+        [ResultColumn]
+        public StatusPoco Status { get; set; }
 
         [ForeignKey(typeof(RestaurantPoco))]
         [Column("RestaurantId")]
-        public Restaurant Restaurant { get; set; }
+        public int RestaurantId { get; set; }
+
+        [ResultColumn]
+        public RestaurantPoco Restaurant { get; set; }
 
         [Column("Deadline")]
         public DateTime Deadline { get; set; }
@@ -30,7 +36,7 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         [Column("EstimatedDeliveryTime")]
         public DateTime? EstimatedDeliveryTime { get; set; }
 
-        [Column("OrderedMeals")]
-        public IEnumerable<OrderedMeal> OrderedMeals { get; set; }
+        [ResultColumn]
+        public IList<OrderedMealPoco> OrderedMeals { get; set; }
     }
 }

@@ -4,11 +4,11 @@ using UmbracoFood.Infrastructure.Models.POCO;
 
 namespace UmbracoFood.Infrastructure.Mapping
 {
-    public class RestaurantRepositoryMappingProfile : Profile
+    public class OrderMappingProfile : Profile
     {
         protected override void Configure()
         {
-            CreateMap<RestaurantPoco, Restaurant>().ReverseMap();
+            CreateMap<OrderPoco, Order>().ReverseMap();
         }
     }
 }

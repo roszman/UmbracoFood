@@ -43,8 +43,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mapping\RestaurantRepositoryMappingProfile.cs" />
+    <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\StatusMappingProfile.cs" />
+    <Compile Include="Mapping\RestaurantMappingProfile.cs" />
+    <Compile Include="Mapping\OrderMapper.cs" />
     <Compile Include="Models\POCO\OrderedMealPOCO.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,7 +63,7 @@
     <Compile Include="Repositories\DatabaseProvider.cs" />
     <Compile Include="Repositories\IDatabaseProvider.cs" />
     <Compile Include="Mapping\IModelMapper.cs" />
-    <Compile Include="Repositories\OrderMealRelator.cs" />
+    <Compile Include="Repositories\OrderRelator.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Mapping\RestaurantMapper.cs" />
     <Compile Include="Repositories\RestaurantRepository.cs" />

@@ -7,23 +7,25 @@ using Xunit;
 
 namespace UmbracoFood.Tests.Mappings
 {
-    public class RestaurantRepositoryProfileTests
+    public class RestaurantDomainPocoMapperTests
     {
         private static readonly object Sync = new object();
         private static bool _configured;
+        private RestaurantMapper _mapper;
 
-        public RestaurantRepositoryProfileTests()
+        public RestaurantDomainPocoMapperTests()
         {
             lock (Sync)
             {
                 if (!_configured)
                 {
                     Mapper.Reset();
-                    Mapper.Initialize(config => config.AddProfile(new RestaurantRepositoryMappingProfile()));
+                    Mapper.Initialize(config => config.AddProfile(new RestaurantMappingProfile()));
                     _configured = true;
                     Mapper.AssertConfigurationIsValid();
                 }
             }
+            _mapper = new RestaurantMapper();
         }
 
         [Fact]
@@ -40,7 +42,7 @@ namespace UmbracoFood.Tests.Mappings
 
 
             //Act
-            var restaurant = Mapper.DynamicMap<RestaurantPoco, Restaurant>(restaurantPoco);
+            var restaurant = _mapper.MapToDomain(restaurantPoco);
 
             //Assert
             Assert.Equal(restaurant.ID, restaurantPoco.ID);
@@ -50,6 +52,6 @@ namespace UmbracoFood.Tests.Mappings
             Assert.Equal(restaurant.Name, restaurantPoco.Name);
             Assert.Equal(restaurant.Phone, restaurantPoco.Phone);
             Assert.IsType<Restaurant>(restaurant);
-        } 
+        }
     }
 }

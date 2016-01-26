@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
-using System.IO;
 using System.Linq;
 using Moq;
 using Umbraco.Core.Logging;
@@ -9,26 +8,28 @@ using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.SqlSyntax;
 using UmbracoFood.Infrastructure.Models.POCO;
 
-namespace UmbracoFood.Tests.Repositories
+namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
 {
-    public class DatabaseFixture : IDisposable
+    public class RestaurantsDatabaseFixture : IDisposable
     {
         private DatabaseSchemaHelper _dbSchemaHelper;
-        private string _fileName;
         public UmbracoDatabase Db { get; set; }
+        private SqlCeConnection _sqlCeConnection { get; set; }
 
-        public DatabaseFixture()
+        public RestaurantsDatabaseFixture()
         {
-            var conn = SqlCeConnection();
+            _sqlCeConnection = TableDataHelper.SetSqlCeConnection();
 
-            Db = new UmbracoDatabase(conn, Mock.Of<ILogger>()); ;
+            Db = new UmbracoDatabase(_sqlCeConnection, Mock.Of<ILogger>());
 
-            PrepareRestaurantTable(conn);
+            _dbSchemaHelper = new DatabaseSchemaHelper(Db, Mock.Of<ILogger>(), new SqlCeSyntaxProvider());
+
+            PrepareRestaurantTable();
+
         }
 
-        private void PrepareRestaurantTable(SqlCeConnection conn)
+        private void PrepareRestaurantTable()
         {
-            _dbSchemaHelper = new DatabaseSchemaHelper(Db, Mock.Of<ILogger>(), new SqlCeSyntaxProvider());
             if (_dbSchemaHelper.TableExist("Restaurants"))
             {
                 _dbSchemaHelper.DropTable<RestaurantPoco>();
@@ -39,7 +40,7 @@ namespace UmbracoFood.Tests.Repositories
             {
                 restaurantPocos.Add(new RestaurantPoco
                 {
-                    IsActive = i%2 == 0,
+                    IsActive = i % 2 == 0,
                     MenuUrl = "http://restauracja" + i + ".pl/menu",
                     WebsiteUrl = "http://restauracja" + i + ".pl",
                     Name = "restauracja " + i,
@@ -47,7 +48,7 @@ namespace UmbracoFood.Tests.Repositories
                 });
             }
 
-            using (var db = new Database(conn.ConnectionString, "System.Data.SqlServerCe.4.0"))
+            using (var db = new Database(Db.Connection.ConnectionString, "System.Data.SqlServerCe.4.0"))
             {
                 db.Execute(@"CREATE TABLE [Restaurants] (
                           [Id] int IDENTITY(2, 1) NOT NULL
@@ -64,24 +65,6 @@ namespace UmbracoFood.Tests.Repositories
                 }
             }
         }
-
-        private SqlCeConnection SqlCeConnection()
-        {
-            _fileName = System.IO.Path.Combine("./", "UmbracoTests.sdf");
-
-            /* check if exists */
-            if (File.Exists(_fileName))
-                File.Delete(_fileName);
-            string connStr = @"Data Source = " + _fileName;
-
-            /* create Database */
-            SqlCeEngine engine = new SqlCeEngine(connStr);
-            engine.CreateDatabase();
-
-            SqlCeConnection conn = new SqlCeConnection(connStr);
-            return conn;
-        }
-
         public void Dispose()
         {
             _dbSchemaHelper.DropTable<RestaurantPoco>();

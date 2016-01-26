@@ -2010,15 +2010,24 @@
     <Content Include="umbraco\Webservices\UltimatePickerAutoCompleteHandler.ashx" />
     <Content Include="umbraco\Xslt\Web.config" />
     <Content Include="Views\Partials\MainNavigation.cshtml" />
+    <Content Include="Views\Partials\Restaurants.cshtml" />
+    <Content Include="Views\Partials\Orders.cshtml" />
+    <Content Include="Views\Order.cshtml" />
     <Content Include="Views\OrderPage.cshtml" />
     <Content Include="Views\AddRestaurantPage.cshtml" />
+    <Content Include="Views\CreateOrder.cshtml">
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\EditRestaurantPage.cshtml" />
     <Content Include="Views\CreateOrderPage.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\EditOrder.cshtml" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Views\CreateOrderPage.cshtml" />
     <Content Include="Views\EditOrderPage.cshtml" />
+    <Content Include="Views\EditRestaurantPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2076,6 +2085,7 @@
     <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />
     <Compile Include="Mapping\StatusMappingProfile.cs" />
+    <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\ChangeOrderStatusValidator.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
