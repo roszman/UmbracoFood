@@ -15,8 +15,8 @@ namespace UmbracoFood.Tests.Repositories
     public class OrderRepositoryTests : IClassFixture<OrdersDatabaseFixture>
     {
         private readonly OrdersDatabaseFixture _databaseFixture;
-        private Mock<IModelMapper<Order, OrderPoco>> _mapper;
-        private OrderRepository _repo;
+        private readonly Mock<IModelMapper<Order, OrderPoco>> _mapper;
+        private readonly OrderRepository _repo;
 
         public OrderRepositoryTests(OrdersDatabaseFixture databaseFixture)
         {
@@ -35,9 +35,11 @@ namespace UmbracoFood.Tests.Repositories
 
 
             //act
-            //_repo.RemoveOrder(1);
+            _repo.RemoveOrder(1);
 
             //assert
+            var orderFromDb = GetOrderPocoFromDbById(1);
+            Assert.Null(orderFromDb);
         }
         [Fact]
         public void AddOrderShouldAddOrderToDb()
@@ -61,7 +63,7 @@ namespace UmbracoFood.Tests.Repositories
                 WebsiteUrl = "website url"
             };
             //arrange
-            var orderPocoBeforeDbInsert = new OrderPoco
+            var orderPocoBeforDbInsert = new OrderPoco
             {
                 Deadline = new DateTime(2016, 01, 28, 12, 00, 00),
                 EstimatedDeliveryTime = new DateTime(2016, 01, 28, 13, 00, 00),
@@ -71,19 +73,19 @@ namespace UmbracoFood.Tests.Repositories
                 StatusId = (int)OrderStatus.InProgress
             };
 
-            _mapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforeDbInsert);
+            _mapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforDbInsert);
             //act
             var newOrderId =_repo.AddOrder(new Order());
 
             //assert
             var orderFromDb = GetOrderPocoFromDbById(newOrderId);
             Assert.NotNull(orderFromDb);
-            Assert.Equal(orderPocoBeforeDbInsert.Deadline, orderFromDb.Deadline);
-            Assert.Equal(orderPocoBeforeDbInsert.EstimatedDeliveryTime, orderFromDb.EstimatedDeliveryTime);
-            Assert.Equal(orderPocoBeforeDbInsert.OrderedMeals.Count, orderFromDb.OrderedMeals.Count);
-            Assert.Equal(orderPocoBeforeDbInsert.Owner, orderFromDb.Owner);
-            Assert.Equal(orderPocoBeforeDbInsert.StatusId, orderFromDb.Status.Id);
-            Assert.Equal(orderPocoBeforeDbInsert.RestaurantId, orderFromDb.Restaurant.ID);
+            Assert.Equal(orderPocoBeforDbInsert.Deadline, orderFromDb.Deadline);
+            Assert.Equal(orderPocoBeforDbInsert.EstimatedDeliveryTime, orderFromDb.EstimatedDeliveryTime);
+            Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.Count, orderFromDb.OrderedMeals.Count);
+            Assert.Equal(orderPocoBeforDbInsert.Owner, orderFromDb.Owner);
+            Assert.Equal(orderPocoBeforDbInsert.StatusId, orderFromDb.Status.Id);
+            Assert.Equal(orderPocoBeforDbInsert.RestaurantId, orderFromDb.Restaurant.ID);
         }
 
         [Fact]
@@ -133,7 +135,7 @@ namespace UmbracoFood.Tests.Repositories
                             + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
                             + " WHERE Orders.Id = @0"
                             , id
-                            ).First();
+                            ).FirstOrDefault();
         }
     }
 }

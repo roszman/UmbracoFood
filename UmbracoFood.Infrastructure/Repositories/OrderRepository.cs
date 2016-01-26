@@ -62,7 +62,21 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public void RemoveOrder(int id)
         {
-            _db.Execute("DELETE FROM Orders WHERE Id = @0", id);
+
+            try
+            {
+                _db.BeginTransaction();
+
+                _db.Execute("DELETE FROM OrderedMeals WHERE OrderId = @0", id);
+                _db.Execute("DELETE FROM Orders WHERE Id = @0", id);
+
+                _db.CompleteTransaction();
+            }
+            catch (Exception)
+            {
+                _db.AbortTransaction();
+                throw;
+            }
         }
 
         public Order GetOrder(int id)
