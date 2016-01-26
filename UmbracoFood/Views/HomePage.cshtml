@@ -3,8 +3,5 @@
     Layout = "Master.cshtml";
 }
 
-
-
-
-@Html.Partial("Orders")
-@Html.Partial("Restaurants")
+@Html.Action("Orders", "OrderSurface", new { area = "UmbracoFoodPlugins" })
+@Html.Action("Restaurants", "RestaurantSurface", new { area = "UmbracoFoodPlugins" })

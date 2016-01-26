@@ -80,23 +80,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mappings\RestaurantViewModelMappingTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mappings\RestaurantDomainPocoMapperTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mappings\OrderProfileTests .cs" />
+    <Compile Include="Mappings\RestaurantDomainPocoMapperTests.cs" />
+    <Compile Include="Mappings\RestaurantViewModelMappingTests.cs" />
     <Compile Include="Repositories\DatabaseFixtures\OrdersDatabaseFixture.cs" />
     <Compile Include="Repositories\DatabaseFixtures\RestaurantsDatabaseFixture.cs" />
+    <Compile Include="Repositories\DatabaseFixtures\TableDataHelper.cs" />
     <Compile Include="Repositories\OrderRepositoryTests.cs" />
     <Compile Include="Repositories\RestaurantRepositoryTests.cs" />
-    <Compile Include="Repositories\DatabaseFixtures\TableDataHelper.cs" />
     <Compile Include="Services\RestaurantServiceTests.cs" />
     <Compile Include="Validators\AddRestaurantValidatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Repositories\RestaurantRepositoryTests.cs.orig" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -119,6 +116,7 @@
       <Name>UmbracoFood</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,0 +1,51 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using Umbraco.Web
+@using UmbracoFood.Controllers.Surface
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+}
+
+<div ng-controller="OrdersController">
+    <h2>
+        Zamówienia
+        <a href="@Umbraco.NiceUrl(1061)" type="button" class="btn btn-success ">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </a>
+    </h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Restauracja</th>
+                <th>Do kiedy?</th>
+                <th>Czas dostawy</th>
+                <th>Ilość posiłków</th>
+                <th>Zamawiajacy</th>
+                <th>Status</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody ng-model="orders" ng-cloak>
+            <tr ng-repeat="order in orders">
+                <td>{{order.RestaurantName}}</td>
+                <td>{{order.Deadline | date: 'HH:mm'}}</td>
+                <td>{{(order.EstitmatedDeliveryTime | date: 'HH:mm') || '--- '}}</td>
+                <td>{{order.MealsCount}}</td>
+                <td>{{order.Owner}}</td>
+                <td>{{order.StatusName}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <a type="button" class="btn btn-primary" href="Zamowienie.html" ng-if="!order.EstitmatedDeliveryTime">Dolacz do zamowienia</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@Scripts.Render("~/Scripts/Orders")
+
+
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+

@@ -59,7 +59,6 @@ namespace UmbracoFood.Tests.Mappings
             restaurantViewModel.WebsiteUrl = "http://mock.url";
             restaurantViewModel.Name = "MockName";
             restaurantViewModel.Phone = "123456789";
-            restaurantViewModel.IsActive = true;
 
             //Act
             var restaurant = Mapper.DynamicMap<EditRestaurantViewModel, Restaurant>(restaurantViewModel);
@@ -70,7 +69,6 @@ namespace UmbracoFood.Tests.Mappings
             Assert.Equal(restaurant.WebsiteUrl, restaurantViewModel.WebsiteUrl);
             Assert.Equal(restaurant.Name, restaurantViewModel.Name);
             Assert.Equal(restaurant.Phone, restaurantViewModel.Phone);
-            Assert.Equal(restaurant.IsActive, restaurantViewModel.IsActive);
 
             Assert.IsType<Restaurant>(restaurant);
         }
