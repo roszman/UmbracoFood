@@ -38,5 +38,8 @@ namespace UmbracoFood.Infrastructure.Models.POCO
 
         [ResultColumn]
         public IList<OrderedMealPoco> OrderedMeals { get; set; }
+
+        [Column("AccountNumber")]
+        public string AccountNumber { get; set; }
     }
 }
