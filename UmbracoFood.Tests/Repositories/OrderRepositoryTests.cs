@@ -80,13 +80,13 @@ namespace UmbracoFood.Tests.Repositories
         public void RemoveOrderShouldRemoveFromDbOrderAndOrderedMeals()
         {
             //arrange
-
+            var existingOrder = GetOrderesPocoFromDb().Skip(1).Take(1).FirstOrDefault();
 
             //act
-            _repo.RemoveOrder(5);
+            _repo.RemoveOrder(existingOrder.Id);
 
             //assert
-            var orderFromDb = GetOrderPocoFromDbById(5);
+            var orderFromDb = GetOrderPocoFromDbById(existingOrder.Id);
             Assert.Null(orderFromDb);
         }
 
