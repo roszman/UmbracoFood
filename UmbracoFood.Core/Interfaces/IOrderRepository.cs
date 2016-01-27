@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Core.Interfaces
@@ -6,8 +7,6 @@ namespace UmbracoFood.Core.Interfaces
     public interface IOrderRepository
     {
         int AddOrder(Order order);
-
-        void EditOrder(Order order);
 
         void RemoveOrder(int id);
 
@@ -18,5 +17,9 @@ namespace UmbracoFood.Core.Interfaces
         IEnumerable<Status> GetStatuses();
 
         void AddOrderMeal(OrderedMeal orderedMeal);
+
+        void ChangeStatus(OrderStatus newStatus, int orderId);
+
+        void SetOrderIsInDelivery(DateTime estimatedDeliveryTime, int orderId);
     }
 }

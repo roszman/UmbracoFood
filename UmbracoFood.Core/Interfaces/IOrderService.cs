@@ -1,4 +1,5 @@
-﻿using UmbracoFood.Core.Models;
+﻿using System;
+using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Core.Interfaces
 {
@@ -11,5 +12,10 @@ namespace UmbracoFood.Core.Interfaces
         void ChangeStatus(OrderStatus order);
 
         Order GetOrder(int id);
+
+        void ChangeStatus(OrderStatus newStatus, int orderId);
+
+        void SetOrderIsInDelivery(DateTime estimatedDeliveryTime, int orderId);
+
     }
 }
