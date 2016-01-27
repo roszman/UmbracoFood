@@ -72,7 +72,7 @@ namespace UmbracoFood.Controllers.Api
                 AccountNumber = order.AccountNumber,
                 AvailableStatuses = availableStatuses.Select(Mapper.Map<Status, StatusItem>),
                 Deadline = order.Deadline,
-                EstitmatedDeliveryTime = order.EstitmatedDeliveryTime,
+                EstitmatedDeliveryTime = order.EstimatedDeliveryTime,
                 Owner = order.Owner,
                 RestaurantId = order.Restaurant.ID,
                 OrderId = order.Id,

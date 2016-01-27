@@ -86,12 +86,6 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
             EstitmatedDeliveryTime: $scope.order.EstitmatedDeliveryTime
         });
     }
-
-
-
-
-
-    
 }]);
 
 

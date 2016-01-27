@@ -46,9 +46,13 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
     }
     
     $scope.createOrder = function () {
-        return orderService.createOrder($scope.order);
+        return orderService.createOrder($scope.order)
+            .then(onOrderCreated);
     }
 
+    var onOrderCreated = function () {
+        utilService.growlSuccess("Zamówienie zostało utworzone.");
+    }
 
     var loadRestaurants = function () {
         return restaurantService.getSelectRestaurantsItems()

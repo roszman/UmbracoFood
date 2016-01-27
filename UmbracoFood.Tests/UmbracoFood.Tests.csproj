@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappings\OrderProfileTests .cs" />
+    <Compile Include="Mappings\OrderDomainPocoMapperTests.cs" />
     <Compile Include="Mappings\RestaurantDomainPocoMapperTests.cs" />
     <Compile Include="Mappings\RestaurantViewModelMappingTests.cs" />
     <Compile Include="Repositories\DatabaseFixtures\DatabaseFixtureCollection.cs" />
