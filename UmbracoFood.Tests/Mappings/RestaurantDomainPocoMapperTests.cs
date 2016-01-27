@@ -40,7 +40,6 @@ namespace UmbracoFood.Tests.Mappings
             restaurantPoco.Name = "MockName";
             restaurantPoco.Phone = "123456789";
 
-
             //Act
             var restaurant = _mapper.MapToDomain(restaurantPoco);
 

@@ -11,7 +11,7 @@ namespace UmbracoFood.Core.Models
         public string AccountNumber { get; set; }
         public Restaurant Restaurant { get; set; }
         public DateTime Deadline { get; set; }
-        public DateTime? EstitmatedDeliveryTime { get; set; }
+        public DateTime? EstimatedDeliveryTime { get; set; }
         public List<OrderedMeal> OrderedMeals { get; set; }
     }
 }

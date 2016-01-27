@@ -65,7 +65,7 @@ namespace UmbracoFood.Tests.Mappings
             //Assert
             Assert.Equal(order.AccountNumber, createOrderViewModel.AccountNumber);
             Assert.Equal(order.Deadline, createOrderViewModel.Deadline);
-            Assert.Equal(order.EstitmatedDeliveryTime, null);
+            Assert.Equal(order.EstimatedDeliveryTime, null);
             Assert.Equal(order.Id, 0);
             Assert.Equal(order.Owner, createOrderViewModel.Owner);
             Assert.Equal(order.Restaurant.ID, createOrderViewModel.SelectedRestaurantId);

@@ -18,7 +18,7 @@ namespace UmbracoFood.Mapping
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Owner, o => o.MapFrom(s => s.Owner))
                 .ForMember(d => d.Deadline, o => o.MapFrom(s => s.Deadline))
-                .ForMember(d => d.EstitmatedDeliveryTime, o => o.MapFrom(s => s.EstitmatedDeliveryTime))
+                .ForMember(d => d.EstitmatedDeliveryTime, o => o.MapFrom(s => s.EstimatedDeliveryTime))
                 .ForMember(d => d.MealsCount, o => o.MapFrom(s => s.OrderedMeals.Count))
                 .ForMember(d => d.StatusName, o => o.MapFrom(s => s.Status.GetDescription()))
                 .ForMember(d => d.RestaurantName, o => o.MapFrom(s => s.Restaurant.Name));
@@ -26,13 +26,12 @@ namespace UmbracoFood.Mapping
             CreateMap<CreateOrderViewModel, Order>()
                 .ForMember(d => d.Id, o => o.Ignore())
                 .ForMember(d => d.Deadline, o => o.MapFrom(s => s.Deadline))
-                .ForMember(d => d.EstitmatedDeliveryTime, o => o.Ignore())
+                .ForMember(d => d.EstimatedDeliveryTime, o => o.Ignore())
                 .ForMember(d => d.OrderedMeals, o => o.MapFrom(s => s))
                 .ForMember(d => d.Status, o => o.UseValue(OrderStatus.InProgress))
                 .ForMember(d => d.Restaurant, o => o.MapFrom(s => new Restaurant() { ID = s.SelectedRestaurantId }))
                 .ForMember(d => d.AccountNumber, o => o.MapFrom(s => s.AccountNumber));
-
-
+            
 
             CreateMap<CreateOrderViewModel, List<OrderedMeal>>()
                 .IgnoreAllUnmapped()
@@ -78,7 +77,7 @@ namespace UmbracoFood.Mapping
                 {
                     if ((OrderStatus) s.StatusId == OrderStatus.InDelivery)
                     {
-                        d.EstitmatedDeliveryTime = DateTime.Now.AddMinutes(s.EstitmatedDeliveryTime ?? 0);
+                        d.EstimatedDeliveryTime = DateTime.Now.AddMinutes(s.EstitmatedDeliveryTime ?? 0);
                     }
                 });
         }
