@@ -147,7 +147,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             _db.Execute("UPDATE Orders SET StatusId=@0 WHERE Orders.Id=@1", (int)newStatus, orderId);
         }
 
-        public void SetOrderIsInDelivery(DateTime estimatedDeliveryTime, int orderId)
+        public void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime)
         {
             var inDeliveryStatusId = (int)OrderStatus.InDelivery;
             _db.Execute("UPDATE Orders SET EstimatedDeliveryTime=@0, StatusId=@1 WHERE Orders.Id=@2", estimatedDeliveryTime, inDeliveryStatusId, orderId);

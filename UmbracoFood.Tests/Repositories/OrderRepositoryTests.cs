@@ -197,7 +197,7 @@ namespace UmbracoFood.Tests.Repositories
             var date = new DateTime(2015, 12, 09, 11, 00, 00);
 
             //act
-            _repo.SetOrderIsInDelivery(date, 5);
+            _repo.SetOrderIsInDelivery(5, date);
 
             //assert
             var orderFromDb = GetOrderPocoFromDbById(5);
