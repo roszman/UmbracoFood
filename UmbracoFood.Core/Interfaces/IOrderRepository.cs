@@ -18,7 +18,7 @@ namespace UmbracoFood.Core.Interfaces
 
         void AddOrderMeal(OrderedMeal orderedMeal);
 
-        void ChangeStatus(OrderStatus newStatus, int orderId);
+        void ChangeStatus(int orderId, OrderStatus newStatus);
 
         void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime);
     }

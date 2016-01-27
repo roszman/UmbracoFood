@@ -182,7 +182,7 @@ namespace UmbracoFood.Tests.Repositories
             //arrange
 
             //act
-            _repo.ChangeStatus(OrderStatus.InDelivery, 5);
+            _repo.ChangeStatus(5, OrderStatus.InDelivery);
 
             //assert
             var orderFromDb = GetOrderPocoFromDbById(5);

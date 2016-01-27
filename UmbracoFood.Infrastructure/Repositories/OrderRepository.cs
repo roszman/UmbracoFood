@@ -142,7 +142,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             _db.Insert("OrderedMeals", "Id", orderedMealPoco);
         }
 
-        public void ChangeStatus(OrderStatus newStatus, int orderId)
+        public void ChangeStatus(int orderId, OrderStatus newStatus)
         {
             _db.Execute("UPDATE Orders SET StatusId=@0 WHERE Orders.Id=@1", (int)newStatus, orderId);
         }

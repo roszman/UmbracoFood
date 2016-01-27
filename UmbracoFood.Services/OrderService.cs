@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 
@@ -11,17 +12,6 @@ namespace UmbracoFood.Services
         public OrderService(IOrderRepository orderRepository)
         {
             this.orderRepository = orderRepository;
-        }
-
-        public int AddOrder(Order order)
-        {
-            return orderRepository.AddOrder(order);
-        }
-
-        public void EditOrder(Order order)
-        {
-            orderRepository.EditOrder(order);
-
         }
 
         public void RemoveOrder(int id)
@@ -48,12 +38,22 @@ namespace UmbracoFood.Services
 
         public void AddMeal(OrderedMeal meal)
         {
-            throw new System.NotImplementedException();
+            orderRepository.AddOrderMeal(meal);
         }
 
-        public void ChangeOrderStatus(Order order)
+        public int CreateOrder(Order order)
         {
-            throw new System.NotImplementedException();
+            return orderRepository.AddOrder(order);
+        }
+
+        public void ChangeStatus(int orderId, OrderStatus status)
+        {
+            orderRepository.ChangeStatus(orderId, status);
+        }
+
+        public void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime)
+        {
+            orderRepository.SetOrderIsInDelivery(orderId, estimatedDeliveryTime);
         }
     }
 }
