@@ -13,13 +13,19 @@ namespace UmbracoFood.Infrastructure.Repositories
     public class OrderRepository : IOrderRepository
     {
         private readonly IDatabaseProvider _databaseProvider;
-        private readonly IModelMapper<Order, OrderPoco> _mapper;
+        private readonly IModelMapper<Order, OrderPoco> _orderMapper;
+        private readonly IModelMapper<OrderedMeal, OrderedMealPoco> _mealMapper;
         private UmbracoDatabase _db;
 
-        public OrderRepository(IDatabaseProvider databaseProvider, IModelMapper<Order, OrderPoco> mapper )
+        public OrderRepository(
+            IDatabaseProvider databaseProvider, 
+            IModelMapper<Order, OrderPoco> orderMapper,
+            IModelMapper<OrderedMeal, OrderedMealPoco> mealMapper
+            )
         {
             _databaseProvider = databaseProvider;
-            _mapper = mapper;
+            _orderMapper = orderMapper;
+            _mealMapper = mealMapper;
             _db = _databaseProvider.Db;
         }
 
@@ -29,7 +35,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             {
                 _db.BeginTransaction();
                 // Do transacted updates here
-                var poco = _mapper.MapToPoco(order);
+                var poco = _orderMapper.MapToPoco(order);
                 var insertResult = _db.Insert("Orders", "Id", poco);
                 var id = Convert.ToInt32(insertResult);
                 foreach(var orderedMeal in poco.OrderedMeals)
@@ -51,7 +57,7 @@ namespace UmbracoFood.Infrastructure.Repositories
 
         public void EditOrder(Order order)
         {
-            var orderPoco = _mapper.MapToPoco(order);
+            var orderPoco = _orderMapper.MapToPoco(order);
             try
             {
                 _db.BeginTransaction();
@@ -106,7 +112,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             {
                 throw new KeyNotFoundException("Order has not been found.");
             }
-            return _mapper.MapToDomain(order);
+            return _orderMapper.MapToDomain(order);
         }
 
         public IEnumerable<Order> GetOrders()
@@ -119,7 +125,7 @@ namespace UmbracoFood.Infrastructure.Repositories
                 + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
                 + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
                 );
-            return orders.Select(o => _mapper.MapToDomain(o));
+            return orders.Select(o => _orderMapper.MapToDomain(o));
         }
 
         public IEnumerable<Status> GetStatuses()
@@ -127,6 +133,12 @@ namespace UmbracoFood.Infrastructure.Repositories
             var statuses = _db.Query<StatusPoco>("SELECT * FROM Statuses");
 
             return statuses.Select(Mapper.Map<StatusPoco, Status>);
+        }
+
+        public void AddOrderMeal(OrderedMeal orderedMeal)
+        {
+            var orderedMealPoco = _mealMapper.MapToPoco(orderedMeal);
+            _db.Insert("OrderedMeals", "Id", orderedMealPoco);
         }
     }
 }

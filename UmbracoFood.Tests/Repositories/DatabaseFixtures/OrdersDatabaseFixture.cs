@@ -11,13 +11,13 @@ using UmbracoFood.Infrastructure.Models.POCO;
 
 namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
 {
-    public class OrdersDatabaseFixture : IDisposable
+    public class DatababaseFixture : IDisposable
     {
         private DatabaseSchemaHelper _dbSchemaHelper;
         public UmbracoDatabase Db { get; set; }
         private SqlCeConnection _sqlCeConnection { get; set; }
 
-        public OrdersDatabaseFixture()
+        public DatababaseFixture()
         {
             _sqlCeConnection = TableDataHelper.SetSqlCeConnection();
 
@@ -51,6 +51,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                 db.Execute(@"CREATE TABLE [Orders] (
                               [Id] int IDENTITY (1,1) NOT NULL
                             , [Owner] nvarchar(100) NOT NULL
+                            , [AccountNumber] nvarchar(100) NOT NULL
                             , [StatusId] int NOT NULL
                             , [RestaurantId] int NOT NULL
                             , [Deadline] datetime NOT NULL
@@ -115,6 +116,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
             {
                 var o = new OrderPoco
                 {
+                    AccountNumber = "111111111111111111",
                     RestaurantId = restaurantPoco.ID,
                     Deadline = DateTime.Now,
                     EstimatedDeliveryTime = DateTime.Now,

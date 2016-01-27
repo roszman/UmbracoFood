@@ -8,7 +8,8 @@ namespace UmbracoFood.Infrastructure.Mapping
     {
         protected override void Configure()
         {
-            CreateMap<RestaurantPoco, Restaurant>().ReverseMap();
+            CreateMap<RestaurantPoco, Restaurant>()
+                .ReverseMap();
         }
     }
 }

@@ -43,6 +43,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\OrderedMealMapper.cs" />
+    <Compile Include="Mapping\OrderedMealMappingProfile.cs" />
     <Compile Include="Mapping\OrderMappingProfile.cs" />
     <Compile Include="Mapping\StatusMappingProfile.cs" />
     <Compile Include="Mapping\RestaurantMappingProfile.cs" />

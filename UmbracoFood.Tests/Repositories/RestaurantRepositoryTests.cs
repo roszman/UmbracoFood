@@ -12,11 +12,11 @@ namespace UmbracoFood.Tests.Repositories
     [Collection("Database collection")]
     public class RestaurantRepositoryTests
     {
-        private readonly OrdersDatabaseFixture _databaseFixture;
+        private readonly DatababaseFixture _databaseFixture;
         private RestaurantRepository _repo;
         private Mock<IModelMapper<Restaurant, RestaurantPoco>> _mapper;
 
-        public RestaurantRepositoryTests(OrdersDatabaseFixture databaseFixture)
+        public RestaurantRepositoryTests(DatababaseFixture databaseFixture)
         {
             _databaseFixture = databaseFixture;
 
