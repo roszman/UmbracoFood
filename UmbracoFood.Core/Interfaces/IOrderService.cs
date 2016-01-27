@@ -1,15 +1,16 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Core.Interfaces
 {
     public interface IOrderService
     {
-        void CreateOrder(Order order);
+        int AddOrder(Order order);
 
-        void AddMeal(OrderedMeal meal);
+        void EditOrder(Order order);
 
-        void ChangeStatus(OrderStatus order);
+        void RemoveOrder(int id);
 
         Order GetOrder(int id);
 
