@@ -93,8 +93,6 @@ namespace UmbracoFood.Controllers.Api
             }
 
             var orderStatus = Mapper.Map<ChangeOrderStatusViewModel, Order>(model);
-
-            //orderService.ChangeOrderStatus();
         }
 
     }
