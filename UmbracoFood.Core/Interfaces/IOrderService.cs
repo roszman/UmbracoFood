@@ -8,6 +8,8 @@ namespace UmbracoFood.Core.Interfaces
     {
         int CreateOrder(Order order);
 
+        void RemoveOrder(int orderId);
+
         void AddMeal(OrderedMeal meal);
 
         Order GetOrder(int id);
