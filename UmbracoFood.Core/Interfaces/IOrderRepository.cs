@@ -16,5 +16,7 @@ namespace UmbracoFood.Core.Interfaces
         IEnumerable<Order> GetOrders();
 
         IEnumerable<Status> GetStatuses();
+
+        void AddOrderMeal(OrderedMeal orderedMeal);
     }
 }

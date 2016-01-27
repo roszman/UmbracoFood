@@ -1,7 +1,6 @@
 using AutoMapper;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Models.POCO;
-using UmbracoFood.Infrastructure.Repositories;
 
 namespace UmbracoFood.Infrastructure.Mapping
 {

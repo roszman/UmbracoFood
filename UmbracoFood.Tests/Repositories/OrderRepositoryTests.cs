@@ -15,18 +15,23 @@ namespace UmbracoFood.Tests.Repositories
     [Collection("Database collection")]
     public class OrderRepositoryTests
     {
-        private readonly OrdersDatabaseFixture _databaseFixture;
-        private readonly Mock<IModelMapper<Order, OrderPoco>> _mapper;
+        private readonly DatababaseFixture _databaseFixture;
+        private readonly Mock<IModelMapper<Order, OrderPoco>> _orderMapper;
         private readonly OrderRepository _repo;
+        private readonly Mock<IModelMapper<OrderedMeal, OrderedMealPoco>> _mealMapper;
 
-        public OrderRepositoryTests(OrdersDatabaseFixture databaseFixture)
+        public OrderRepositoryTests(DatababaseFixture databaseFixture)
         {
             _databaseFixture = databaseFixture;
             var dataBaseProvider = new Mock<IDatabaseProvider>();
             dataBaseProvider.Setup(dbp => dbp.Db).Returns(_databaseFixture.Db);
-            _mapper = new Mock<IModelMapper<Order, OrderPoco>>();
+            _orderMapper = new Mock<IModelMapper<Order, OrderPoco>>();
+            _mealMapper = new Mock<IModelMapper<OrderedMeal, OrderedMealPoco>>();
 
-            _repo = new OrderRepository(dataBaseProvider.Object, _mapper.Object);
+            _repo = new OrderRepository(
+                dataBaseProvider.Object, 
+                _orderMapper.Object,
+                _mealMapper.Object);
         }
 
         [Fact]
@@ -51,6 +56,7 @@ namespace UmbracoFood.Tests.Repositories
             };
             var orderPocoBeforDbInsert = new OrderPoco
             {
+                AccountNumber = "133456346326",
                 Id = orderId,
                 Deadline = new DateTime(2018, 01, 28, 12, 00, 00),
                 EstimatedDeliveryTime = new DateTime(2016, 03, 28, 13, 00, 00),
@@ -60,7 +66,7 @@ namespace UmbracoFood.Tests.Repositories
                 StatusId = (int)OrderStatus.InDelivery
             };
 
-            _mapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforDbInsert);
+            _orderMapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforDbInsert);
 
             //act
             _repo.EditOrder(new Order());
@@ -114,6 +120,7 @@ namespace UmbracoFood.Tests.Repositories
             //arrange
             var orderPocoBeforDbInsert = new OrderPoco
             {
+                AccountNumber = "1324564362367",
                 Deadline = new DateTime(2016, 01, 28, 12, 00, 00),
                 EstimatedDeliveryTime = new DateTime(2016, 01, 28, 13, 00, 00),
                 OrderedMeals = orderedMeals,
@@ -122,7 +129,7 @@ namespace UmbracoFood.Tests.Repositories
                 StatusId = (int)OrderStatus.InProgress
             };
 
-            _mapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforDbInsert);
+            _orderMapper.Setup(m => m.MapToPoco(It.IsAny<Order>())).Returns(orderPocoBeforDbInsert);
             //act
             var newOrderId =_repo.AddOrder(new Order());
 
@@ -144,7 +151,7 @@ namespace UmbracoFood.Tests.Repositories
             OrderPoco orderPocoFromDb = GetOrderPocoFromDbById(1);
 
             OrderPoco mapperArgument = new OrderPoco();
-            _mapper.Setup(c => c.MapToDomain(It.IsAny<OrderPoco>()))
+            _orderMapper.Setup(c => c.MapToDomain(It.IsAny<OrderPoco>()))
                     .Callback<OrderPoco>(o => mapperArgument = o)
                     .Returns(new Order());
 
@@ -152,7 +159,7 @@ namespace UmbracoFood.Tests.Repositories
             var orderFromRepo = _repo.GetOrder(orderPocoFromDb.Id);
 
             //assert
-            _mapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Once);
+            _orderMapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Once);
             Assert.Equal(orderPocoFromDb.Id, mapperArgument.Id);
             Assert.Equal(orderPocoFromDb.OrderedMeals.Count(), mapperArgument.OrderedMeals.Count());
             Assert.Equal(orderPocoFromDb.Owner, mapperArgument.Owner);
@@ -179,14 +186,42 @@ namespace UmbracoFood.Tests.Repositories
             //arrange
             var ordersFromDb = GetOrderesPocoFromDb();
 
-            _mapper.Setup(m => m.MapToDomain(It.IsAny<OrderPoco>())).Returns(new Order());
+            _orderMapper.Setup(m => m.MapToDomain(It.IsAny<OrderPoco>())).Returns(new Order());
 
             //act
             var orders = _repo.GetOrders();
 
             //assert
-            _mapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Exactly(orders.Count()));
+            _orderMapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Exactly(orders.Count()));
             Assert.Equal(ordersFromDb.Count(), orders.Count());
+        }
+
+        [Fact]
+        public void AddOrderMealSholudAddMealToOrder()
+        {
+            //arrange
+            var orderedMealPoco = new OrderedMealPoco
+            {
+                Count = 1,
+                MealName = "special meal name",
+                OrderId = 3,
+                Price = 15.56,
+                PurchaserName = "purchaser name"
+            };
+            _mealMapper
+                .Setup(m => m.MapToPoco(It.IsAny<OrderedMeal>()))
+                .Returns(orderedMealPoco);
+
+            //act
+            _repo.AddOrderMeal(new OrderedMeal());
+
+            //assert
+            _mealMapper.Verify(m => m.MapToPoco(It.IsAny<OrderedMeal>()), 
+                Times.Once);
+            var orderFromDb = GetOrderPocoFromDbById(3);
+            var orderedMeal = orderFromDb.OrderedMeals
+                .FirstOrDefault(om => om.MealName == orderedMealPoco.MealName);
+            Assert.NotNull(orderFromDb);
         }
 
         private OrderPoco GetOrderPocoFromDbById(int id)
