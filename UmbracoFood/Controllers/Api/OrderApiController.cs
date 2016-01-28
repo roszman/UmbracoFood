@@ -45,7 +45,7 @@ namespace UmbracoFood.Controllers.Api
 
             var order = Mapper.Map<CreateOrderViewModel, Order>(model);
 
-            orderService.AddOrder(order);
+            orderService.CreateOrder(order);
         }
 
         [HttpPut]

@@ -124,6 +124,7 @@ namespace UmbracoFood.Infrastructure.Repositories
                 + " LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Orders.Id"
                 + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
                 + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
+                + " WHERE DATEADD(dd,0,DATEDIFF(dd,0,Orders.EstimatedDeliveryTime)) = DATEADD(dd,0,DATEDIFF(dd,0,GETDATE()))"
                 );
             return orders.Select(o => _orderMapper.MapToDomain(o));
         }
@@ -139,6 +140,17 @@ namespace UmbracoFood.Infrastructure.Repositories
         {
             var orderedMealPoco = _mealMapper.MapToPoco(orderedMeal);
             _db.Insert("OrderedMeals", "Id", orderedMealPoco);
+        }
+
+        public void ChangeStatus(int orderId, OrderStatus newStatus)
+        {
+            _db.Execute("UPDATE Orders SET StatusId=@0 WHERE Orders.Id=@1", (int)newStatus, orderId);
+        }
+
+        public void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime)
+        {
+            var inDeliveryStatusId = (int)OrderStatus.InDelivery;
+            _db.Execute("UPDATE Orders SET EstimatedDeliveryTime=@0, StatusId=@1 WHERE Orders.Id=@2", estimatedDeliveryTime, inDeliveryStatusId, orderId);
         }
     }
 }

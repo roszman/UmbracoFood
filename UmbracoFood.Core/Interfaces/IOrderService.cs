@@ -1,24 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.Core.Interfaces
 {
     public interface IOrderService
     {
-        int AddOrder(Order order);
+        int CreateOrder(Order order);
 
-        void EditOrder(Order order);
+        void RemoveOrder(int orderId);
 
-        void RemoveOrder(int id);
+        void AddMeal(OrderedMeal meal);
 
         Order GetOrder(int id);
-
+        
         IEnumerable<Order> GetOrders();
 
         IEnumerable<Status> GetStatuses();
 
-        void AddMeal(OrderedMeal meal);
+        void ChangeStatus(int orderId, OrderStatus newStatus);
 
-        void ChangeOrderStatus(Order order);
+        void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime);
     }
 }
