@@ -13,12 +13,12 @@ using OrderMappingProfile = UmbracoFood.Mapping.OrderMappingProfile;
 
 namespace UmbracoFood.Tests.Mappings
 {
-    public class OrderProfileTests
+    public class CreateOrderViewMapperTests
     {
         private static readonly object Sync = new object();
         private static bool _configured;
 
-        public OrderProfileTests()
+        public CreateOrderViewMapperTests()
         {
             lock (Sync)
             {

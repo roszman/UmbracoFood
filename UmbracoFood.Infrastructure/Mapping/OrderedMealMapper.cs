@@ -5,7 +5,7 @@ using UmbracoFood.Infrastructure.Models.POCO;
 
 namespace UmbracoFood.Infrastructure.Mapping
 {
-    class OrderedMealMapper : IModelMapper<OrderedMeal, OrderedMealPoco>
+    public class OrderedMealMapper : IModelMapper<OrderedMeal, OrderedMealPoco>
     {
         public OrderedMeal MapToDomain(OrderedMealPoco poco)
         {
