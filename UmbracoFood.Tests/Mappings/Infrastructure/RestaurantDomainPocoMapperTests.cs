@@ -52,5 +52,29 @@ namespace UmbracoFood.Tests.Mappings
             Assert.Equal(restaurant.Phone, restaurantPoco.Phone);
             Assert.IsType<Restaurant>(restaurant);
         }
+        [Fact]
+        public void RestaurantShouldBeMappedToRestaurantPoco()
+        {
+            //Arrange
+            var restaurant = new Restaurant();
+            restaurant.ID = 1;
+            restaurant.IsActive = true;
+            restaurant.MenuUrl = "http://menumock.url";
+            restaurant.WebsiteUrl = "http://mock.url";
+            restaurant.Name = "MockName";
+            restaurant.Phone = "123456789";
+
+            //Act
+            var restaurantPoco = _mapper.MapToPoco(restaurant);
+
+            //Assert
+            Assert.Equal(restaurant.ID, restaurantPoco.ID);
+            Assert.Equal(restaurant.IsActive, restaurantPoco.IsActive);
+            Assert.Equal(restaurant.MenuUrl, restaurantPoco.MenuUrl);
+            Assert.Equal(restaurant.WebsiteUrl, restaurantPoco.WebsiteUrl);
+            Assert.Equal(restaurant.Name, restaurantPoco.Name);
+            Assert.Equal(restaurant.Phone, restaurantPoco.Phone);
+            Assert.IsType<RestaurantPoco>(restaurantPoco);
+        }
     }
 }

@@ -5,7 +5,7 @@ using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Mapping
 {
-    public class RestaurantMappingProfile : Profile
+    public class RestaurantViewModelMapperProfile : Profile
     {
         protected override void Configure()
         {

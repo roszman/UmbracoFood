@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Moq;
 using UmbracoFood.Core.Models;
-using UmbracoFood.Infrastructure.Mapping;
-using UmbracoFood.Infrastructure.Models.POCO;
-using UmbracoFood.Mapping;
 using UmbracoFood.ViewModels;
 using Xunit;
-using OrderMappingProfile = UmbracoFood.Mapping.OrderMappingProfile;
+using OrderViewModelMapperProfile = UmbracoFood.Mapping.OrderViewModelMapperProfile;
+using UmbracoFood.Core.Extensions;
 
 namespace UmbracoFood.Tests.Mappings
 {
-    public class CreateOrderViewMapperTests
+    public class OrderViewModelMapperTests
     {
         private static readonly object Sync = new object();
         private static bool _configured;
 
-        public CreateOrderViewMapperTests()
+        public OrderViewModelMapperTests()
         {
             lock (Sync)
             {
@@ -26,7 +23,7 @@ namespace UmbracoFood.Tests.Mappings
                 {
                     Mapper.Reset();
 
-                    Mapper.Initialize(config => config.AddProfile(new OrderMappingProfile()));
+                    Mapper.Initialize(config => config.AddProfile(new OrderViewModelMapperProfile()));
 
                     _configured = true;
                     Mapper.AssertConfigurationIsValid();
@@ -78,6 +75,52 @@ namespace UmbracoFood.Tests.Mappings
 
         }
 
+        [Fact]
+        public void OrderShouldBeMappedToOrderViewModel()
+        {
+            //arrange
+            var order = new Order
+            {
+                Id = 569,
+                AccountNumber = "111 1111 1111 1111",
+                Deadline = DateTime.Now,
+                EstimatedDeliveryTime = DateTime.Now,
+                OrderedMeals = new List<OrderedMeal>
+                 {
+                     new OrderedMeal
+                     {
+                         Count = 4,
+                         Id = 3245,
+                         MealName = "meal name",
+                         OrderId = 345,
+                         Price = 234.23,
+                         PurchaserName = "purchaser name"
+                     }
+                 },
+                Owner = "owner",
+                Restaurant = new Restaurant
+                {
+                    ID = 345,
+                    IsActive = true,
+                    MenuUrl = "menu url",
+                    Name = "restaurant name",
+                    Phone = "1232456",
+                    WebsiteUrl = "website url"
+                },
+                Status = OrderStatus.InDelivery
+            };
 
+            //act
+            var orderViewModel = Mapper.DynamicMap<Order, OrderViewModel>(order);
+
+            //assert
+            Assert.Equal(order.Id, orderViewModel.Id);
+            Assert.Equal(order.Owner, orderViewModel.Owner);
+            Assert.Equal(order.Deadline, orderViewModel.Deadline);
+            Assert.Equal(order.EstimatedDeliveryTime, orderViewModel.EstitmatedDeliveryTime);
+            Assert.Equal(order.OrderedMeals.Count, orderViewModel.MealsCount);
+            Assert.Equal(order.Status.GetDescription(), orderViewModel.StatusName);
+            Assert.Equal(order.Restaurant.Name, orderViewModel.RestaurantName);
+        }
     }
 }
