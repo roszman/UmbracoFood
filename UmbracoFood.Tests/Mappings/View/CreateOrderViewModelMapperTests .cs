@@ -67,12 +67,8 @@ namespace UmbracoFood.Tests.Mappings
             Assert.Equal(order.Owner, createOrderViewModel.Owner);
             Assert.Equal(order.Restaurant.ID, createOrderViewModel.SelectedRestaurantId);
             Assert.Equal(order.Status, OrderStatus.InProgress);
-
             Assert.Equal(order.OrderedMeals.Count, createOrderViewModel.Meals.Count());
-
-
-
-
+            Assert.IsType<Order>(order);
         }
 
         [Fact]
@@ -121,6 +117,7 @@ namespace UmbracoFood.Tests.Mappings
             Assert.Equal(order.OrderedMeals.Count, orderViewModel.MealsCount);
             Assert.Equal(order.Status.GetDescription(), orderViewModel.StatusName);
             Assert.Equal(order.Restaurant.Name, orderViewModel.RestaurantName);
+            Assert.IsType<OrderViewModel>(orderViewModel);
         }
     }
 }
