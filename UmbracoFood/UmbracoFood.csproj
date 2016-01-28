@@ -2082,9 +2082,9 @@
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Filters\WebApiExceptionFilter.cs" />
     <Compile Include="Global.cs" />
-    <Compile Include="Mapping\OrderMappingProfile.cs" />
-    <Compile Include="Mapping\RestaurantMappingProfile.cs" />
-    <Compile Include="Mapping\StatusMappingProfile.cs" />
+    <Compile Include="Mapping\OrderViewModelMapperProfile.cs" />
+    <Compile Include="Mapping\RestaurantViewModelMapperProfile.cs" />
+    <Compile Include="Mapping\StatusItemMapperProfile.cs" />
     <Compile Include="Validators\AbstractValidators\ChangeOrderStatusValidator.cs" />
     <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
