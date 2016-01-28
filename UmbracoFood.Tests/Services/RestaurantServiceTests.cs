@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Services;
