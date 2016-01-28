@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th>Restauracja</th>
-                <th>Do kiedy?</th>
+                <th>Zamawiam o</th>
                 <th>Czas dostawy</th>
                 <th>Ilość posiłków</th>
                 <th>Zamawiajacy</th>
@@ -30,13 +30,13 @@
             <tr ng-repeat="order in orders">
                 <td>{{order.RestaurantName}}</td>
                 <td>{{order.Deadline | date: 'HH:mm'}}</td>
-                <td>{{(order.EstitmatedDeliveryTime | date: 'HH:mm') || '--- '}}</td>
+                <td>{{(order.EstimatedDeliveryTime | date: 'HH:mm') || '---'}}</td>
                 <td>{{order.MealsCount}}</td>
                 <td>{{order.Owner}}</td>
                 <td>{{order.StatusName}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <a type="button" class="btn btn-primary" href="Zamowienie.html" ng-if="!order.EstitmatedDeliveryTime">Dolacz do zamowienia</a>
+                        <a type="button" class="btn btn-primary" href="@Umbraco.NiceUrl(1063)?id={{order.Id}}" ng-if=" !order.estitmateddeliverytime">Dolacz do zamowienia</a>
                     </div>
                 </td>
             </tr>

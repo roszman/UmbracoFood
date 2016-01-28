@@ -1,6 +1,6 @@
 ﻿var umbracoFood = angular.module("umbracoFoodApp");
 
-umbracoFood.controller('OrdersController', ['$scope', 'orderService', function ($scope, orderService) {
+umbracoFood.controller('OrdersController', ['$scope', 'orderService', 'utilService', function ($scope, orderService, utilService) {
     $scope.orders = [];
 
     var loadData = function() {
@@ -10,6 +10,15 @@ umbracoFood.controller('OrdersController', ['$scope', 'orderService', function (
 
     var onOrdersFetched = function (response) {
         $scope.orders = response.data.Orders;
+
+        angular.forEach($scope.orders, function(order, key) {
+            order.Deadline = utilService.getDateWithouOffset(order.Deadline);
+
+            if (order.EstimatedDeliveryTime) {
+                order.EstimatedDeliveryTime = utilService.getDateWithouOffset(order.EstimatedDeliveryTime);
+            }
+        });
+
     }
     loadData();
 }]);

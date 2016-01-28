@@ -2089,7 +2089,7 @@
     <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
     <Compile Include="ViewModels\AddMealViewModel.cs" />
-    <Compile Include="ViewModels\ChangeOrderStatusViewModel.cs" />
+    <Compile Include="ViewModels\EditOrderViewModel.cs" />
     <Compile Include="ViewModels\CreateOrderMeal.cs" />
     <Compile Include="ViewModels\CreateOrderViewModel.cs" />
     <Compile Include="ViewModels\EditRestaurantViewModel.cs" />

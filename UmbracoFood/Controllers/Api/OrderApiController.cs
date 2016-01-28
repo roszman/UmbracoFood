@@ -72,28 +72,34 @@ namespace UmbracoFood.Controllers.Api
                 AccountNumber = order.AccountNumber,
                 AvailableStatuses = availableStatuses.Select(Mapper.Map<Status, StatusItem>),
                 Deadline = order.Deadline,
-                EstitmatedDeliveryTime = order.EstimatedDeliveryTime,
+                EstimatedDeliveryTime = order.EstimatedDeliveryTime,
                 Owner = order.Owner,
                 RestaurantId = order.Restaurant.ID,
                 OrderId = order.Id,
                 RestaurantMenuUrl = order.Restaurant.MenuUrl,
                 RestaurantName = order.Restaurant.Name,
-                StatusId = (int) order.Status,
-                Meals = order.OrderedMeals.Select(Mapper.Map<OrderedMeal,MealViewModel>)
+                Status = order.Status,
+                Meals = order.OrderedMeals.Select(Mapper.Map<OrderedMeal, MealViewModel>)
             };
         }
 
-
         [HttpPut]
-        public void PutChangeOrderStatus(ChangeOrderStatusViewModel model)
+        public void PutEditOrder(EditOrderViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 throw new Exception("Couldn't change order status");
             }
 
-            var orderStatus = Mapper.Map<ChangeOrderStatusViewModel, Order>(model);
-        }
+            if ((OrderStatus) model.Status == OrderStatus.InDelivery)
+            {
+                orderService.SetOrderIsInDelivery(model.OrderId, model.EstitmatedDeliveryTime.Value);
+            }
+            else
+            {
+                orderService.ChangeStatus(model.OrderId, (OrderStatus) model.Status);
+            }
 
+        }
     }
 }

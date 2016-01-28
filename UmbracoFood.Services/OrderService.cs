@@ -17,7 +17,6 @@ namespace UmbracoFood.Services
         public void RemoveOrder(int id)
         {
             orderRepository.RemoveOrder(id);
-
         }
 
         public Order GetOrder(int id)
@@ -33,7 +32,6 @@ namespace UmbracoFood.Services
         public IEnumerable<Status> GetStatuses()
         {
             return orderRepository.GetStatuses();
-
         }
 
         public void AddMeal(OrderedMeal meal)

@@ -11,7 +11,7 @@ namespace UmbracoFood.ViewModels
 
         public DateTime Deadline { get; set; }
 
-        public DateTime? EstitmatedDeliveryTime { get; set; }
+        public DateTime? EstimatedDeliveryTime { get; set; }
 
         public int MealsCount { get; set; }
 
