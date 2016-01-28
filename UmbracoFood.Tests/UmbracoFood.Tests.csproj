@@ -90,6 +90,7 @@
     <Compile Include="Repositories\DatabaseFixtures\TableDataHelper.cs" />
     <Compile Include="Repositories\OrderRepositoryTests.cs" />
     <Compile Include="Repositories\RestaurantRepositoryTests.cs" />
+    <Compile Include="Services\OrderServiceTests.cs" />
     <Compile Include="Services\RestaurantServiceTests.cs" />
     <Compile Include="Validators\AddRestaurantValidatorTests.cs" />
   </ItemGroup>

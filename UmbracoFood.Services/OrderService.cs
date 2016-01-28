@@ -17,7 +17,6 @@ namespace UmbracoFood.Services
         public void RemoveOrder(int id)
         {
             orderRepository.RemoveOrder(id);
-
         }
 
         public Order GetOrder(int id)
