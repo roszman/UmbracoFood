@@ -19,7 +19,7 @@ namespace UmbracoFood.Tests.Mappings
                 {
                     Mapper.Reset();
 
-                    Mapper.Initialize(config => config.AddProfile(new RestaurantMappingProfile()));
+                    Mapper.Initialize(config => config.AddProfile(new RestaurantViewModelMapperProfile()));
 
                     _configured = true;
                     Mapper.AssertConfigurationIsValid();

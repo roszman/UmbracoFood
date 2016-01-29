@@ -228,7 +228,7 @@ namespace UmbracoFood.Tests.Repositories
                     + " LEFT JOIN OrderedMeals ON OrderedMeals.OrderId = Orders.Id"
                     + " LEFT JOIN Statuses ON Statuses.Id = Orders.StatusId"
                     + " LEFT JOIN Restaurants ON Restaurants.Id = Orders.RestaurantId"
-                    + " WHERE DATEADD(dd,0,DATEDIFF(dd,0,Orders.EstimatedDeliveryTime)) = DATEADD(dd,0,DATEDIFF(dd,0,GETDATE()))");
+                    + " WHERE DATEADD(dd,0,DATEDIFF(dd,0,Orders.Deadline)) = DATEADD(dd,0,DATEDIFF(dd,0,GETDATE()))");
         }
     }
 }

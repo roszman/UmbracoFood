@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using UmbracoFood.Core.Extensions;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Extensions;
-using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Mapping
 {
-    public class OrderMappingProfile : Profile
+    public class OrderViewModelMapperProfile : Profile
     {
         protected override void Configure()
         {
