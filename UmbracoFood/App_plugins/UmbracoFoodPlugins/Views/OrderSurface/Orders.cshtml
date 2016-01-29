@@ -18,8 +18,8 @@
         <thead>
             <tr>
                 <th>Restauracja</th>
-                <th>Zamawiam o</th>
-                <th>Czas dostawy</th>
+                <th>Zamawiam za</th>
+                <th>Dostawa o</th>
                 <th>Ilość posiłków</th>
                 <th>Zamawiajacy</th>
                 <th>Status</th>
@@ -29,14 +29,22 @@
         <tbody ng-model="orders" ng-cloak>
             <tr ng-repeat="order in orders">
                 <td>{{order.RestaurantName}}</td>
-                <td>{{order.Deadline | date: 'HH:mm'}}</td>
+                <td>
+                    <div ng-if="order.StatusId == status.InProgress && order.Countdown">
+                        <timer countdown="order.Countdown" max-time-unit="'hour'" interval="1000"><strong>{{hhours}}:{{mminutes}}:{{sseconds}}</strong></timer>
+                        ({{order.Deadline | date: 'HH:mm'}})
+                    </div>
+                    <div ng-if="order.StatusId != status.InProgress">
+                        (chodząca kaczka)
+                    </div>
+                </td>
                 <td>{{(order.EstimatedDeliveryTime | date: 'HH:mm') || '---'}}</td>
                 <td>{{order.MealsCount}}</td>
                 <td>{{order.Owner}}</td>
                 <td>{{order.StatusName}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <a type="button" class="btn btn-primary" href="@Umbraco.NiceUrl(1063)?id={{order.Id}}" ng-if=" !order.estitmateddeliverytime">Dolacz do zamowienia</a>
+                        <a type="button" class="btn btn-primary" href="@Umbraco.NiceUrl(1063)?id={{order.Id}}" ng-if="order.StatusId == status.InProgress">Dolacz do zamowienia</a>
                     </div>
                 </td>
             </tr>

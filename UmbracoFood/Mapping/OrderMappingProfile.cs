@@ -21,6 +21,7 @@ namespace UmbracoFood.Mapping
                 .ForMember(d => d.EstimatedDeliveryTime, o => o.MapFrom(s => s.EstimatedDeliveryTime))
                 .ForMember(d => d.MealsCount, o => o.MapFrom(s => s.OrderedMeals.Sum(om => om.Count)))
                 .ForMember(d => d.StatusName, o => o.MapFrom(s => s.Status.GetDescription()))
+                .ForMember(d => d.StatusId, o => o.MapFrom(s => (int) s.Status))
                 .ForMember(d => d.RestaurantName, o => o.MapFrom(s => s.Restaurant.Name));
 
             CreateMap<CreateOrderViewModel, Order>()

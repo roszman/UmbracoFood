@@ -20,7 +20,7 @@
                 <th>Nazwa</th>
                 <th>Menu url</th>
                 <th>Telefon</th>
-                <th>Tools</th>
+                <th>Opcje</th>
             </tr>
         </thead>
         <tbody ng-model="restaurants" ng-cloak>
@@ -32,7 +32,7 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
                         <a type="button" class="btn btn-default" href="@Umbraco.NiceUrl(1075)?id={{restaurant.Id}}">Edytuj</a>
-                        <a type="button" class="btn btn-default" uf-confirmation="Czy na pewno chcesz usunąć restaurację?" ng-click="delete(restaurant.Id)">Usun</a>
+                        <a type="button" class="btn btn-default" uf-confirmation="Czy na pewno chcesz usunąć restaurację?" ng-click="delete(restaurant.Id)">Usuń</a>
                         <a type="button" href="@Umbraco.NiceUrl(1061)" class="btn btn-default">Stwórz zamówienie</a>
                     </div>
                 </td>

@@ -16,7 +16,7 @@ umbracoFood.factory('utilService', ['growl', function (growl) {
             growlFailure: function (message) {
                 growl.error(message);
             },
-            getDateWithouOffset: function (dateWithOffset) {
+            getDateWithoutOffset: function (dateWithOffset) {
                 var date = new Date(dateWithOffset);
                 return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
             }

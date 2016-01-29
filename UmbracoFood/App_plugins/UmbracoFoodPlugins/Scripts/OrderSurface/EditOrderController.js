@@ -26,13 +26,19 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
     var onOrderFetched = function (response) {
         $scope.order = response.data;
 
-        var estimatedDeliveryTimeWithoutOffset = utilService.getDateWithouOffset($scope.order.EstimatedDeliveryTime);
-        var now = new Date();
 
-        var diffMs = (estimatedDeliveryTimeWithoutOffset - now);
-        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+        if ($scope.order.EstimatedDeliveryTime) {
+            var estimatedDeliveryTimeWithoutOffset = utilService.getDateWithoutOffset($scope.order.EstimatedDeliveryTime);
+            var now = new Date();
 
-        $scope.estimatedMinutes = diffMins;
+            var diffMs = (estimatedDeliveryTimeWithoutOffset - now);
+            var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+
+            $scope.estimatedMinutes = diffMins;
+        } else {
+            $scope.estimatedMinutes = 0;
+        }
+
 
 
         $scope.meal = {

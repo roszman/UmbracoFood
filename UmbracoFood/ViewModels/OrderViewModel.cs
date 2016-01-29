@@ -17,6 +17,8 @@ namespace UmbracoFood.ViewModels
 
         public string StatusName { get; set; }
 
+        public int StatusId { get; set; }
+
         public string RestaurantName { get; set; }
     }
 }

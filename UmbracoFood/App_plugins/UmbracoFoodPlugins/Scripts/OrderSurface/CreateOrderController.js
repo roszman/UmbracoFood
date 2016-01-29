@@ -9,25 +9,32 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
         Count: 0
     }
     $scope.mealOrig = angular.copy($scope.meal);
+
+    $scope.minDateTime = new Date();
+    var deadline = new Date();
+    deadline.setHours(deadline.getHours() + 1);
+
     $scope.order = {
         Owner: "",
         SelectedRestaurantId: 0,
-        Deadline: new Date(),
+        Deadline: deadline,
         AccountNumber: "",
         Meals: []
     }
-
+    
     $scope.addMeal = function () {
         if (!$scope.isMealValid()) {
-            utilService.growlFailure("Uzupełnij poprawnie formularz");
+            utilService.growlFailure("Uzupełnij poprawnie zamówienie");
             return;
         }
         $scope.order.Meals.push($scope.meal);
         clearAddedMeal();
     }
 
+
+
     $scope.isMealValid = function () {
-        if ($scope.meal.Name && $scope.meal.Price >=0 && $scope.meal.Count > 0) {
+        if ($scope.meal.Name && $scope.meal.Price >= 0 && $scope.meal.Count > 0) {
             return true;
         }
         return false;
@@ -53,7 +60,7 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
     var onOrderCreated = function () {
         utilService.growlSuccess("Zamówienie zostało utworzone.");
     }
-
+    
     var loadRestaurants = function () {
         return restaurantService.getSelectRestaurantsItems()
             .then(onSelectRestaurantsItemsFetched);
@@ -62,8 +69,12 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
     var onSelectRestaurantsItemsFetched = function (response) {
         $scope.restaurants = response.data.Restaurants;
     }
+    
+    var init = function () {
+        loadRestaurants();
+    }
 
-    loadRestaurants();
+    init();
 }]);
 
 
