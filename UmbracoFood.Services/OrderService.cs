@@ -19,6 +19,11 @@ namespace UmbracoFood.Services
             orderRepository.RemoveOrder(id);
         }
 
+        public void RemoveMeal(int mealId)
+        {
+            orderRepository.RemoveOrderedMeal(mealId);
+        }
+
         public Order GetOrder(int id)
         {
             return orderRepository.GetOrder(id);
@@ -36,7 +41,7 @@ namespace UmbracoFood.Services
 
         public void AddMeal(OrderedMeal meal)
         {
-            orderRepository.AddOrderMeal(meal);
+            orderRepository.AddOrderedMeal(meal);
         }
 
         public int CreateOrder(Order order)
