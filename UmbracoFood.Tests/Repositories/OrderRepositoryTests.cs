@@ -6,7 +6,6 @@ using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Infrastructure.Repositories;
 using UmbracoFood.Tests.Repositories.DatabaseFixtures;
 using Xunit;
-using Umbraco.Core.Persistence;
 using System;
 using System.Collections.Generic;
 
@@ -91,6 +90,7 @@ namespace UmbracoFood.Tests.Repositories
             Assert.Equal(orderPocoBeforDbInsert.Deadline, orderFromDb.Deadline);
             Assert.Equal(orderPocoBeforDbInsert.EstimatedDeliveryTime, orderFromDb.EstimatedDeliveryTime);
             Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.Count, orderFromDb.OrderedMeals.Count);
+            Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.First().Price, orderFromDb.OrderedMeals.First().Price);
             Assert.Equal(orderPocoBeforDbInsert.Owner, orderFromDb.Owner);
             Assert.Equal(orderPocoBeforDbInsert.StatusId, orderFromDb.Status.Id);
             Assert.Equal(orderPocoBeforDbInsert.RestaurantId, orderFromDb.Restaurant.ID);

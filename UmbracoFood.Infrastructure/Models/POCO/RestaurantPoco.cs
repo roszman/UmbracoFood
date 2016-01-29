@@ -24,5 +24,11 @@ namespace UmbracoFood.Infrastructure.Models.POCO
 
         [Column("Active")]
         public bool IsActive { get; set; }
+
+        [Column("FreeShippingThreshold")]
+        public double FreeShippingThreshold { get; set; }
+
+        [Column("ShippingRate")]
+        public double ShippingRate { get; set; }
     }
 }

@@ -37,7 +37,9 @@ namespace UmbracoFood.Tests.Repositories
                 MenuUrl = "menu url",
                 Name = "name",
                 Phone = "1234356",
-                IsActive = true
+                IsActive = true,
+                FreeShippingThreshold = 543.24,
+                ShippingRate = 14.56
             };
 
             _mapper.Setup(m => m.MapToPoco(It.IsAny<Restaurant>())).Returns(restaurantPoco);
@@ -54,6 +56,8 @@ namespace UmbracoFood.Tests.Repositories
             Assert.Equal(restaurantPoco.Name, addedRestaurant.Name);
             Assert.Equal(restaurantPoco.Phone, addedRestaurant.Phone);
             Assert.Equal(restaurantPoco.IsActive, addedRestaurant.IsActive);
+            Assert.Equal(restaurantPoco.FreeShippingThreshold, addedRestaurant.FreeShippingThreshold);
+            Assert.Equal(restaurantPoco.ShippingRate, addedRestaurant.ShippingRate);
         }
 
         [Fact]
@@ -68,7 +72,9 @@ namespace UmbracoFood.Tests.Repositories
                 MenuUrl = "nowe menu url",
                 WebsiteUrl = "nowy website url",
                 Name = "nowy name",
-                Phone = "12345676"
+                Phone = "12345676",
+                ShippingRate = 123.67,
+                FreeShippingThreshold = 2345435634.76
             };
             _mapper.Setup(m => m.MapToPoco(It.IsAny<Restaurant>())).Returns(updatedRestaurantPoco);
             //act
@@ -86,6 +92,8 @@ namespace UmbracoFood.Tests.Repositories
             Assert.Equal(updatedRestaurantPoco.Name, updatedRestaurant.Name);
             Assert.Equal(updatedRestaurantPoco.Phone, updatedRestaurant.Phone);
             Assert.Equal(updatedRestaurantPoco.IsActive, updatedRestaurant.IsActive);
+            Assert.Equal(updatedRestaurantPoco.FreeShippingThreshold, updatedRestaurant.FreeShippingThreshold);
+            Assert.Equal(updatedRestaurantPoco.ShippingRate, updatedRestaurant.ShippingRate);
         }
 
         [Fact]
@@ -110,7 +118,7 @@ namespace UmbracoFood.Tests.Repositories
         }
 
         [Fact]
-        public void GetRestaurantShouldReturnRestaurant()
+        public void GetRestaurantShouldCallRestaurantMapperWithValidArgument()
         {
             //arrange
             var restaurantPoco =
@@ -118,17 +126,35 @@ namespace UmbracoFood.Tests.Repositories
                 .Query<RestaurantPoco>("SELECT * FROM Restaurants WHERE Active = 1").First();
             var restaurant = new Restaurant
             {
-                ID = restaurantPoco.ID
+                ID = restaurantPoco.ID,
+                IsActive = false,
+                MenuUrl = "nowe menu url",
+                WebsiteUrl = "nowy website url",
+                Name = "nowy name",
+                Phone = "12345676",
+                ShippingRate = 123.67,
+                FreeShippingThreshold = 2345435634.76
             };
 
             _mapper.Setup(m => m.MapToDomain(It.IsAny<RestaurantPoco>())).Returns(restaurant);
+            RestaurantPoco mapperArgument = new RestaurantPoco();
+            _mapper.Setup(c => c.MapToDomain(It.IsAny<RestaurantPoco>()))
+                    .Callback<RestaurantPoco>(o => mapperArgument = o)
+                    .Returns(new Restaurant());
 
             //act
             var restaurantFromRepo = _repo.GetRestaurant(restaurantPoco.ID);
 
             //assert
             Assert.NotNull(restaurantFromRepo);
-            Assert.Equal(restaurantPoco.ID, restaurantFromRepo.ID);
+            Assert.Equal(restaurantPoco.ID, mapperArgument.ID);
+            Assert.Equal(restaurantPoco.WebsiteUrl, mapperArgument.WebsiteUrl);
+            Assert.Equal(restaurantPoco.MenuUrl, mapperArgument.MenuUrl);
+            Assert.Equal(restaurantPoco.Name, mapperArgument.Name);
+            Assert.Equal(restaurantPoco.Phone, mapperArgument.Phone);
+            Assert.Equal(restaurantPoco.IsActive, mapperArgument.IsActive);
+            Assert.Equal(restaurantPoco.FreeShippingThreshold, mapperArgument.FreeShippingThreshold);
+            Assert.Equal(restaurantPoco.ShippingRate, mapperArgument.ShippingRate);
         }
 
         [Fact]
