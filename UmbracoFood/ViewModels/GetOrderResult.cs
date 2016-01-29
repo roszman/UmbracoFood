@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UmbracoFood.Core.Models;
 
 namespace UmbracoFood.ViewModels
 {
@@ -11,9 +12,9 @@ namespace UmbracoFood.ViewModels
 
         public DateTime Deadline { get; set; }
 
-        public DateTime? EstitmatedDeliveryTime { get; set; }
+        public DateTime? EstimatedDeliveryTime { get; set; }
 
-        public int StatusId { get; set; }
+        public OrderStatus Status { get; set; }
 
         public int RestaurantId { get; set; }
 

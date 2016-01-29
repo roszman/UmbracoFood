@@ -1,4 +1,4 @@
-﻿var umbracoFood = angular.module("umbracoFoodApp", ['angular-growl', 'ui.bootstrap']);
+﻿var umbracoFood = angular.module("umbracoFoodApp", ['angular-growl', 'ui.bootstrap', 'timer']);
 
 
 umbracoFood.config(['growlProvider', '$httpProvider', function (growlProvider, $httpProvider) {

@@ -2,14 +2,16 @@
 
 umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilService', function ($scope, orderService, utilService) {
     $scope.orderId = null;
-    $scope.estimatedDeliveryTimeDisabled = true;
-    $scope.meal = {
-        MealName: "",
-        Price: 0,
-        Count: 0,
-        Person: ""
+
+    var mealOrig;
+    var status = {
+        InProgress: 1,
+        InDelivery: 2,
+        InKitchen: 3
     }
-    var mealOrig = angular.copy($scope.meal);
+
+    $scope.estimatedMinutes = null;
+
 
     $scope.init = function (id) {
         $scope.orderId = id;
@@ -23,6 +25,30 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
 
     var onOrderFetched = function (response) {
         $scope.order = response.data;
+
+
+        if ($scope.order.EstimatedDeliveryTime) {
+            var estimatedDeliveryTimeWithoutOffset = utilService.getDateWithoutOffset($scope.order.EstimatedDeliveryTime);
+            var now = new Date();
+
+            var diffMs = (estimatedDeliveryTimeWithoutOffset - now);
+            var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+
+            $scope.estimatedMinutes = diffMins;
+        } else {
+            $scope.estimatedMinutes = 0;
+        }
+
+
+
+        $scope.meal = {
+            MealName: "",
+            Price: 0,
+            Count: 0,
+            Person: "",
+            OrderId: $scope.order.OrderId
+        }
+        mealOrig = angular.copy($scope.meal);
     }
 
     $scope.addMeal = function () {
@@ -45,7 +71,7 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
     }
 
     $scope.isMealValid = function () {
-        if ($scope.meal.MealName && $scope.meal.Price >= 0 && $scope.meal.Count > 0 && $scope.meal.Person) {
+        if (angular.isDefined($scope.meal) && $scope.meal.MealName && $scope.meal.Price >= 0 && $scope.meal.Count > 0 && $scope.meal.Person) {
             return true;
         }
         return false;
@@ -65,26 +91,44 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
         return sum;
     }
 
-    $scope.statusChanged = function () {
-        if ($scope.order.StatusId == 2) {
-            $scope.estimatedDeliveryTimeDisabled = false;
-        } else {
-            $scope.order.EstitmatedDeliveryTime = null;
-            $scope.estimatedDeliveryTimeDisabled = true;
+    $scope.estimatedDeliveryTimeMessage = function () {
+        if(angular.isUndefined($scope.order) || $scope.order.Status == status.InDelivery) {
+            return null;
+        }
+        else if ($scope.order.Status == status.InProgress) {
+            return "Jeszcze nie zamówione!";
+        }
+        else {
+            return "W kuchni! :)";
         }
     }
-    
-    $scope.changeStatus = function () {
-        if ($scope.order.StatusId == 2 && ($scope.order.EstitmatedDeliveryTime == null || $scope.order.EstitmatedDeliveryTime < 0)) {
+
+    $scope.estimatedDeliveryTimeVisible = function () {
+        return angular.isDefined($scope.order) && $scope.order.Status == status.InDelivery;
+    }
+
+    $scope.editOrder = function () {
+        if ($scope.order.Status == status.InDelivery && ($scope.estimatedMinutes == null || $scope.estimatedMinutes < 0)) {
             utilService.growlFailure("Musisz uzupełnić przewidywany czas dostarczenia zamówienia");
             return;
         }
 
-        return orderService.changeStatus({
-            OrderId: $scope.order.RestaurantId,
-            StatusId: $scope.order.StatusId,
-            EstitmatedDeliveryTime: $scope.order.EstitmatedDeliveryTime
-        });
+
+        var estimatedDelieryTime = new Date();
+        estimatedDelieryTime.setMinutes(estimatedDelieryTime.getMinutes() + $scope.estimatedMinutes);
+
+        var editOrderModel = {
+            OrderId: $scope.order.OrderId,
+            Status: $scope.order.Status,
+            EstimatedDeliveryTime: estimatedDelieryTime
+        }
+
+        return orderService.editOrder(editOrderModel)
+                .then(onOrderEdited);
+    }
+
+    var onOrderEdited = function (response) {
+        utilService.growlSuccess("Twoje zmiany zostały zapisane");
     }
 }]);
 

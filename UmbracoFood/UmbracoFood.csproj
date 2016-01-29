@@ -403,6 +403,9 @@
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\Orders.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\CreateOrder.cshtml" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Views\OrderSurface\EditOrder.cshtml" />
+    <None Include=".bin\bower.cmd" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular\angular-directives.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2089,7 +2092,7 @@
     <Compile Include="Validators\AbstractValidators\CreateOrderValidator.cs" />
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
     <Compile Include="ViewModels\AddMealViewModel.cs" />
-    <Compile Include="ViewModels\ChangeOrderStatusViewModel.cs" />
+    <Compile Include="ViewModels\EditOrderViewModel.cs" />
     <Compile Include="ViewModels\CreateOrderMeal.cs" />
     <Compile Include="ViewModels\CreateOrderViewModel.cs" />
     <Compile Include="ViewModels\EditRestaurantViewModel.cs" />

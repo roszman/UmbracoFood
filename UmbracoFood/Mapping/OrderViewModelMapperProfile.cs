@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using UmbracoFood.Core.Extensions;
 using UmbracoFood.Core.Models;
@@ -16,9 +17,10 @@ namespace UmbracoFood.Mapping
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Owner, o => o.MapFrom(s => s.Owner))
                 .ForMember(d => d.Deadline, o => o.MapFrom(s => s.Deadline))
-                .ForMember(d => d.EstitmatedDeliveryTime, o => o.MapFrom(s => s.EstimatedDeliveryTime))
-                .ForMember(d => d.MealsCount, o => o.MapFrom(s => s.OrderedMeals.Count))
+                .ForMember(d => d.EstimatedDeliveryTime, o => o.MapFrom(s => s.EstimatedDeliveryTime))
+                .ForMember(d => d.MealsCount, o => o.MapFrom(s => s.OrderedMeals.Sum(om => om.Count)))
                 .ForMember(d => d.StatusName, o => o.MapFrom(s => s.Status.GetDescription()))
+                .ForMember(d => d.StatusId, o => o.MapFrom(s => (int) s.Status))
                 .ForMember(d => d.RestaurantName, o => o.MapFrom(s => s.Restaurant.Name));
 
             CreateMap<CreateOrderViewModel, Order>()
@@ -63,21 +65,14 @@ namespace UmbracoFood.Mapping
 
             CreateMap<AddMealViewModel, OrderedMeal>()
                 .IgnoreAllUnmapped()
+                .ForMember(d => d.OrderId, o => o.MapFrom(s => s.OrderId))
                 .ForMember(d => d.MealName, o => o.MapFrom(s => s.MealName))
                 .ForMember(d => d.Count, o => o.MapFrom(s => s.Count))
                 .ForMember(d => d.Price, o => o.MapFrom(s => s.Price))
                 .ForMember(d => d.PurchaserName, o => o.MapFrom(s => s.Person));
 
-            CreateMap<ChangeOrderStatusViewModel, Order>()
-                .IgnoreAllUnmapped()
-                .ForMember(d => d.Status, o => o.MapFrom(s => (OrderStatus)s.StatusId))
-                .AfterMap((s, d) =>
-                {
-                    if ((OrderStatus) s.StatusId == OrderStatus.InDelivery)
-                    {
-                        d.EstimatedDeliveryTime = DateTime.Now.AddMinutes(s.EstitmatedDeliveryTime ?? 0);
-                    }
-                });
+            CreateMap<OrderedMeal, MealViewModel>()
+                .ForMember(d => d.Person, o => o.MapFrom(s => s.PurchaserName));
         }
     }
 }

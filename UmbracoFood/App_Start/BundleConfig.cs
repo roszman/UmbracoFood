@@ -35,6 +35,16 @@ namespace UmbracoFood
                     "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/Scripts/angular-bower").Include(
+                    "~/.bin/bower_components/momentjs/moment.js",
+                    "~/.bin/bower_components/humanize-duration/humanize-duration.js",
+                    "~/.bin/bower_components/angular-timer/dist/angular-timer.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/CSS/angular-bower").Include(
+                    "~/.bin/bower_components/angular-timer/dist/assets/css/angular-timer-bower.css"
+                ));
+
             bundles.Add(new ScriptBundle("~/Scripts/angular/app").Include(
                     "~/Scripts/angular/angular-growl.min.js",
                     "~/Scripts/angular/umbracoFoodApp.js",

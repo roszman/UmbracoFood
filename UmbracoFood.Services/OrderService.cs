@@ -32,7 +32,6 @@ namespace UmbracoFood.Services
         public IEnumerable<Status> GetStatuses()
         {
             return orderRepository.GetStatuses();
-
         }
 
         public void AddMeal(OrderedMeal meal)

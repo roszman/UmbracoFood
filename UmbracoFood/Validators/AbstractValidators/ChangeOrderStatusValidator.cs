@@ -10,16 +10,16 @@ using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Validators.AbstractValidators
 {
-    public class ChangeOrderStatusValidator : AbstractValidator<ChangeOrderStatusViewModel>
+    public class ChangeOrderStatusValidator : AbstractValidator<EditOrderViewModel>
     {
         public ChangeOrderStatusValidator()
         {
             RuleFor(r => r.OrderId).GreaterThan(0);
-            RuleFor(r => r.StatusId).InclusiveBetween(1, 3);
+            RuleFor(r => r.Status).InclusiveBetween(1, 3);
 
-            RuleFor(r => r.EstitmatedDeliveryTime)
+            RuleFor(r => r.EstimatedDeliveryTime)
                 .NotEmpty()
-                .When(o => (OrderStatus) o.StatusId == OrderStatus.InDelivery);
+                .When(o => (OrderStatus) o.Status == OrderStatus.InDelivery);
         }
     }
 }

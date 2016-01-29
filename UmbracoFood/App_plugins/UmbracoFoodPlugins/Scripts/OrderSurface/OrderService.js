@@ -27,8 +27,8 @@ umbracoFood.factory('orderService', [
                         return result;
                     });
             },
-            changeStatus: function (model) {
-                return $http.put('/UmbracoFood/umbraco/UmbracoFoodApi/OrderApi/PutChangeOrderStatus', model)
+            editOrder: function (model) {
+                return $http.put('/UmbracoFood/umbraco/UmbracoFoodApi/OrderApi/PutEditOrder', model)
                     .then(function (result) {
                         return result;
                     });
