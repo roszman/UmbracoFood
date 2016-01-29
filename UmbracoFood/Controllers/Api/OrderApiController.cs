@@ -93,7 +93,7 @@ namespace UmbracoFood.Controllers.Api
 
             if ((OrderStatus) model.Status == OrderStatus.InDelivery)
             {
-                orderService.SetOrderIsInDelivery(model.OrderId, model.EstitmatedDeliveryTime.Value);
+                orderService.SetOrderIsInDelivery(model.OrderId, model.EstimatedDeliveryTime.Value);
             }
             else
             {

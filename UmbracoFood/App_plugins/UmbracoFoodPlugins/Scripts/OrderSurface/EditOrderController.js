@@ -120,7 +120,7 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
         var editOrderModel = {
             OrderId: $scope.order.OrderId,
             Status: $scope.order.Status,
-            EstitmatedDeliveryTime: estimatedDelieryTime
+            EstimatedDeliveryTime: estimatedDelieryTime
         }
 
         return orderService.editOrder(editOrderModel)

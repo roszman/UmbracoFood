@@ -17,7 +17,7 @@ namespace UmbracoFood.Validators.AbstractValidators
             RuleFor(r => r.OrderId).GreaterThan(0);
             RuleFor(r => r.Status).InclusiveBetween(1, 3);
 
-            RuleFor(r => r.EstitmatedDeliveryTime)
+            RuleFor(r => r.EstimatedDeliveryTime)
                 .NotEmpty()
                 .When(o => (OrderStatus) o.Status == OrderStatus.InDelivery);
         }

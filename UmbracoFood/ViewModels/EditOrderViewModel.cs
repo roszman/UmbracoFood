@@ -8,6 +8,6 @@ namespace UmbracoFood.ViewModels
 
         public int Status { get; set; }
 
-        public DateTime? EstitmatedDeliveryTime { get; set; }
+        public DateTime? EstimatedDeliveryTime { get; set; }
     }
 }
