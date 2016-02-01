@@ -27,7 +27,8 @@ namespace UmbracoFood
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/angular").Include(
-                    "~/Scripts/angular/angular.js"
+                    "~/Scripts/angular/angular.js",
+                    "~/Scripts/angular/angular-route.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/Scripts/angular-ui").Include(
@@ -85,6 +86,10 @@ namespace UmbracoFood
             bundles.Add(new ScriptBundle("~/Scripts/EditOrder").Include(
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/EditOrderController.js",
                     "~/App_plugins/UmbracoFoodPlugins/Scripts/OrderSurface/OrderService.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/HomePage").Include(
+                    "~/App_plugins/UmbracoFoodPlugins/Scripts/HomePage/HomePageController.js"
                 ));
         }
     }

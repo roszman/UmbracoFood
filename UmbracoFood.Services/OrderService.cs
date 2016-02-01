@@ -53,5 +53,10 @@ namespace UmbracoFood.Services
         {
             orderRepository.SetOrderIsInDelivery(orderId, estimatedDeliveryTime);
         }
+
+        public void RemoveMeal(int mealId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

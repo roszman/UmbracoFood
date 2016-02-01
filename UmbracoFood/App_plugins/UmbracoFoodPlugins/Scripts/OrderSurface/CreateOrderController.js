@@ -58,7 +58,7 @@ umbracoFood.controller('CreateOrderController', ['$scope', 'orderService', 'rest
     }
 
     var onOrderCreated = function () {
-        utilService.growlSuccess("Zamówienie zostało utworzone.");
+        utilService.redirectTo(utilService.constants.BASE_URL + "?message=Zamówienie zostało utworzone");
     }
     
     var loadRestaurants = function () {

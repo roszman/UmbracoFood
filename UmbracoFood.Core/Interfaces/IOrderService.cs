@@ -21,5 +21,7 @@ namespace UmbracoFood.Core.Interfaces
         void ChangeStatus(int orderId, OrderStatus newStatus);
 
         void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime);
+
+        void RemoveMeal(int mealId);
     }
 }

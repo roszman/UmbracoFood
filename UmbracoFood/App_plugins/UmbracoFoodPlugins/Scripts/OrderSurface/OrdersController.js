@@ -22,15 +22,13 @@ umbracoFood.controller('OrdersController', ['$scope', 'orderService', 'utilServi
             if (order.EstimatedDeliveryTime) {
                 order.EstimatedDeliveryTime = utilService.getDateWithoutOffset(order.EstimatedDeliveryTime);
             }
-
-
+            
             var diffMs = order.Deadline.getTime() - new Date().getTime();
-
             var diffS = diffMs / 1000;
-            console.log(diffS)
-            order.Countdown = diffS > 0 ? diffS : null;
 
+            order.Countdown = diffS > 0 ? diffS : null;
         });
     }
+
     loadData();
 }]);

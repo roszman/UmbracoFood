@@ -130,6 +130,15 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
     var onOrderEdited = function (response) {
         utilService.growlSuccess("Twoje zmiany zostały zapisane");
     }
+
+    $scope.delete = function () {
+        return orderService.deleteOrder($scope.orderId)
+                    .then(onOrderDeleted);
+    };
+
+    var onOrderDeleted = function () {
+        utilService.redirectTo(utilService.constants.BASE_URL + "?message=Zamówienie zostało usunięte");
+    }
 }]);
 
 

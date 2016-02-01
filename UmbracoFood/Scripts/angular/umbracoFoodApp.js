@@ -1,7 +1,7 @@
-﻿var umbracoFood = angular.module("umbracoFoodApp", ['angular-growl', 'ui.bootstrap', 'timer']);
+﻿var umbracoFood = angular.module("umbracoFoodApp", ['angular-growl', 'ui.bootstrap', 'timer', 'ngRoute']);
 
 
-umbracoFood.config(['growlProvider', '$httpProvider', function (growlProvider, $httpProvider) {
+umbracoFood.config(['growlProvider', '$httpProvider', '$routeProvider', function (growlProvider, $httpProvider, $routeProvider) {
 
     growlProvider.globalPosition('top-center');
 
@@ -12,7 +12,6 @@ umbracoFood.config(['growlProvider', '$httpProvider', function (growlProvider, $
                 growl.error(message);
 
                 return $q.reject();
-
             }
         };
     });

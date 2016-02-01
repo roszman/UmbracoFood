@@ -361,6 +361,7 @@
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.controller.js" />
     <Content Include="App_plugins\Restaurants\backoffice\RestaurantsTree\edit.html" />
     <Content Include="App_plugins\Restaurants\restaurant.resource.js" />
+    <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\HomePage\HomePageController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\EditOrderController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\CreateOrderController.js" />
     <Content Include="App_plugins\UmbracoFoodPlugins\Scripts\OrderSurface\OrdersController.js" />
@@ -385,6 +386,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular\angular-mocks.js" />
+    <Content Include="Scripts\angular\angular-route.js" />
     <Content Include="Scripts\angular\angular.js" />
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\angular\angular-growl.js" />
@@ -2069,6 +2071,7 @@
     <Compile Include="App_plugins\Restaurants\Controllers\RestaurantsApiController.cs" />
     <Compile Include="App_plugins\UmbracoFoodPlugins\Models\EditOrderPageModel.cs" />
     <Compile Include="App_plugins\UmbracoFoodPlugins\Models\EditRestaurantPageModel.cs" />
+    <Compile Include="App_plugins\UmbracoFoodPlugins\Models\HomePageModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_plugins\Restaurants\Tree\RestaurantsApplicationTreeController.cs" />

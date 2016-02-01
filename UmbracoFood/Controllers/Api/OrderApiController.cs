@@ -99,7 +99,34 @@ namespace UmbracoFood.Controllers.Api
             {
                 orderService.ChangeStatus(model.OrderId, (OrderStatus) model.Status);
             }
+        }
 
+        [HttpDelete]
+        public void DeleteOrder(int id)
+        {
+            if (id < 1)
+            {
+                throw new Exception("ID nie może być niższe niż 1");
+            }
+
+            var order = orderService.GetOrder(id);
+            if (order == null)
+            {
+                throw new Exception("Zamówienie nie istnieje");
+            }
+
+            orderService.RemoveOrder(id);
+        }
+
+        [HttpDelete]
+        public void DeleteOrderMeal(int id)
+        {
+            if (id < 1)
+            {
+                throw new Exception("ID nie może być niższe niż 1");
+            }
+
+            orderService.RemoveMeal(id);
         }
     }
 }

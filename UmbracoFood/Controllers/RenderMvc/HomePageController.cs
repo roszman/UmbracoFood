@@ -1,24 +1,20 @@
 ﻿using System.Web.Mvc;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
+using UmbracoFood.App_plugins.UmbracoFoodPlugins.Models;
 using UmbracoFood.Core.Interfaces;
 
 namespace UmbracoFood.Controllers.RenderMvc
 {
     public class HomePageController : RenderMvcController
     {
-        private readonly IRestaurantService restaurantService;
-
-        public HomePageController(IRestaurantService restaurantService)
+        public ActionResult HomePage(RenderModel model, string message)
         {
-            this.restaurantService = restaurantService;
-        }
+            var renderModel = new HomePageModel();
+            renderModel.Message = message;
 
-        public ActionResult HomePage(RenderModel model)
-        {
-            var test = restaurantService.GetActiveRestaurants();
 
-            return base.Index(model);
+            return base.Index(renderModel);
         }
     }
 }

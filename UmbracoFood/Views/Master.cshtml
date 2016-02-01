@@ -3,6 +3,8 @@
 @{
     Layout = null;
     var indexSiteTitle = Umbraco.Field("siteTitle", recursive: true).ToHtmlString();
+
+    string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +31,14 @@
     @Scripts.Render("~/Scripts/angular-ui")
     @Scripts.Render("~/Scripts/angular/app")
 
+    <script>
+        (function (app) {
+            var umbracoFood = angular.module("umbracoFoodApp");
+            umbracoFood.constant('constants', {
+                "BASE_URL": "@baseUrl"
+            });
+        })(angular.module('umbracoFoodApp'))
+    </script> 
 
 </head>
     <body ng-app="umbracoFoodApp">

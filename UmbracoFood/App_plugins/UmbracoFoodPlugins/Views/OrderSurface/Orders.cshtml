@@ -8,6 +8,13 @@
 }
 
 <div ng-controller="OrdersController">
+    {{flashMessage}}
+    {{flashMessage.get()}}
+    <div class="alert" ng-show="flashMessage.get().length">
+        <b>Alert!</b><br />
+        {{flashMessage.get()}}
+    </div>
+
     <h2>
         Zamówienia
         <a href="@Umbraco.NiceUrl(1061)" type="button" class="btn btn-success ">
@@ -23,7 +30,7 @@
                 <th>Ilość posiłków</th>
                 <th>Zamawiajacy</th>
                 <th>Status</th>
-                <th>Link</th>
+                <th>Opcje</th>
             </tr>
         </thead>
         <tbody ng-model="orders" ng-cloak>

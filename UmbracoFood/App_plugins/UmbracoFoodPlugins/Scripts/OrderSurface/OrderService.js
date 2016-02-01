@@ -32,6 +32,12 @@ umbracoFood.factory('orderService', [
                     .then(function (result) {
                         return result;
                     });
+            },
+            deleteOrder: function (id) {
+                return $http.delete('/UmbracoFood/umbraco/UmbracoFoodApi/OrderApi/DeleteOrder/' + id)
+                    .then(function (result) {
+                        return result;
+                    });
             }
         }
     }
