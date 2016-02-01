@@ -16,8 +16,8 @@ umbracoFood.controller('AddRestaurantController', ['$scope', 'restaurantService'
             .then(onAddRestaurant);
     }
 
-    var onAddRestaurant = function(response) {
-        utilService.growlSuccess("Restauracja została dodana");
+    var onAddRestaurant = function (response) {
+        utilService.redirectTo(utilService.constants.BASE_URL + "?message=Restauracja została dodana");
     }
 
     var clearForm = function () {

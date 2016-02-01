@@ -109,12 +109,6 @@ namespace UmbracoFood.Controllers.Api
                 throw new Exception("ID nie może być niższe niż 1");
             }
 
-            var order = orderService.GetOrder(id);
-            if (order == null)
-            {
-                throw new Exception("Zamówienie nie istnieje");
-            }
-
             orderService.RemoveOrder(id);
         }
 

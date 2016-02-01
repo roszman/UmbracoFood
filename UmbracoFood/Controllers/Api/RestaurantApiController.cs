@@ -99,12 +99,6 @@ namespace UmbracoFood.Controllers.Api
             {
                 throw new Exception("ID nie może być niższe niż 1");
             }
-            
-            var restaurant = restaurantService.GetRestaurant(id);
-            if (restaurant == null)
-            {
-                throw new Exception("Restauracja nie istnieje");
-            }
 
             restaurantService.RemoveRestaurant(id);
         }
