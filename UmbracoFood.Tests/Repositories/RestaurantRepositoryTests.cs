@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Moq;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Mapping;
@@ -115,6 +117,18 @@ namespace UmbracoFood.Tests.Repositories
 
             Assert.NotNull(inactiveRestaurant);
             Assert.False(inactiveRestaurant.IsActive);
+        }
+
+        [Fact]
+        public void RemoveOrderShouldThrowExceptionIfOrderDoesNotExistInDb()
+        {
+            //arrange
+
+            //act
+            Exception ex = Assert.Throws<KeyNotFoundException>(() => _repo.RemoveRestaurant(1234566));
+
+            //assert
+            Assert.Equal("Restaurant 1234566 not found in database", ex.Message);
         }
 
         [Fact]
