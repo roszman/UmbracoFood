@@ -73,13 +73,13 @@ namespace UmbracoFood.Tests.Services
         public void AddMealShoudlCallAddMealInRepo()
         {
             //arrange
-            orderRepositoryMock.Setup(r => r.AddOrderMeal(It.IsAny<OrderedMeal>()));
+            orderRepositoryMock.Setup(r => r.AddOrderedMeal(It.IsAny<OrderedMeal>()));
 
             //act
             orderService.AddMeal(new OrderedMeal());
 
             //assert
-            orderRepositoryMock.Verify(r => r.AddOrderMeal(It.IsAny<OrderedMeal>()), Times.Once);
+            orderRepositoryMock.Verify(r => r.AddOrderedMeal(It.IsAny<OrderedMeal>()), Times.Once);
         }
         [Fact]
         public void CreateOrderShoudlCallAddOrderInRepo()
@@ -117,6 +117,19 @@ namespace UmbracoFood.Tests.Services
 
             //assert
             orderRepositoryMock.Verify(r => r.SetOrderIsInDelivery(It.IsAny<int>(), It.IsAny<DateTime>()), Times.Once);
+        }
+
+        [Fact]
+        public void RemoveMealShouldCallRemoveOrderedMealInRepo()
+        {
+            //arrange
+            orderRepositoryMock.Setup(r => r.RemoveOrderedMeal(1));
+
+            //act
+            orderService.RemoveMeal(1);
+
+            //assert
+            orderRepositoryMock.Verify(r => r.RemoveOrderedMeal(1), Times.Once);
         }
     }
 }

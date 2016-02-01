@@ -18,7 +18,7 @@ namespace UmbracoFood.Infrastructure.Repositories
         private UmbracoDatabase _db;
 
         public OrderRepository(
-            IDatabaseProvider databaseProvider, 
+            IDatabaseProvider databaseProvider,
             IModelMapper<Order, OrderPoco> orderMapper,
             IModelMapper<OrderedMeal, OrderedMealPoco> mealMapper
             )
@@ -136,7 +136,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             return statuses.Select(Mapper.Map<StatusPoco, Status>);
         }
 
-        public void AddOrderMeal(OrderedMeal orderedMeal)
+        public void AddOrderedMeal(OrderedMeal orderedMeal)
         {
             var orderedMealPoco = _mealMapper.MapToPoco(orderedMeal);
             _db.Insert("OrderedMeals", "Id", orderedMealPoco);
@@ -151,6 +151,11 @@ namespace UmbracoFood.Infrastructure.Repositories
         {
             var inDeliveryStatusId = (int)OrderStatus.InDelivery;
             _db.Execute("UPDATE Orders SET EstimatedDeliveryTime=@0, StatusId=@1 WHERE Orders.Id=@2", estimatedDeliveryTime, inDeliveryStatusId, orderId);
+        }
+
+        public void RemoveOrderedMeal(int orderedMealId)
+        {
+            _db.Execute("DELETE FROM OrderedMeals Where Id = @0", orderedMealId);
         }
     }
 }

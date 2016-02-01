@@ -47,6 +47,8 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                             , [Url] ntext NOT NULL
                             , [MenuUrl] ntext NOT NULL
                             , [Active] bit NOT NULL
+                            , [FreeShippingThreshold] numeric(18,2) NOT NULL
+                            , [ShippingRate] numeric(18,2) NOT NULL
                             );");
                 db.Execute(@"CREATE TABLE [Orders] (
                               [Id] int IDENTITY (1,1) NOT NULL
@@ -59,7 +61,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                             );");
                 db.Execute(@"CREATE TABLE [OrderedMeals] (
                               [Id] int IDENTITY (1,1) NOT NULL
-                            , [Price] numeric(18,0) NOT NULL
+                            , [Price] numeric(18,2) NOT NULL
                             , [MealName] nvarchar(255) NOT NULL
                             , [OrderId] int NOT NULL
                             , [Count] int NOT NULL

@@ -12,8 +12,10 @@ namespace UmbracoFood.Core.Interfaces
 
         void AddMeal(OrderedMeal meal);
 
+        void RemoveMeal(int mealId);
+
         Order GetOrder(int id);
-        
+
         IEnumerable<Order> GetOrders();
 
         IEnumerable<Status> GetStatuses();
@@ -21,7 +23,5 @@ namespace UmbracoFood.Core.Interfaces
         void ChangeStatus(int orderId, OrderStatus newStatus);
 
         void SetOrderIsInDelivery(int orderId, DateTime estimatedDeliveryTime);
-
-        void RemoveMeal(int mealId);
     }
 }

@@ -8,5 +8,7 @@
         public string WebsiteUrl { get; set; }
         public string MenuUrl { get; set; }
         public bool IsActive { get; set; }
+        public double ShippingRate { get; set; }
+        public double FreeShippingThreshold { get; set; }
     }
 }

@@ -6,7 +6,6 @@ using UmbracoFood.Infrastructure.Models.POCO;
 using UmbracoFood.Infrastructure.Repositories;
 using UmbracoFood.Tests.Repositories.DatabaseFixtures;
 using Xunit;
-using Umbraco.Core.Persistence;
 using System;
 using System.Collections.Generic;
 
@@ -29,7 +28,7 @@ namespace UmbracoFood.Tests.Repositories
             _mealMapper = new Mock<IModelMapper<OrderedMeal, OrderedMealPoco>>();
 
             _repo = new OrderRepository(
-                dataBaseProvider.Object, 
+                dataBaseProvider.Object,
                 _orderMapper.Object,
                 _mealMapper.Object);
         }
@@ -91,6 +90,7 @@ namespace UmbracoFood.Tests.Repositories
             Assert.Equal(orderPocoBeforDbInsert.Deadline, orderFromDb.Deadline);
             Assert.Equal(orderPocoBeforDbInsert.EstimatedDeliveryTime, orderFromDb.EstimatedDeliveryTime);
             Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.Count, orderFromDb.OrderedMeals.Count);
+            Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.First().Price, orderFromDb.OrderedMeals.First().Price);
             Assert.Equal(orderPocoBeforDbInsert.Owner, orderFromDb.Owner);
             Assert.Equal(orderPocoBeforDbInsert.StatusId, orderFromDb.Status.Id);
             Assert.Equal(orderPocoBeforDbInsert.RestaurantId, orderFromDb.Restaurant.ID);
@@ -165,10 +165,10 @@ namespace UmbracoFood.Tests.Repositories
                 .Returns(orderedMealPoco);
 
             //act
-            _repo.AddOrderMeal(new OrderedMeal());
+            _repo.AddOrderedMeal(new OrderedMeal());
 
             //assert
-            _mealMapper.Verify(m => m.MapToPoco(It.IsAny<OrderedMeal>()), 
+            _mealMapper.Verify(m => m.MapToPoco(It.IsAny<OrderedMeal>()),
                 Times.Once);
             var orderFromDb = GetOrderPocoFromDbById(3);
             var orderedMeal = orderFromDb.OrderedMeals
@@ -203,6 +203,23 @@ namespace UmbracoFood.Tests.Repositories
             var orderFromDb = GetOrderPocoFromDbById(5);
             Assert.Equal(date, orderFromDb.EstimatedDeliveryTime);
             Assert.Equal((int)OrderStatus.InDelivery, orderFromDb.StatusId);
+        }
+
+        [Fact]
+        public void RemoveOrderedMealShouldRemoveOrderedMealFromRepo()
+        {
+            //arrange
+            int id = 1;
+
+
+            //act
+            _repo.RemoveOrderedMeal(id);
+
+            //assert
+            var orderedMealFromDb = _databaseFixture.Db.Query<OrderedMeal>("SELECT * FROM OrderedMeals WHERE Id=@0", id)
+                .FirstOrDefault();
+            Assert.Null(orderedMealFromDb);
+
         }
 
         private OrderPoco GetOrderPocoFromDbById(int id)
