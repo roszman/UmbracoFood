@@ -224,8 +224,8 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
             restaurantPoco.WebsiteUrl = "http://mock.url";
             restaurantPoco.Name = "MockName";
             restaurantPoco.Phone = "123456789";
-            restaurantPoco.ShippingRate = 14.54,
-            restaurantPoco.FreeShippingThreshold = 124.53
+            restaurantPoco.ShippingRate = 14.54;
+            restaurantPoco.FreeShippingThreshold = 124.53;
 
             //Act
             var restaurant = _restaurantMapper.MapToDomain(restaurantPoco);
