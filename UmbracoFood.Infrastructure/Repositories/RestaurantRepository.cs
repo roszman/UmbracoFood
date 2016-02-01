@@ -40,7 +40,7 @@ namespace UmbracoFood.Infrastructure.Repositories
         {
             var restaurant = GetRestaurantPoco(id);
             restaurant.IsActive = false;
-            var affectedRows = _db.Update("Restaurants", "Id", restaurant);
+            _db.Update("Restaurants", "Id", restaurant);
         }
 
         public Restaurant GetRestaurant(int id)
