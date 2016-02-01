@@ -86,7 +86,11 @@ namespace UmbracoFood.Infrastructure.Repositories
                 _db.BeginTransaction();
 
                 _db.Execute("DELETE FROM OrderedMeals WHERE OrderId = @0", id);
-                _db.Execute("DELETE FROM Orders WHERE Id = @0", id);
+                var affectedRows = _db.Execute("DELETE FROM Orders WHERE Id = @0", id);
+                if (affectedRows < 1)
+                {
+                    throw new KeyNotFoundException(string.Format("Order {0} not found in database", id));
+                }
 
                 _db.CompleteTransaction();
             }

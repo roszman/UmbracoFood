@@ -8,6 +8,7 @@ using UmbracoFood.Tests.Repositories.DatabaseFixtures;
 using Xunit;
 using System;
 using System.Collections.Generic;
+using Xunit.Sdk;
 
 namespace UmbracoFood.Tests.Repositories
 {
@@ -45,6 +46,18 @@ namespace UmbracoFood.Tests.Repositories
             //assert
             var orderFromDb = GetOrderPocoFromDbById(existingOrder.Id);
             Assert.Null(orderFromDb);
+        }
+
+        [Fact]
+        public void RemoveOrderShouldThrowExceptionIfOrderDoesNotExistInDb()
+        {
+            //arrange
+
+            //act
+            Exception ex = Assert.Throws<KeyNotFoundException>(() => _repo.RemoveOrder(1234566));
+
+            //assert
+            Assert.Equal("Order 1234566 not found in database", ex.Message);
         }
 
         [Fact]

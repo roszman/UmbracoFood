@@ -54,7 +54,7 @@ namespace UmbracoFood.Infrastructure.Repositories
             var restaurant = _db.SingleOrDefault<RestaurantPoco>("SELECT * FROM Restaurants WHERE Id = @0", id);
             if (restaurant == null)
             {
-                throw new KeyNotFoundException("Restaurant has not been found.");
+                throw new KeyNotFoundException(string.Format("Restaurant {0} not found in database", id));
             }
             return restaurant;
         }
