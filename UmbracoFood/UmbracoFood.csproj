@@ -2033,6 +2033,7 @@
     <Content Include="Views\CreateOrderPage.cshtml" />
     <Content Include="Views\EditOrderPage.cshtml" />
     <Content Include="Views\EditRestaurantPage.cshtml" />
+    <Content Include="Views\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2083,6 +2084,7 @@
     <Compile Include="Controllers\RenderMvc\EditOrderPageController.cs" />
     <Compile Include="Controllers\RenderMvc\EditRestaurantPageController.cs" />
     <Compile Include="Controllers\RenderMvc\HomePageController.cs" />
+    <Compile Include="Controllers\Surface\AccountSurfaceController.cs" />
     <Compile Include="Controllers\Surface\OrderSurfaceController.cs" />
     <Compile Include="Controllers\Surface\RestaurantSurfaceController.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
@@ -2114,6 +2116,7 @@
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
     <Compile Include="ViewModels\SelectRestaurantItem.cs" />
     <Compile Include="ViewModels\StatusItem.cs" />
+    <Compile Include="ViewModels\LoginModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UmbracoFood.Core\UmbracoFood.Core.csproj">

@@ -267,6 +267,7 @@ _Pvt_Extensions
 
 #licensing
 *.txt.log
+*.log.txt
 
 
 # CUSTOM

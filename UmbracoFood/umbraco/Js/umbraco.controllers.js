@@ -450,7 +450,7 @@ angular.module('umbraco').controller("Umbraco.SearchController", SearchControlle
  */
 function AuthorizeUpgradeController($scope, $window) {
     
-    //Add this method to the scope - this method will be called by the login dialog controller when the login is successful
+    //Add this method to the scope - this method will be called by the login dialog controller when the model is successful
     // then we'll handle the redirect.
     $scope.submit = function (event) {
 
@@ -2147,7 +2147,7 @@ function LegacyController($scope, $routeParams, $element) {
 }
 
 angular.module("umbraco").controller('Umbraco.LegacyController', LegacyController);
-/** This controller is simply here to launch the login dialog when the route is explicitly changed to /login */
+/** This controller is simply here to launch the login dialog when the route is explicitly changed to /model */
 angular.module('umbraco').controller("Umbraco.LoginController", function (eventsService, $scope, userService, $location, $rootScope) {
 
     userService._showLoginDialog(); 

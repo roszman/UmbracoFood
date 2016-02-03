@@ -5,6 +5,7 @@ using UmbracoFood.App_plugins.UmbracoFoodPlugins.Models;
 
 namespace UmbracoFood.Controllers.RenderMvc
 {
+    [Authorize]
     public class EditOrderPageController : RenderMvcController
     {
         public ActionResult EditOrderPage(RenderModel model, int? id)
@@ -13,6 +14,6 @@ namespace UmbracoFood.Controllers.RenderMvc
             renderModel.Id = id;
 
             return base.Index(renderModel);
-        } 
+        }
     }
 }

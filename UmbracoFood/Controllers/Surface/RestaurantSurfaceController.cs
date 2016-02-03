@@ -5,6 +5,7 @@ using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Controllers.Surface
 {
+    [Authorize]
     [PluginController("UmbracoFoodPlugins")]
     public class RestaurantSurfaceController : SurfaceController
     {
