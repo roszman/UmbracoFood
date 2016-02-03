@@ -2077,7 +2077,6 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_plugins\Restaurants\Tree\RestaurantsApplicationTreeController.cs" />
     <Compile Include="App_Start\AutomapperConfig.cs" />
-    <Compile Include="Controllers\RenderMvc\AccountController.cs" />
     <Compile Include="Controllers\Api\OrderApiController.cs" />
     <Compile Include="Controllers\Api\RestaurantApiController.cs">
       <SubType>Code</SubType>
