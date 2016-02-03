@@ -10,7 +10,7 @@
 <div ng-controller="RestaurantsController">
     <h2>
         Restauracje
-        <a href="@Umbraco.NiceUrl(1058)" type="button" class="btn btn-success ">
+        <a href="@Umbraco.NiceUrl(1092)" type="button" class="btn btn-success ">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </a>
     </h2>
@@ -31,10 +31,10 @@
                 <td>{{restaurant.Phone}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <a type="button" href="@Umbraco.NiceUrl(1061)" class="btn btn-default">Stwórz zamówienie</a>
-                        <a type="button" class="btn btn-default" href="@Umbraco.NiceUrl(1075)?id={{restaurant.Id}}">Edytuj</a>
+                        <a type="button" href="@Umbraco.NiceUrl(1093)" class="btn btn-default">Stwórz zamówienie</a>
+                        <a type="button" class="btn btn-default" href="@Umbraco.NiceUrl(1096)?id={{restaurant.Id}}">Edytuj</a>
                         <a type="button" class="btn btn-danger" uf-confirmation="Czy na pewno chcesz usunąć restaurację?" ng-click="delete(restaurant.Id)">Usuń</a>
-                        
+
                     </div>
                 </td>
             </tr>
