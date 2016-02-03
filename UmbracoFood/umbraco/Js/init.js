@@ -47,7 +47,7 @@ app.run(['userService', '$log', '$rootScope', '$location', 'navigationService', 
             event.preventDefault();
 
             var returnPath = null;
-            if (rejection.path == "/login" || rejection.path.startsWith("/login/")) {
+            if (rejection.path == "/login" || rejection.path.startsWith("/model/")) {
                 //Set the current path before redirecting so we know where to redirect back to
                 returnPath = encodeURIComponent($location.url());                                
             }

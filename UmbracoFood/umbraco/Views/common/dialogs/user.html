@@ -56,7 +56,7 @@
                     </form>
 
                     <button ng-if="login.linkedProviderKey != undefined"
-                            ng-click="unlink($event, login.authType, login.linkedProviderKey)"
+                            ng-click="unlink($event, login.authType, model.linkedProviderKey)"
                             class="btn btn-block btn-social"
                             ng-class="login.properties.SocialStyle"
                             id="{{login.authType}}"

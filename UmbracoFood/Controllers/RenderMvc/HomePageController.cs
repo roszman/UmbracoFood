@@ -6,6 +6,7 @@ using UmbracoFood.Core.Interfaces;
 
 namespace UmbracoFood.Controllers.RenderMvc
 {
+    [Authorize]
     public class HomePageController : RenderMvcController
     {
         public ActionResult HomePage(RenderModel model, string message)
