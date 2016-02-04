@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Http;
 using AutoMapper;
-using AutoMapper.Mappers;
 using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 using System.Linq;
-using UmbracoFood.Extensions;
 using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Controllers.Api
@@ -31,7 +28,6 @@ namespace UmbracoFood.Controllers.Api
             {
                 Orders = orders.Select(Mapper.Map<Core.Models.Order, OrderViewModel>)
             };
-
             return getOrdersResult;
         }
 
@@ -43,6 +39,7 @@ namespace UmbracoFood.Controllers.Api
                 throw new Exception("Couldn't create an order");
             }
 
+            model.Owner = User.Identity.Name;
             var order = Mapper.Map<CreateOrderViewModel, Order>(model);
 
             orderService.CreateOrder(order);
@@ -70,6 +67,7 @@ namespace UmbracoFood.Controllers.Api
             return new GetOrderResult()
             {
                 AccountNumber = order.AccountNumber,
+                CurrentlyLoggedPerson = User.Identity.Name,
                 AvailableStatuses = availableStatuses.Select(Mapper.Map<Status, StatusItem>),
                 Deadline = order.Deadline,
                 EstimatedDeliveryTime = order.EstimatedDeliveryTime,

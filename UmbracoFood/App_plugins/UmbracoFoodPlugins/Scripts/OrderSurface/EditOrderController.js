@@ -56,6 +56,7 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
             utilService.growlFailure("Uzupełnij poprawnie formularz");
             return;
         }
+        $scope.meal.Person = $scope.order.CurrentlyLoggedPerson;
         return orderService.addMeal($scope.meal)
             .then(pushMealToList)
             .then(onMealAdded);
@@ -71,7 +72,7 @@ umbracoFood.controller('EditOrderController', ['$scope', 'orderService', 'utilSe
     }
 
     $scope.isMealValid = function () {
-        if (angular.isDefined($scope.meal) && $scope.meal.MealName && $scope.meal.Price >= 0 && $scope.meal.Count > 0 && $scope.meal.Person) {
+        if (angular.isDefined($scope.meal) && $scope.meal.MealName && $scope.meal.Price >= 0 && $scope.meal.Count > 0 ) {
             return true;
         }
         return false;

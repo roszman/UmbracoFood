@@ -229,6 +229,7 @@
       <HintPath>..\packages\UmbracoCms.Core.7.3.4\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -2021,7 +2022,6 @@
     <Content Include="Views\OrderPage.cshtml" />
     <Content Include="Views\AddRestaurantPage.cshtml" />
     <Content Include="Views\CreateOrder.cshtml" />
-    <Content Include="App_plugins\UmbracoFoodPlugins\Views\RestaurantSurface\AddRestaurant.cshtml" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\EditRestaurantPage.cshtml" />
     <Content Include="Views\CreateOrderPage.cshtml">

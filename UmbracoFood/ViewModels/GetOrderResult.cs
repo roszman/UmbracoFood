@@ -10,6 +10,8 @@ namespace UmbracoFood.ViewModels
 
         public string Owner { get; set; }
 
+        public string CurrentlyLoggedPerson { get; set; }
+
         public DateTime Deadline { get; set; }
 
         public DateTime? EstimatedDeliveryTime { get; set; }
