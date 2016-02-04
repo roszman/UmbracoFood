@@ -14,7 +14,7 @@ namespace UmbracoFood.ViewModels
         public int SelectedRestaurantId { get; set; }
 
         public DateTime Deadline { get; set; }
-        
+
         public string AccountNumber { get; set; }
 
         public IEnumerable<CreateOrderMeal> Meals { get; set; }

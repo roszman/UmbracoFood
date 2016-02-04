@@ -5,6 +5,7 @@
     var indexSiteTitle = Umbraco.Field("siteTitle", recursive: true).ToHtmlString();
 
     string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +18,12 @@
     <meta name="author" content="">
     <title>@Umbraco.RenderMacro("SiteTitle", new { dictionaryItem = indexSiteTitle })</title>
 
-    
+
     @Scripts.Render("~/Scripts/jQuery")
     @Scripts.Render("~/Scripts/Bootstrap")
     @Styles.Render("~/CSS/Common")
     @Styles.Render("~/CSS/angular-growl")
-    
+
 
 
 
@@ -38,17 +39,17 @@
                 "BASE_URL": "@baseUrl"
             });
         })(angular.module('umbracoFoodApp'))
-    </script> 
+    </script>
 
 </head>
     <body ng-app="umbracoFoodApp">
-        
+
         <div growl></div>
 
         <div class="container">
             @{ Html.RenderPartial("MainNavigation"); }
         </div>
-    
+
         <div class="container">
             @RenderBody()
         </div>

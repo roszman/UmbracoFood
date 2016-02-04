@@ -31,7 +31,7 @@ namespace UmbracoFood.Mapping
                 .ForMember(d => d.Status, o => o.UseValue(OrderStatus.InProgress))
                 .ForMember(d => d.Restaurant, o => o.MapFrom(s => new Restaurant() { ID = s.SelectedRestaurantId }))
                 .ForMember(d => d.AccountNumber, o => o.MapFrom(s => s.AccountNumber));
-            
+
 
             CreateMap<CreateOrderViewModel, List<OrderedMeal>>()
                 .IgnoreAllUnmapped()

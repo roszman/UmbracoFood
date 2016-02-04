@@ -17,7 +17,7 @@
 
     <h2>
         Zamówienia
-        <a href="@Umbraco.NiceUrl(1061)" type="button" class="btn btn-success ">
+        <a href="@Umbraco.NiceUrl(1093)" type="button" class="btn btn-success ">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </a>
     </h2>
@@ -51,7 +51,7 @@
                 <td>{{order.StatusName}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="...">
-                        <a type="button" class="btn btn-primary" href="@Umbraco.NiceUrl(1063)?id={{order.Id}}" ng-if="order.StatusId == status.InProgress">Dolacz do zamowienia</a>
+                        <a type="button" class="btn btn-primary" href="@Umbraco.NiceUrl(1094)?id={{order.Id}}" ng-if="order.StatusId == status.InProgress">Dolacz do zamowienia</a>
                     </div>
                 </td>
             </tr>
