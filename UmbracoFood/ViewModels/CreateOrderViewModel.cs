@@ -17,6 +17,6 @@ namespace UmbracoFood.ViewModels
 
         public string AccountNumber { get; set; }
 
-        public IEnumerable<CreateOrderMeal> Meals { get; set; }
+        public IEnumerable<CreateOrderMealViewModel> Meals { get; set; }
     }
 }

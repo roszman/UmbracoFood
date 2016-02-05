@@ -1,6 +1,6 @@
 ﻿namespace UmbracoFood.ViewModels
 {
-    public class CreateOrderMeal
+    public class CreateOrderMealViewModel
     {
         public string Name { get; set; }
 

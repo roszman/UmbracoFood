@@ -52,7 +52,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                             );");
                 db.Execute(@"CREATE TABLE [Orders] (
                               [Id] int IDENTITY (1,1) NOT NULL
-                            , [Owner] nvarchar(100) NOT NULL
+                            , [OwnerKey] nvarchar(100) NOT NULL
                             , [AccountNumber] nvarchar(100) NOT NULL
                             , [StatusId] int NOT NULL
                             , [RestaurantId] int NOT NULL
@@ -65,7 +65,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                             , [MealName] nvarchar(255) NOT NULL
                             , [OrderId] int NOT NULL
                             , [Count] int NOT NULL
-                            , [PurchaserName] nvarchar(100) NOT NULL
+                            , [PurchaserKey] nvarchar(100) NOT NULL
                             );");
                 db.Execute(@"INSERT INTO [Statuses] ([Name]) VALUES (N'InProgress');");
                 db.Execute(@"INSERT INTO [Statuses] ([Name]) VALUES (N'InDelivery');");
@@ -123,7 +123,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
                     Deadline = DateTime.Now,
                     EstimatedDeliveryTime = DateTime.Now,
                     OrderedMeals = null,
-                    Owner = "user " + restaurantPoco.ID,
+                    OwnerKey = "ownerKey" + restaurantPoco.ID,
                     StatusId = statuses.First().Id
                 };
                 orderPocos.Add(o);
@@ -141,7 +141,7 @@ namespace UmbracoFood.Tests.Repositories.DatabaseFixtures
         {
             foreach (var o in orders)
             {
-                db.Insert("OrderedMeals", "Id", new OrderedMeal { MealName = "nazwa posiłku", Price = 2.5, PurchaserName = "Piotrek", OrderId = o.Id, Count = 1});
+                db.Insert("OrderedMeals", "Id", new OrderedMeal { MealName = "nazwa posiłku", Price = 2.5, PurchaserKey = "purchaser key", OrderId = o.Id, Count = 1});
             }
         }
 

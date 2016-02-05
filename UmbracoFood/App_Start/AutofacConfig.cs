@@ -1,26 +1,28 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web.Http;
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
-using System.Reflection;
-using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
 using Autofac;
-using Autofac.Core.Lifetime;
-using Autofac.Core.Registration;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using AutoMapper;
+using AutoMapper.Mappers;
 using Umbraco.Web;
 using Umbraco.Web.WebApi;
 using FluentValidation;
 using FluentValidation.WebApi;
+using Umbraco.Core;
 using UmbracoFood.Filters;
+using UmbracoFood.Helpers;
 using UmbracoFood.Infrastructure.Mapping;
 using UmbracoFood.Infrastructure.Repositories;
+using UmbracoFood.Interfaces;
 using UmbracoFood.Validators;
 
 namespace UmbracoFood
@@ -55,16 +57,30 @@ namespace UmbracoFood
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
 
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new AutofacControllerActivator(container));
-            
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
         private static void RegisterModelMappers(ContainerBuilder builder)
         {
-            var businessLogic = Assembly.Load("UmbracoFood.Infrastructure");
+            var assemblies =  AppDomain.CurrentDomain.GetAssemblies();
+            builder.RegisterAssemblyTypes(assemblies)
+                .Where(t => t.BaseType == typeof(Profile))
+                .As<Profile>();
 
+            builder.Register(ctx => new ConfigurationStore(new TypeMapFactory(), MapperRegistry.AllMappers()))
+               .AsImplementedInterfaces()
+               .SingleInstance()
+               .OnActivating(x => {
+                   foreach (var profile in x.Context.Resolve<IEnumerable<Profile>>())
+                   {
+                       x.Instance.AddProfile(profile);
+                   }
+               });
+            var businessLogic = Assembly.Load("UmbracoFood.Infrastructure");
             builder.RegisterAssemblyTypes(businessLogic)
                 .AsClosedTypesOf(typeof(IModelMapper<,>)).AsImplementedInterfaces();
+            builder.Register<IMappingEngine>(c => Mapper.Engine);
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -97,6 +113,7 @@ namespace UmbracoFood
             builder.RegisterType<FluentValidationModelValidatorProvider>().As<System.Web.Http.Validation.ModelValidatorProvider>();
             builder.RegisterType<AutofacValidatorFactory>().As<IValidatorFactory>().SingleInstance();
         }
+
 
         private sealed class AutofacControllerActivator : IHttpControllerActivator
         {

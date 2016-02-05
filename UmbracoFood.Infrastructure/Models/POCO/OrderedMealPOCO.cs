@@ -21,8 +21,9 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         [ForeignKey(typeof(OrderPoco))]
         public int OrderId { get; set; }
 
-        [Column("PurchaserName")]
-        public string PurchaserName { get; set; }
+
+        [Column("PurchaserKey")]
+        public string PurchaserKey { get; set; }
 
         [Column("Count")]
         public int Count { get; set; }

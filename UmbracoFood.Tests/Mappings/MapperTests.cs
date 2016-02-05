@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Moq;
 using UmbracoFood.Core.Extensions;
 using UmbracoFood.Core.Models;
 using UmbracoFood.Infrastructure.Mapping;
 using UmbracoFood.Infrastructure.Models.POCO;
+using UmbracoFood.Interfaces;
 using UmbracoFood.Mapping;
 using UmbracoFood.ViewModels;
 using Xunit;
+using Xunit.Sdk;
 
 namespace UmbracoFood.Tests.Mappings.Infrastructure
 {
@@ -20,9 +23,13 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
         private OrderedMealMapper _orderdedMealMapper;
         private RestaurantMapper _restaurantMapper;
         private CreateOrderViewModel _createOrderViewModel;
+        private Mock<IUserDetailsService> _userDeatilsService;
+        private Mock<IMappingEngine> _mappingEngineMock;
 
         public MapperTests()
         {
+            _userDeatilsService = new Mock<IUserDetailsService>();
+            _mappingEngineMock = new Mock<IMappingEngine>();
             lock (sync)
             {
                 if (!configured)
@@ -34,15 +41,16 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                         config.AddProfile(new OrderedMealMappingProfile());
                         config.AddProfile(new RestaurantMappingProfile());
                         config.AddProfile(new StatusMappingProfile());
-                        config.AddProfile(new OrderViewModelMapperProfile());
+                        config.AddProfile(new OrderViewModelMapperProfile(_userDeatilsService.Object));
                     });
                     configured = true;
                     Mapper.AssertConfigurationIsValid();
                 }
             }
+
             _orderMapper = new OrderMapper();
             _orderdedMealMapper = new OrderedMealMapper();
-            _restaurantMapper = new RestaurantMapper();
+            _restaurantMapper = new RestaurantMapper(_mappingEngineMock.Object);
             _createOrderViewModel = new CreateOrderViewModel();
         }
 
@@ -64,7 +72,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                     Price = 21.32,
                     MealName = "Meal 1",
                     OrderId = 999,
-                    PurchaserName = "Johnny Bravo"
+                    PurchaserKey = "Johnny Bravo"
                 },
                 new OrderedMealPoco()
                 {
@@ -73,10 +81,10 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                     Price = 31.32,
                     MealName = "Meal 2",
                     OrderId = 999,
-                    PurchaserName = "Voldemort"
+                    PurchaserKey = "Voldemort"
                 }
             };
-            orderPoco.Owner = "Papa Smurf";
+            orderPoco.OwnerKey = "Papa Smurf";
             orderPoco.Restaurant = new RestaurantPoco()
             {
                 ID = 1
@@ -94,7 +102,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
 
             //Assert
             Assert.Equal(order.Id, orderPoco.Id);
-            Assert.Equal(order.Owner, orderPoco.Owner);
+            Assert.Equal(order.OwnerKey, orderPoco.OwnerKey);
             Assert.Equal(order.Status, (OrderStatus) orderPoco.StatusId);
             Assert.Equal(order.AccountNumber, orderPoco.AccountNumber);
             Assert.Equal(order.Restaurant.ID, orderPoco.RestaurantId);
@@ -122,7 +130,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                     Price = 21.32,
                     MealName = "Meal 1",
                     OrderId = 999,
-                    PurchaserName = "Johnny Bravo"
+                    PurchaserKey = "Johnny Bravo"
                 },
                 new OrderedMeal()
                 {
@@ -131,22 +139,23 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                     Price = 31.32,
                     MealName = "Meal 2",
                     OrderId = 999,
-                    PurchaserName = "Voldemort"
+                    PurchaserKey = "Voldemort"
                 }
             };
-            order.Owner = "Papa Smurf";
+            order.OwnerKey = "Papa Smurf";
             order.Restaurant = new Restaurant()
             {
                 ID = 1
             };
             order.Status = OrderStatus.InKitchen;
+            var orderedMealKey = "ordered meal key";
 
             //Act
             var orderPoco = _orderMapper.MapToPoco(order);
 
             //Assert
             Assert.Equal(orderPoco.Id, order.Id);
-            Assert.Equal(orderPoco.Owner, order.Owner);
+            Assert.Equal(orderPoco.OwnerKey, order.OwnerKey);
             Assert.Equal((OrderStatus) orderPoco.Status.Id, order.Status);
             Assert.Equal(orderPoco.AccountNumber, order.AccountNumber);
             Assert.Equal(orderPoco.Restaurant.ID, order.Restaurant.ID);
@@ -168,7 +177,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                 OrderId = 145,
                 Id = 1765,
                 Price = 234.67,
-                PurchaserName = "purchaser name"
+                PurchaserKey = "purchaser name"
 
             };
 
@@ -181,7 +190,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
             Assert.Equal(mappedOrderedMeal.Count, mappedOrderedMeal.Count);
             Assert.Equal(mappedOrderedMeal.OrderId, mappedOrderedMeal.OrderId);
             Assert.Equal(mappedOrderedMeal.Price, mappedOrderedMeal.Price);
-            Assert.Equal(mappedOrderedMeal.PurchaserName, mappedOrderedMeal.PurchaserName);
+            Assert.Equal(mappedOrderedMeal.PurchaserKey, mappedOrderedMeal.PurchaserKey);
             Assert.IsType<OrderedMealPoco>(mappedOrderedMeal);
         }
 
@@ -196,7 +205,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                 OrderId = 145,
                 Id = 1765,
                 Price = 234.67,
-                PurchaserName = "purchaser name"
+                PurchaserKey = "purchaser key"
 
             };
 
@@ -209,7 +218,6 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
             Assert.Equal(mappedOrderedMeal.Count, mappedOrderedMeal.Count);
             Assert.Equal(mappedOrderedMeal.OrderId, mappedOrderedMeal.OrderId);
             Assert.Equal(mappedOrderedMeal.Price, mappedOrderedMeal.Price);
-            Assert.Equal(mappedOrderedMeal.PurchaserName, mappedOrderedMeal.PurchaserName);
             Assert.IsType<OrderedMeal>(mappedOrderedMeal);
         }
 
@@ -270,15 +278,15 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
             var createOrderViewModel = new CreateOrderViewModel();
             createOrderViewModel.AccountNumber = "11 1111 1111 1111 1111";
             createOrderViewModel.Deadline = new DateTime();
-            createOrderViewModel.Meals = new List<CreateOrderMeal>()
+            createOrderViewModel.Meals = new List<CreateOrderMealViewModel>()
             {
-                new CreateOrderMeal()
+                new CreateOrderMealViewModel()
                 {
                     Name = "Meal 1",
                     Count = 2,
                     Price = 10
                 },
-                new CreateOrderMeal()
+                new CreateOrderMealViewModel()
                 {
                     Name = "Meal 2",
                     Count = 1,
@@ -287,6 +295,8 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
             };
             createOrderViewModel.Owner = "Michał";
             createOrderViewModel.SelectedRestaurantId = 1;
+            var userKey = "userKey";
+            _userDeatilsService.Setup(u => u.GetUserKey(It.IsAny<string>())).Returns(userKey);
 
             //Act
             var order = Mapper.DynamicMap<CreateOrderViewModel, Order>(createOrderViewModel);
@@ -296,7 +306,7 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
             Assert.Equal(order.Deadline, createOrderViewModel.Deadline);
             Assert.Equal(order.EstimatedDeliveryTime, null);
             Assert.Equal(order.Id, 0);
-            Assert.Equal(order.Owner, createOrderViewModel.Owner);
+            Assert.Equal(order.OwnerKey, userKey);
             Assert.Equal(order.Restaurant.ID, createOrderViewModel.SelectedRestaurantId);
             Assert.Equal(order.Status, OrderStatus.InProgress);
             Assert.Equal(order.OrderedMeals.Count, createOrderViewModel.Meals.Count());
@@ -322,10 +332,10 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                          MealName = "meal name",
                          OrderId = 345,
                          Price = 234.23,
-                         PurchaserName = "purchaser name"
+                         PurchaserKey = "purchaser name"
                      }
                  },
-                Owner = "owner",
+                OwnerKey = "owner",
                 Restaurant = new Restaurant
                 {
                     ID = 345,
@@ -338,12 +348,16 @@ namespace UmbracoFood.Tests.Mappings.Infrastructure
                 Status = OrderStatus.InDelivery
             };
 
+            var userName = "user name";
+            _userDeatilsService.Setup(u => u.GetUserName(It.IsAny<string>())).Returns(userName);
+
             //act
             var orderViewModel = Mapper.DynamicMap<Order, OrderViewModel>(order);
 
             //assert
+            _userDeatilsService.Verify(u => u.GetUserName(It.IsAny<string>()), Times.Once);
             Assert.Equal(order.Id, orderViewModel.Id);
-            Assert.Equal(order.Owner, orderViewModel.Owner);
+            Assert.Equal(userName, orderViewModel.Owner);
             Assert.Equal(order.Deadline, orderViewModel.Deadline);
             Assert.Equal(order.EstimatedDeliveryTime, orderViewModel.EstimatedDeliveryTime);
             Assert.Equal(order.OrderedMeals.Sum(m => m.Count), orderViewModel.MealsCount);

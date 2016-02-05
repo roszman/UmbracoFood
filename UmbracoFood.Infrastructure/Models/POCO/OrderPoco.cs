@@ -13,8 +13,9 @@ namespace UmbracoFood.Infrastructure.Models.POCO
         [Column("Id")]
         public int Id { get; set; }
 
-        [Column("Owner")]
-        public string Owner { get; set; }
+
+        [Column("OwnerKey")]
+        public string OwnerKey { get; set; }
 
         [ForeignKey(typeof(StatusPoco),Column ="StatusId")]
         [Column("StatusId")]

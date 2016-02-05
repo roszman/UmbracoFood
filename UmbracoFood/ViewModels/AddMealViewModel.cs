@@ -10,6 +10,6 @@
 
         public int Count { get; set; }
 
-        public string Person { get; set; }
+        public string PurchaserName { get; set; }
     }
 }

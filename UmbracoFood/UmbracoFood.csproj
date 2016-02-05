@@ -2090,6 +2090,8 @@
     <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Filters\WebApiExceptionFilter.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Helpers\UserDetailsService.cs" />
+    <Compile Include="Interfaces\IUserDetailsService.cs" />
     <Compile Include="Mapping\OrderViewModelMapperProfile.cs" />
     <Compile Include="Mapping\RestaurantViewModelMapperProfile.cs" />
     <Compile Include="Mapping\StatusItemMapperProfile.cs" />
@@ -2098,7 +2100,7 @@
     <Compile Include="Validators\AbstractValidators\EditRestaurantValidator.cs" />
     <Compile Include="ViewModels\AddMealViewModel.cs" />
     <Compile Include="ViewModels\EditOrderViewModel.cs" />
-    <Compile Include="ViewModels\CreateOrderMeal.cs" />
+    <Compile Include="ViewModels\CreateOrderMealViewMOdel.cs" />
     <Compile Include="ViewModels\CreateOrderViewModel.cs" />
     <Compile Include="ViewModels\EditRestaurantViewModel.cs" />
     <Compile Include="ViewModels\AddRestaurantViewModel.cs" />

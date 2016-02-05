@@ -69,7 +69,7 @@ namespace UmbracoFood.Tests.Repositories
                 {
                     MealName = "meal name",
                     Price = 14.2,
-                    PurchaserName = "purchaser name",
+                    PurchaserKey = "purchaser key"
                 }
             };
             RestaurantPoco restaurant = new RestaurantPoco()
@@ -88,7 +88,7 @@ namespace UmbracoFood.Tests.Repositories
                 Deadline = new DateTime(2016, 01, 28, 12, 00, 00),
                 EstimatedDeliveryTime = new DateTime(2016, 01, 28, 13, 00, 00),
                 OrderedMeals = orderedMeals,
-                Owner = "owner",
+                OwnerKey = "ownerKey",
                 RestaurantId = restaurant.ID,
                 StatusId = (int)OrderStatus.InProgress
             };
@@ -104,7 +104,8 @@ namespace UmbracoFood.Tests.Repositories
             Assert.Equal(orderPocoBeforDbInsert.EstimatedDeliveryTime, orderFromDb.EstimatedDeliveryTime);
             Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.Count, orderFromDb.OrderedMeals.Count);
             Assert.Equal(orderPocoBeforDbInsert.OrderedMeals.First().Price, orderFromDb.OrderedMeals.First().Price);
-            Assert.Equal(orderPocoBeforDbInsert.Owner, orderFromDb.Owner);
+            Assert.Equal(orderPocoBeforDbInsert.OwnerKey, orderFromDb.OwnerKey);
+            Assert.Equal(orderPocoBeforDbInsert.OwnerKey, orderFromDb.OwnerKey);
             Assert.Equal(orderPocoBeforDbInsert.StatusId, orderFromDb.Status.Id);
             Assert.Equal(orderPocoBeforDbInsert.RestaurantId, orderFromDb.Restaurant.ID);
         }
@@ -127,7 +128,7 @@ namespace UmbracoFood.Tests.Repositories
             _orderMapper.Verify(m => m.MapToDomain(It.IsAny<OrderPoco>()), Times.Once);
             Assert.Equal(orderPocoFromDb.Id, mapperArgument.Id);
             Assert.Equal(orderPocoFromDb.OrderedMeals.Count(), mapperArgument.OrderedMeals.Count());
-            Assert.Equal(orderPocoFromDb.Owner, mapperArgument.Owner);
+            Assert.Equal(orderPocoFromDb.OwnerKey, mapperArgument.OwnerKey);
             Assert.Equal(orderPocoFromDb.EstimatedDeliveryTime, mapperArgument.EstimatedDeliveryTime);
             Assert.Equal(orderPocoFromDb.Deadline, mapperArgument.Deadline);
 
@@ -171,7 +172,7 @@ namespace UmbracoFood.Tests.Repositories
                 MealName = "special meal name",
                 OrderId = 3,
                 Price = 15.56,
-                PurchaserName = "purchaser name"
+                PurchaserKey = "purchaser name"
             };
             _mealMapper
                 .Setup(m => m.MapToPoco(It.IsAny<OrderedMeal>()))

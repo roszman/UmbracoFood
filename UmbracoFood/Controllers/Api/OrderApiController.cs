@@ -5,6 +5,7 @@ using Umbraco.Web.WebApi;
 using UmbracoFood.Core.Interfaces;
 using UmbracoFood.Core.Models;
 using System.Linq;
+using UmbracoFood.Interfaces;
 using UmbracoFood.ViewModels;
 
 namespace UmbracoFood.Controllers.Api
@@ -13,10 +14,12 @@ namespace UmbracoFood.Controllers.Api
     public class OrderApiController : UmbracoApiController
     {
         private readonly IOrderService orderService;
+        private readonly IUserDetailsService _userDetailsService;
 
-        public OrderApiController(IOrderService orderService)
+        public OrderApiController(IOrderService orderService, IUserDetailsService userDetailsService)
         {
             this.orderService = orderService;
+            _userDetailsService = userDetailsService;
         }
 
         [HttpGet]
@@ -71,7 +74,7 @@ namespace UmbracoFood.Controllers.Api
                 AvailableStatuses = availableStatuses.Select(Mapper.Map<Status, StatusItem>),
                 Deadline = order.Deadline,
                 EstimatedDeliveryTime = order.EstimatedDeliveryTime,
-                Owner = order.Owner,
+                Owner = _userDetailsService.GetUserName(order.OwnerKey),
                 RestaurantId = order.Restaurant.ID,
                 OrderId = order.Id,
                 RestaurantMenuUrl = order.Restaurant.MenuUrl,

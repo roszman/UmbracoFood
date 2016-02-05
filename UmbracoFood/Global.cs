@@ -14,7 +14,7 @@ namespace UmbracoFood
             base.OnApplicationStarted(sender, e);
 
             AutofacConfig.Configure();
-            AutomapperConfig.Configure();
+            //AutomapperConfig.Configure();
 
             // to return json instead of xml in RestaurantsApiController
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
